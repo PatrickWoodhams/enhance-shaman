@@ -939,11 +939,9 @@ body.isNavigating .appHeader::after {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding-bottom: 1px;
+  padding-bottom: 6px;
   border-radius: 999px;
 
-
-  box-shadow: var(--shadow);
   vertical-align: middle;
 }
 
@@ -956,9 +954,9 @@ body.isNavigating .appHeader::after {
 }
 
 .spellName {
-  font-size: 12.5px;
-  font-weight: 650;
-  letter-spacing: 0.1px;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
 }
 
 /* =========================================================
@@ -971,6 +969,10 @@ body.isNavigating .appHeader::after {
   border: 1px solid var(--stroke);
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(16px) saturate(120%);
+}
+
+.pageHero + .contentCard {
+  margin-top: 14px;
 }
 
 .pageKicker {
@@ -1279,7 +1281,7 @@ body.isNavigating .appHeader::after {
 }
 
 .timingBlock .spellName {
-  font-size: 12px;
+  font-size: inherit;
 }
 
 @media (max-width: 900px) {
@@ -1477,7 +1479,7 @@ body.isNavigating .appHeader::after {
 }
 
 .syncPrimer .spellName {
-  font-size: 12px;
+  font-size: inherit;
 }
 
 @media (max-width: 900px) {
@@ -1789,6 +1791,253 @@ ol.steps {
 @media (max-width: 880px) {
   .lab .labActionButtons {
     flex-direction: column;
+  }
+}
+
+/* =========================================================
+   Page scoped layout tweaks (Weaving overview)
+   ========================================================= */
+.pageWeavingOverview .weaveCard {
+  margin-top: 16px;
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+
+.pageWeavingOverview .weaveCard p,
+.pageWeavingOverview .weaveCard ul,
+.pageWeavingOverview .weaveCard li {
+  max-width: none;
+}
+
+.pageAirWeaving .contentCard p,
+.pageAirWeaving .contentCard ul,
+.pageAirWeaving .contentCard li {
+  max-width: none;
+}
+
+.pageAirWeaving .airTwistLabCard {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.pageAirWeaving .airTwistLabShell {
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.pageAirWeaving #air-twist-lab .calloutRule {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.pageAirWeaving #air-twist-lab .calloutRule .btn {
+  justify-content: center;
+  width: fit-content;
+}
+
+.pageAirWeaving #airTwistLab {
+  display: grid;
+  gap: 12px;
+}
+
+.pageAirWeaving #airTwistLab > * {
+  width: 100%;
+  max-width: 100%;
+}
+
+.airTwistLabCard .labRowTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.airTwistLabCard .labToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.airTwistLabCard .labHud {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+@media (max-width: 900px) {
+  .airTwistLabCard .labHud {
+    grid-template-columns: 1fr;
+  }
+}
+
+.airTwistLabCard .labTotemCard,
+.airTwistLabCard .labCoachCard {
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  border-radius: 14px;
+  padding: 14px;
+  background: var(--panel, rgba(0, 0, 0, 0.12));
+}
+
+.airTwistLabCard .labTotemCard {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.airTwistLabCard .labTotemRing {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+}
+
+.airTwistLabCard .labRingSvg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.airTwistLabCard .labRingTrack {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 6;
+}
+
+.airTwistLabCard .labRingProgress {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 120ms linear;
+}
+
+.airTwistLabCard .labRingGcd {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 4;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.airTwistLabCard .labTotemIcon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.airTwistLabCard .labMetaLabel {
+  font-size: 12px;
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+
+.airTwistLabCard .labMetaValue {
+  font-size: 16px;
+  font-weight: 650;
+  margin-bottom: 10px;
+}
+
+.airTwistLabCard .labMiniRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.airTwistLabCard .labMiniLabel {
+  opacity: 0.75;
+}
+
+.airTwistLabCard .labBar {
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+  margin-top: 6px;
+}
+
+.airTwistLabCard .labBarFill {
+  height: 100%;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.7);
+  transition: width 120ms linear;
+}
+
+.airTwistLabCard .labCoachText {
+  min-height: 44px;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+.airTwistLabCard .labButtons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.airTwistLabCard .labCastBtn {
+  position: relative;
+  overflow: hidden;
+}
+
+.airTwistLabCard .labCastContent {
+  position: relative;
+  z-index: 2;
+}
+
+.airTwistLabCard .labBtnCd {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.airTwistLabCard .labBtnCdFill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0%;
+  background: rgba(0, 0, 0, 0.45);
+  transition: height 120ms linear;
+}
+
+.airTwistLabCard .labCastBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.airTwistLabCard .labCastBtn.isRecommended {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+.airTwistLabCard .labResults {
+  border-top: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  padding-top: 10px;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+@media (max-width: 720px) {
+  .pageAirWeaving .airTwistLabShell {
+    padding: 0;
   }
 }
 

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Weaving and Twisting Overview | Enhancement Shaman Guide</title>
+    <meta
+      name="description"
+      content="Overview of weaving and twisting for Enhancement in TBC: what it means, the three systems (air totem twisting, fire totem twisting, Flame Shock weaving), and a simple decision framework."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+    <link rel="stylesheet" href="/src/css/themes/light.css" />
+    <link rel="stylesheet" href="/src/css/themes/dark.css" />
+    <link rel="stylesheet" href="/src/css/themes/high-contrast.css" />
+
+    <link rel="prefetch" href="/pages/guide/index.html" />
+
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
+  </head>
+
+  <body class="pageWeavingOverview">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <!-- Header fallback. boot.js will replace it with /components/header.html -->
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">ƒs­</span>
+            <span class="brandText">Enhancement Shaman Guide</span>
+          </a>
+
+          <nav class="headerNav" aria-label="Primary">
+            <a class="navLink" href="/pages/guide/index.html">Guide</a>
+            <a class="navLink" href="/pages/builds/index.html">Builds</a>
+            <a class="navLink" href="/pages/encounters/index.html">Encounters</a>
+            <a class="navLink" href="/pages/tools/index.html">Tools</a>
+          </nav>
+
+          <div class="headerActions">
+            <label class="searchShell" aria-label="Search the guide">
+              <span class="searchIcon" aria-hidden="true">ƒO</span>
+              <input
+                id="globalSearch"
+                class="searchInput"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Search spells, topics, and decisions"
+              />
+            </label>
+
+            <button
+              id="themeToggle"
+              class="btn btnGhost"
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              Theme
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <!-- Sidebar fallback. boot.js will replace it with /components/sidebar.html -->
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Core mechanics</div>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger.html">Sync and Stagger</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Weaving</div>
+            <a class="sidebarLink" href="/pages/guide/weaving_overview.html">Weaving and twisting overview</a>
+            <a class="sidebarLink" href="/pages/guide/air_totem_weaving.html">Air totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/fire_totem_weaving.html">Fire totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/shock_weaving.html">Flame Shock weaving</a>
+          </div>
+        </aside>
+
+        <!-- Main. router.js swaps only this container on navigation -->
+        <main id="appMain" class="appMain" tabindex="-1">
+          <section class="pageHero">
+            <div class="pageKicker">Decision first, conditions always</div>
+            <h1 class="pageTitle">Weaving and twisting overview</h1>
+            <p class="pageLead">
+              Weaving and twisting are a priority based approach to your globals. It means choosing a specific spell because the
+              conditions are right, not following a fixed rotation. In TBC Enhancement, most weaving decisions fall into
+              three systems: <span data-spell="air_totem"></span> twisting, <span data-spell="fire_totem"></span> twisting,
+              and <span data-spell="flame_shock"></span> weaving.
+            </p>
+          </section>
+
+          <section class="contentCard weaveCard" id="three-types">
+            <div class="eyebrow">The system</div>
+            <h2>The three systems Enhancement uses</h2>
+
+            <h3 id="air-twisting">Air Totem Twisting</h3>
+              <p>
+                <span data-spell="air_totem"></span> twisting is intentionally alternating air totems to gain the benefit of two
+                different effects over the same window, even though only one air totem can be active at a time. The goal is to
+                maintain required group coverage, of <span data-spell="windfury_totem"></span>, while briefly activating <span data-spell="grace_of_air_totem"></span>, until just before <span data-spell="windfury_weapon"></span> is going to fall off your group, then repeating the cycle, so that both benefits are realized without sacrificing overall uptime.
+              </p>
+            <p class="muted">
+              <a href="/pages/guide/air_totem_weaving.html">Read the full air totem twisting guide</a>
+            </p>
+
+            <h3 id="fire-weaving">Fire Totem  Twisting</h3>
+            <p>
+              <span data-spell="fire_totem"></span> twisting is choosing the fire totem that produces the highest damage for the current situation. Since
+              <span data-spell="fire_nova_totem"></span> has a cooldown and a delayed detonation, a common pattern is to
+              drop it, let it detonate, then immediately replace it with your baseline fire totem such as
+              <span data-spell="searing_totem"></span> or <span data-spell="magma_totem"></span>.
+            </p>
+            <p class="muted">
+              <a href="/pages/guide/fire_totem_weaving.html">Read the full fire totem twisting guide</a>
+            </p>
+
+            <h3 id="flame-shock-weaving">Flame Shock Weaving</h3>
+            <p>
+              <span data-spell="flame_shock"></span> weaving is deciding when it is worth maintaining the dot versus
+              spending those globals on other priorities. The decision is condition based. It depends on uptime, timing,
+              and whether you can apply and refresh without wasting globals.
+            </p>
+            <p class="muted">
+              <a href="/pages/guide/shock_weaving.html">Read the full Flame Shock weaving guide</a>
+            </p>
+          </section>
+
+          <section class="contentCard weaveCard" id="cost-model">
+            <div class="eyebrow">Tradeoffs</div>
+            <h2>Weaving and twisting are always a value check</h2>
+            <p>
+              Every weave and every twist has a cost. You spend a global, you spend mana, and you accept execution risk. The payoff is
+              more damage or more group value. The correct cast is the one that is a reliable net gain in your current
+              conditions.
+            </p>
+
+            <h3 id="what-you-can-lose">What you can lose by weaving poorly</h3>
+            <ul>
+              <li>Delaying higher priority actions because you spent a global at the wrong time</li>
+              <li>Dropping required group coverage, especially <span data-spell="windfury_totem"></span></li>
+              <li>Mana headroom, which reduces your options later in the fight</li>
+              <li>Extra globals spent fixing mistakes, which turns one decision into a chain of decisions</li>
+            </ul>
+
+            <p class="muted">
+              Strong play is not weaving more often. It is weaving with higher success rate and higher impact per global.
+            </p>
+          </section>
+
+          <section class="contentCard weaveCard" id="decision-framework">
+            <div class="eyebrow">Framework</div>
+            <h2>A simple decision framework</h2>
+            <p>Use the same gates for every weave. If a gate fails, skip the weave and keep your priority clean.</p>
+
+            <h3 id="gate-global">Gate 1: Do you actually have a global to spend</h3>
+            <p>
+              If this cast will push back a higher priority action in the next few seconds, you do not have a real global
+              to spend.
+            </p>
+
+            <h3 id="gate-stability">Gate 2: Are the conditions stable</h3>
+            <p>
+              Movement, target swaps, and unreliable uptime can turn a good choice into a wasted global. Wait for
+              stability.
+            </p>
+
+            <h3 id="gate-mana">Gate 3: Can you afford it</h3>
+            <p>
+              Mana is future options. If twisting or weaving now removes better options later, you are borrowing against yourself.
+            </p>
+
+            <h3 id="gate-clean">Gate 4: Can you execute it cleanly</h3>
+            <p>
+              If you are likely to need an immediate follow up global to fix the result, it is often negative value.
+            </p>
+          </section>
+
+          <section class="contentCard weaveCard" id="how-to-learn">
+            <div class="eyebrow">Progression</div>
+            <h2>How to learn without building bad habits</h2>
+            <p>
+              Add one system at a time. Establish a stable baseline first, then layer in a single weave type until it is
+              automatic. When a weave fails, do not chase it. Return to your baseline priorities, then attempt again when
+              the conditions are better.
+            </p>
+
+            <h3 id="order-to-learn">Suggested learning order</h3>
+            <ul>
+              <li><span data-spell="air_totem"></span> twisting, because group coverage pressure makes the decisions obvious</li>
+              <li><span data-spell="flame_shock"></span> weaving, because it teaches condition based refresh timing</li>
+              <li><span data-spell="fire_totem"></span> twisting, because it is easiest to over spend mana and globals</li>
+            </ul>
+
+            <p class="muted">
+              This order is about building discipline first. The exact priority within your character and raid setup can
+              vary, but the habit formation does not.
+            </p>
+          </section>
+
+          <section class="contentCard weaveCard" id="next-pages">
+            <div class="eyebrow">Next</div>
+            <h2>Go deeper</h2>
+            <p>This page defines the concept and shared decision rules. The detailed pages turn each system into a repeatable technique.</p>
+            <ul>
+              <li><a href="/pages/guide/air_totem_weaving.html"> Air Totem Twisting</a></li>
+              <li><a href="/pages/guide/fire_totem_weaving.html"> Fire Totoem Twisting</a></li>
+              <li><a href="/pages/guide/shock_weaving.html"> Flame Shock Weaving</a></li>
+            </ul>
+          </section>
+        </main>
+
+        <!-- TOC. toc.js writes links from h2 and h3 in #appMain -->
+        <aside class="appTocShell" aria-label="On page table of contents">
+          <div class="tocHeader">
+            <div class="tocTitle">On this page</div>
+            <div class="tocHint">Updates as you navigate</div>
+          </div>
+          <nav id="appToc" class="appToc"></nav>
+        </aside>
+      </div>
+
+      <!-- Footer fallback. boot.js will replace it with /components/footer.html -->
+      <footer id="appFooter" class="appFooter" role="contentinfo">
+        <div class="footerInner">
+          <div class="footerLeft">
+            <div class="footerBrand">Enhancement Shaman Guide</div>
+            <div class="footerSub">Fast, readable, decision focused.</div>
+          </div>
+
+          <nav class="footerNav" aria-label="Footer">
+            <a class="footerLink" href="/pages/guide/index.html">Guide</a>
+            <a class="footerLink" href="/pages/tools/index.html">Tools</a>
+            <a class="footerLink" href="/pages/guide/faq.html">FAQ</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Flame Shock Weaving | Enhancement Shaman Guide</title>
+    <meta
+      name="description"
+      content="Flame Shock weaving basics: timing windows and decision rules."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+    <link rel="stylesheet" href="/src/css/themes/light.css" />
+    <link rel="stylesheet" href="/src/css/themes/dark.css" />
+    <link rel="stylesheet" href="/src/css/themes/high-contrast.css" />
+
+    <link rel="prefetch" href="/pages/guide/index.html" />
+
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+
+  <body class="pageShockWeaving">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <!-- Header fallback. boot.js will replace it with /components/header.html -->
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">ƒs­</span>
+            <span class="brandText">Enhancement Shaman Guide</span>
+          </a>
+
+          <nav class="headerNav" aria-label="Primary">
+            <a class="navLink" href="/pages/guide/index.html">Guide</a>
+            <a class="navLink" href="/pages/builds/index.html">Builds</a>
+            <a class="navLink" href="/pages/encounters/index.html">Encounters</a>
+            <a class="navLink" href="/pages/tools/index.html">Tools</a>
+          </nav>
+
+          <div class="headerActions">
+            <label class="searchShell" aria-label="Search the guide">
+              <span class="searchIcon" aria-hidden="true">ƒO</span>
+              <input
+                id="globalSearch"
+                class="searchInput"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Search spells, topics, and decisions"
+              />
+            </label>
+
+            <button
+              id="themeToggle"
+              class="btn btnGhost"
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              Theme
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <!-- Sidebar fallback. boot.js will replace it with /components/sidebar.html -->
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Core mechanics</div>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger.html">Sync and Stagger</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Weaving</div>
+            <a class="sidebarLink" href="/pages/guide/weaving_overview.html">Weaving overview</a>
+            <a class="sidebarLink" href="/pages/guide/air_totem_weaving.html">Air totem weaving</a>
+            <a class="sidebarLink" href="/pages/guide/fire_totem_weaving.html">Fire totem weaving</a>
+            <a class="sidebarLink" href="/pages/guide/shock_weaving.html">Shock weaving</a>
+          </div>
+        </aside>
+
+        <!-- Main. router.js swaps only this container on navigation -->
+        <main id="appMain" class="appMain" tabindex="-1">
+          <section class="pageHero">
+            <div class="pageKicker">Precision in the gaps</div>
+            <h1 class="pageTitle">Flame Shock weaving</h1>
+            <p class="pageLead">
+              Coming soon. This section will cover the timing, decision rules, and tradeoffs for Flame Shock weaving.
+            </p>
+          </section>
+
+          <section class="contentCard">
+            <div class="eyebrow">Status</div>
+            <h2>Coming soon</h2>
+            <p class="muted">
+              We are building this page now. Check back soon for a full breakdown.
+            </p>
+          </section>
+        </main>
+
+        <!-- TOC. toc.js writes links from h2 and h3 in #appMain -->
+        <aside class="appTocShell" aria-label="On page table of contents">
+          <div class="tocHeader">
+            <div class="tocTitle">On this page</div>
+            <div class="tocHint">Updates as you navigate</div>
+          </div>
+          <nav id="appToc" class="appToc"></nav>
+        </aside>
+      </div>
+
+      <!-- Footer fallback. boot.js will replace it with /components/footer.html -->
+      <footer id="appFooter" class="appFooter" role="contentinfo">
+        <div class="footerInner">
+          <div class="footerLeft">
+            <div class="footerBrand">Enhancement Shaman Guide</div>
+            <div class="footerSub">Fast, readable, decision focused.</div>
+          </div>
+
+          <nav class="footerNav" aria-label="Footer">
+            <a class="footerLink" href="/pages/guide/index.html">Guide</a>
+            <a class="footerLink" href="/pages/tools/index.html">Tools</a>
+            <a class="footerLink" href="/pages/guide/faq.html">FAQ</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/js/app.js"></script>
+  </body>
+</html>

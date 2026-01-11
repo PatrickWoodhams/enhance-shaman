@@ -1,21 +1,76 @@
-// data/spells.js (or wherever your SPELLS live)
-const ZAMIMG_BASE = "https://wow.zamimg.com/images/wow/icons";
+// data/spells.js
+// Central registry for spell references used by hydrateSpellRefs.
+// Keys should match your HTML, example: <span data-spell="stormstrike"></span>
+
+const ZAMIMG_BASE = "https://wow.zamimg.com/images/wow/icons"
 
 export function iconUrl(iconName, size = "large", ext = "jpg") {
-  return `${ZAMIMG_BASE}/${size}/${iconName}.${ext}`;
+  return `${ZAMIMG_BASE}/${size}/${iconName}.${ext}`
 }
 
 export const SPELLS = {
-  flurry: {
-    name: "Flurry",
-    icon: iconUrl("ability_ghoulfrenzy"),
+  // Enhancement core
+  stormstrike: { name: "Stormstrike", icon: iconUrl("ability_shaman_stormstrike") },
+  shamanistic_rage: { name: "Shamanistic Rage", icon: iconUrl("spell_nature_shamanrage") },
+  feral_spirit: { name: "Feral Spirit", icon: iconUrl("spell_shaman_feralspirit") },
+  dual_wield: { name: "Dual Wield", icon: iconUrl("ability_dualwield") },
+
+  // Talents and procs
+  flurry: { name: "Flurry", icon: iconUrl("ability_ghoulfrenzy") },
+  unleashed_rage: { name: "Unleashed Rage", icon: iconUrl("spell_nature_unleashedrage") },
+  elemental_devastation: { name: "Elemental Devastation", icon: iconUrl("spell_fire_elementaldevastation") },
+
+  // Weapon imbues
+  windfury_weapon: { name: "Windfury Weapon", icon: iconUrl("spell_nature_cyclone") },
+  flametongue_weapon: { name: "Flametongue Weapon", icon: iconUrl("spell_fire_flametounge") },
+  frostbrand_weapon: { name: "Frostbrand Weapon", icon: iconUrl("spell_frost_frostbrand") },
+  rockbiter_weapon: { name: "Rockbiter Weapon", icon: iconUrl("spell_nature_rockbiter") },
+
+  // Shocks
+  earth_shock: { name: "Earth Shock", icon: iconUrl("spell_nature_earthshock") },
+  frost_shock: { name: "Frost Shock", icon: iconUrl("spell_frost_frostshock") },
+  flame_shock: { name: "Flame Shock", icon: iconUrl("spell_fire_flameshock") },
+
+  // Air totems
+  air_totem: { name: "Air Totem", icon: iconUrl("spell_totem_wardofdraining") },
+  windfury_totem: { name: "Windfury Totem", icon: iconUrl("spell_nature_windfury") },
+  grace_of_air_totem: { name: "Grace of Air Totem", icon: iconUrl("spell_nature_invisibilitytotem") },
+  tranquil_air_totem: { name: "Tranquil Air Totem", icon: iconUrl("spell_nature_brilliance") },
+  grounding_totem: { name: "Grounding Totem", icon: iconUrl("spell_nature_groundingtotem") },
+  wrath_of_air_totem: { name: "Wrath of Air Totem", icon: iconUrl("spell_nature_slowingtotem") },
+
+  // Fire totems
+  fire_totem: { name: "Fire Totem", icon: iconUrl("spell_totem_wardofdraining") },
+  searing_totem: { name: "Searing Totem", icon: iconUrl("spell_fire_searingtotem") },
+  fire_nova_totem: { name: "Fire Nova Totem", icon: iconUrl("spell_fire_sealoffire") },
+  magma_totem: { name: "Magma Totem", icon: iconUrl("spell_fire_selfdestruct") },
+  totem_of_wrath: { name: "Totem of Wrath", icon: iconUrl("spell_fire_totemofwrath") },
+
+  // Earth totems
+  strength_of_earth_totem: { name: "Strength of Earth Totem", icon: iconUrl("spell_nature_earthbindtotem") },
+  stoneskin_totem: { name: "Stoneskin Totem", icon: iconUrl("spell_nature_stoneskintotem") },
+  earthbind_totem: { name: "Earthbind Totem", icon: iconUrl("spell_nature_strengthofearthtotem02") },
+  tremor_totem: { name: "Tremor Totem", icon: iconUrl("spell_nature_tremortotem") },
+
+  // Water totems
+  mana_spring_totem: { name: "Mana Spring Totem", icon: iconUrl("spell_nature_manaregentotem") },
+  healing_stream_totem: { name: "Healing Stream Totem", icon: iconUrl("spell_nature_healingstreamtotem") },
+  poison_cleansing_totem: { name: "Poison Cleansing Totem", icon: iconUrl("spell_nature_poisoncleansingtotem") },
+  disease_cleansing_totem: { name: "Disease Cleansing Totem", icon: iconUrl("spell_nature_diseasecleansingtotem") },
+}
+
+// Totem slot registry for generic references plus a default spell per slot
+export const TOTEMS = {
+  air: {
+    name: "Air Totem",
+    icon: iconUrl("spell_totem_wardofdraining"),
+    defaultSpell: "windfury_totem",
+    options: ["windfury_totem", "grace_of_air_totem", "tranquil_air_totem", "grounding_totem"],
   },
-  windfury_weapon: {
-    name: "Windfury Weapon",
-    icon: iconUrl("spell_nature_cyclone"),
+  fire: {
+    name: "Fire Totem",
+    icon: iconUrl("spell_totem_wardofdraining"),
+    defaultSpell: "searing_totem",
+    options: ["searing_totem", "fire_nova_totem", "magma_totem", "totem_of_wrath"],
   },
-  stormstrike: {
-    name: "Stormstrike",
-    icon: iconUrl("ability_shaman_stormstrike"),
-  },
-};
+}
