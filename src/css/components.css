@@ -1090,6 +1090,14 @@ body.isNavigating .appHeader::after {
   max-width: none;
 }
 
+#prepull p {
+  max-width: none;
+}
+
+#prepull .note {
+  margin-top: 14px;
+}
+
 
 .timingBlock {
   position: relative;
