@@ -1,0 +1,16 @@
+.hidden {
+  display: none !important;
+}
+
+.muted {
+  color: var(--fg3);
+}
+
+.max {
+  max-width: var(--max);
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}

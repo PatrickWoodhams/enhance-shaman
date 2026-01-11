@@ -1,0 +1,21 @@
+html:not([dataTheme]),
+html[dataTheme="light"] {
+  color-scheme: light;
+}
+
+html:not([dataTheme]) :root,
+html[dataTheme="light"] :root {
+  --bg: #f7f8fb;
+  --bg2: #eef2f7;
+
+  --panel: rgba(0, 0, 0, 0.04);
+  --panel2: rgba(0, 0, 0, 0.06);
+  --stroke: rgba(0, 0, 0, 0.12);
+  --stroke2: rgba(0, 0, 0, 0.18);
+
+  --fg: rgba(6, 10, 16, 0.92);
+  --fg2: rgba(6, 10, 16, 0.74);
+  --fg3: rgba(6, 10, 16, 0.58);
+
+  --shadow: 0 14px 46px rgba(2, 8, 18, 0.14);
+}

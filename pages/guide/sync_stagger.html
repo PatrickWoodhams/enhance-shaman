@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Swing Sync and Stagger | Enhancement Shaman Guide</title>
+    <meta
+      name="description"
+      content="TBC Enhancement swing sync and stagger explained with a trainer to practice corrections on demand."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+    <link rel="stylesheet" href="/src/css/themes/light.css" />
+    <link rel="stylesheet" href="/src/css/themes/dark.css" />
+    <link rel="stylesheet" href="/src/css/themes/high-contrast.css" />
+
+    <link rel="prefetch" href="/pages/guide/index.html" />
+    <link rel="prefetch" href="/pages/tools/swing-timer.html" />
+
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+
+  <body class="pageSyncStagger">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <!-- Header fallback. boot.js will replace it with /components/header.html -->
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">⚡</span>
+            <span class="brandText">Enhancement Shaman Guide</span>
+          </a>
+
+          <nav class="headerNav" aria-label="Primary">
+            <a class="navLink" href="/pages/guide/index.html">Guide</a>
+            <a class="navLink" href="/pages/builds/index.html">Builds</a>
+            <a class="navLink" href="/pages/encounters/index.html">Encounters</a>
+            <a class="navLink" href="/pages/tools/index.html">Tools</a>
+          </nav>
+
+          <div class="headerActions">
+            <label class="searchShell" aria-label="Search the guide">
+              <span class="searchIcon" aria-hidden="true">⌕</span>
+              <input
+                id="globalSearch"
+                class="searchInput"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Search spells, topics, and decisions"
+              />
+            </label>
+
+            <button
+              id="themeToggle"
+              class="btn btnGhost"
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              Theme
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <!-- Sidebar fallback. boot.js will replace it with /components/sidebar.html -->
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarTitle">Start here</div>
+            <a class="sidebarLink" href="/pages/guide/index.html">How the guide works</a>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger.html">Swing sync and stagger</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarTitle">Core mechanics</div>
+            <a class="sidebarLink" href="/pages/guide/cooldowns.html">Cooldown planning</a>
+            <a class="sidebarLink" href="/pages/guide/macros.html">Macros and keybinds</a>
+            <a class="sidebarLink" href="/pages/guide/addons.html">Addons and setup</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarTitle">Tools</div>
+            <a class="sidebarLink" href="/pages/tools/swing-timer.html">Swing timing</a>
+            <a class="sidebarLink" href="/pages/tools/shock-planner.html">Shock planner</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarTitle">Decisions</div>
+            <a class="sidebarLink" href="/pages/guide/rotation.html">Rotation decisions</a>
+            <a class="sidebarLink" href="/pages/guide/priorities.html">Priority system</a>
+          </div>
+        </aside>
+
+        <!-- Main. router.js swaps only this container on navigation -->
+        <main id="appMain" class="appMain" tabindex="-1">
+          <section class="pageHero">
+            <div class="pageKicker">TBC mechanics, decision first</div>
+            <h1 class="pageTitle">Swing Sync and Stagger</h1>
+            <p class="pageLead">
+              In TBC, sync and stagger matter for two outcomes only:
+              <span data-spell="flurry">Flurry</span> charge efficiency and
+              <span data-spell="windfury_weapon">Windfury Weapon</span> main hand priority.
+              If your off hand leads at the wrong time, you can burn <span data-spell="flurry">Flurry</span> charges on off hand hits
+              and you can lose value when <span data-spell="windfury_weapon">Windfury Weapon</span> is not favoring the main hand.
+              This page explains what is happening, what bad timing looks like, and gives you a trainer so you can correct your swing relationship on demand.
+            </p>
+
+
+            <div class="pageMetaRow">
+              <div class="metaChip">Target window, 0.5 seconds</div>
+              <div class="metaChip">Goal state, main hand first</div>
+              <div class="metaChip">Fix tool, resync macro timing</div>
+            </div>
+          </section>
+
+          <section class="contentCard timingBlock timingBlockSync" id="sync_rules">
+            <div class="timingBlockHeader">
+              <div>
+                <div class="eyebrow">Core mechanic</div>
+                <h2>Sync</h2>
+                <p class="muted">
+                  Sync is about how close together your main hand and off hand swings land.
+                  This timing matters because of how <span data-spell="flurry"></span> works.
+                </p>
+              </div>
+              <div class="timingBlockBadge">
+                <div class="timingBlockBadgeLabel">Sync window</div>
+                <div class="timingBlockBadgeValue">0.5s</div>
+                <div class="timingBlockBadgeSub">Either hand within 0.5s</div>
+              </div>
+            </div>
+
+            <div class="ruleList timingRuleGrid">
+              <div class="rule">
+                <h3>What Flurry is</h3>
+                <p>
+                  <span data-spell="flurry"></span> is a talent that activates when you critically strike. When it is active,
+                  your next three weapon swings gain a large attack speed and critical strike bonus.
+                  Flurry does not last forever. It is consumed by your swings.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>How Flurry actually gets consumed</h3>
+                <p>
+                  <span data-spell="flurry"></span> has a short internal window of 0.5 seconds when it consumes charges.
+                  If two weapon swings land close together, both swings can benefit
+                  while only spending one <span data-spell="flurry"></span> charge.
+                  If your swings land too far apart, each swing consumes its own charge.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>What sync means</h3>
+                <p>
+                  Your weapons are considered synced when your main hand and off hand swings
+                  land within 0.5 seconds of each other.
+                  It does not matter which hand hits first. The only requirement is that
+                  the second hand follows within that 0.5 second window.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>Why sync matters</h3>
+                <p>
+                  Sync keeps <span data-spell="flurry"></span> efficient.
+                  When your swings are synced, two hits often share a single <span data-spell="flurry"></span> charge.
+                  When your swings drift outside the window, you burn through charges faster
+                  and <span data-spell="flurry"></span> uptime becomes unstable.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>Perfect sync is not required</h3>
+                <p>
+                  You do not need both weapons to land at the exact same moment.
+                  A perfect 0.0 second gap looks clean, but it is not the goal.
+                  Staying inside the 0.5 second window is what matters.
+                </p>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="contentCard timingBlock timingBlockStagger" id="stagger_rules">
+            <div class="timingBlockHeader">
+              <div>
+                <div class="eyebrow">Priority control</div>
+                <h2>Stagger</h2>
+                <p class="muted">
+                  Stagger is about which hand hits first when a <span data-spell="windfury_weapon"></span> proc becomes available.
+                  The goal is to favor your main hand without breaking sync for <span data-spell="flurry"></span>.
+                </p>
+                <div class="timingBlockSpells">
+                  <span data-spell="windfury_weapon"></span>
+                </div>
+              </div>
+              <div class="timingBlockBadge">
+                <div class="timingBlockBadgeLabel">Priority</div>
+                <div class="timingBlockBadgeValue">Main hand</div>
+                <div class="timingBlockBadgeSub">Off hand follows</div>
+              </div>
+            </div>
+
+            <div class="ruleList timingRuleGrid timingRuleGridBalanced">
+              <div class="rule">
+                <h3>How Windfury procs work</h3>
+                <p>
+                  <span data-spell="windfury_weapon"></span> has a chance to proc on a successful melee hit,
+                  granting extra attacks.
+                  After it procs, Windfury cannot proc again for a short period of time.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>What an internal cooldown is</h3>
+                <p>
+                  An internal cooldown is a hidden timer that starts when a proc occurs.
+                  While that timer is running, the proc cannot happen again,
+                  even if you land more valid hits.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>Windfury’s internal cooldown</h3>
+                <p>
+                  In The Burning Crusade, <span data-spell="windfury_weapon"></span> uses a 3 second internal cooldown
+                  that is shared between your main hand and off hand.
+                  Once Windfury procs, neither weapon can proc again until the cooldown ends.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>What stagger means</h3>
+                <p>
+                  Stagger means your swings are close together, but not perfectly aligned.
+                  One hand consistently lands slightly before the other.
+                  For Enhancement, you want your main hand to land first,
+                  with the off hand following shortly after.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>Why main hand lead matters</h3>
+                <p>
+                  When the Windfury cooldown ends, the first swing that lands has the best chance
+                  to claim the next proc.
+                  If your off hand lands first, it can take that opportunity,
+                  leaving your main hand blocked by the cooldown.
+                  By keeping your main hand slightly ahead,
+                  you increase the chance that Windfury procs are awarded to your harder hitting weapon.
+                </p>
+              </div>
+
+              <div class="rule">
+                <h3>Stagger versus being out of sync</h3>
+                <p>
+                  Stagger does not mean spreading your swings far apart.
+                  You still want both hands to land within the 0.5 second sync window
+                  for <span data-spell="flurry"></span> efficiency.
+                  The goal is a small, consistent main hand lead,
+                  not a large gap between swings.
+                </p>
+              </div>
+            </div>
+          </section>
+
+
+          <section class="contentCard timingBlock timingBlockGoal" id="sync_stagger_goal">
+        <div class="timingBlockHeader">
+          <div>
+            <div class="eyebrow">Target state</div>
+            <h2>Sync + Stagger</h2>
+            <p class="muted">
+              The target state is synced and staggered.
+              Your main hand lands first, and your off hand follows shortly after,
+              staying inside the <strong>0.5 second sync window</strong>.
+              This keeps <span data-spell="flurry"></span> efficient
+              while allowing <span data-spell="windfury_weapon"></span>
+              to favor the main hand.
+            </p>
+          </div>
+          <div class="timingBlockBadge">
+            <div class="timingBlockBadgeLabel">Target delta</div>
+            <div class="timingBlockBadgeValue">Small &lt; 0.5s</div>
+            <div class="timingBlockBadgeSub">Main hand first</div>
+          </div>
+        </div>
+
+        <div class="timingFlow" aria-hidden="true">
+          <div class="timingFlowStep">Main hand hit</div>
+          <div class="timingFlowArrow">&rarr;</div>
+          <div class="timingFlowStep">Off hand hit (short delay)</div>
+        </div>
+      </section>
+
+
+
+          <section class="contentCard" id="weapon_choice">
+            <div class="eyebrow">Weapon choice</div>
+            <h2>Weapon speed and drift</h2>
+            <p class="muted">
+              If you have a choice, use weapons with the same speed. Matching weapon speeds makes sync and stagger easier to set up
+              and much easier to keep. Once you line them up, they stay lined up longer, which means fewer corrections and less lost
+              off hand damage.
+            </p>
+
+            <p>
+              If you cannot get same speed weapons, sync and stagger are still beneficial. You can still line your swings up,
+              share <span data-spell="flurry"></span> charges, and favor main hand <span data-spell="windfury_weapon"></span>. The
+              difference is that mismatched speeds will naturally drift apart over time. This means you will have to correct more often.
+            </p>
+
+            <div class="note noteWarn">
+              More corrections mean more off hand delay. Occasional corrections are fine and worth it. Constant corrections are not.
+              If you find yourself pressing the macro every few swings just to keep things lined up, stop fighting it and let your swings run.
+            </div>
+          </section>
+
+          <section class="contentCard macroSection" id="macro">
+  <div class="eyebrow">Correction macro</div>
+  <h2>Resync macro: when to tap</h2>
+  <p class="muted">
+    This macro is used to delay your off hand so the main hand can lead again.
+    Used correctly, it keeps <span data-spell="flurry"></span> efficient and helps
+    <span data-spell="windfury_weapon"></span> favor the main hand.
+  </p>
+
+  <div class="codeBlock">
+    <pre><code>#showtooltip
+/stopattack
+/startattack</code></pre>
+  </div>
+
+  <p>
+    Each press briefly stops and restarts auto attack. During that restart, your main hand
+    continues normally, but your off hand is forced back to the midpoint of its swing
+    if it has already passed that point. This creates a controlled delay on the off hand.
+    If the off hand has not passed the midpoint yet, pressing the macro will not change your timing.
+  </p>
+
+ <div class="stepList">
+  <div class="step">
+    <div class="stepIndex">1</div>
+    <div>
+      <h3 class="stepTitle">Main hand is first, but the stagger is wrong</h3>
+      <p class="stepBody">
+        If your main hand is already hitting first, but the off hand is not following in the correct window, wait until the off hand passes the halfway point of its swing. Once it has passed halfway, press the macro repeatedly. Each press holds the off hand back while the main hand continues forward. Keep pressing until the off hand snaps into the correct follow position behind the main hand. Stop pressing immediately once it lines up correctly and let your swings continue.
+      </p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="stepIndex">2</div>
+    <div>
+      <h3 class="stepTitle">Off hand is hitting first</h3>
+      <p class="stepBody">
+        If the off hand is landing before the main hand,
+        wait for the main hand to pass the halfway point of its swing.
+        Press the macro once.
+        This single press is usually enough to flip priority.
+        Do not keep pressing unless you are still behind.
+      </p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="stepIndex">3</div>
+    <div>
+      <h3 class="stepTitle">Both hands hit at the same time</h3>
+      <p class="stepBody">
+        If both hands land together, you are synced but not staggered.
+        Watch the main hand swing.
+        When the main hand just passes the halfway point,
+        press the macro one time.
+        This creates a small main hand lead.
+        Do not press again.
+      </p>
+    </div>
+  </div>
+</div>
+
+  <div class="note noteWarn">
+    <strong>Important:</strong> While you are pressing this macro, your off hand is not dealing damage.
+    Every additional press delays the next off hand swing. Overcorrecting can cost an entire swing
+    and force you to wait for another cycle to fix your timing.
+  </div>
+
+  <p>
+    Accuracy matters more than speed. You are not trying to press fast,
+    you are trying to press at the correct moment. One clean correction is always better
+    than repeatedly fighting your swing timers.
+  </p>
+
+  <div class="callout calloutRule">
+    <div class="calloutTitle">Want a visual swing timer?</div>
+    <div class="calloutBody">
+      The Enhance Shaman Suite WeakAura includes a swing timer that shows the live timing shift when you resync.
+      It mirrors the timing changes the trainer below is teaching.
+    </div>
+    <a class="btn btnSecondary" href="https://wago.io/pzFBVUCdX" target="_blank" rel="noreferrer">
+      Get the Enhance Shaman Suite WeakAura
+    </a>
+  </div>
+</section>
+
+
+          <section class="contentCard" id="trainer">
+            <h2>Sync and Stagger Trainer</h2>
+            <p>
+              This is a timing trainer, not a DPS sim. Use it to practice a clean correction.
+              You want the off hand to land after main hand while staying inside 0.5 seconds.
+            </p>
+
+                        <section class="lab" id="swingLab">
+              <div class="labHeader">
+                <div class="labTitle">Trainer</div>
+                <div class="labSub">
+                  Practice a single, deliberate correction. The resync button represents tapping your in game macro once after the off hand passes midpoint.
+                  Use Start game to practice recovering from random drift and earning 10 clean staggers.
+                </div>
+              </div>
+
+              <div class="labControls">
+                <label class="labField">
+                  <span>Main hand speed</span>
+                  <input id="labMhSpeed" type="number" min="1.0" max="4.0" step="0.1" value="2.6" />
+                </label>
+
+                <label class="labField">
+                  <span>Off hand speed</span>
+                  <input id="labOhSpeed" type="number" min="1.0" max="4.0" step="0.1" value="2.6" />
+                </label>
+
+                <label class="labField">
+                  <span>Latency ms</span>
+                  <input id="labLatency" type="number" min="0" max="350" step="5" value="60" />
+                </label>
+
+                <label class="labField">
+                  <span>Direction</span>
+                  <select id="labDirection">
+                    <option value="rtl" selected>Right to left</option>
+                    <option value="ltr">Left to right (inverse)</option>
+                  </select>
+                </label>
+
+                <div class="labButtons">
+                  <button id="labStart" class="btn btnPrimary" type="button">Practice</button>
+                  <button id="labStartGame" class="btn btnSecondary" type="button">Start game</button>
+                  <button id="labDesync" class="btn btnSecondary" type="button">Desync</button>
+                  <button id="labStop" class="btn btnSecondary" type="button">Stop</button>
+                  <button id="labReset" class="btn btnGhost" type="button">Reset</button>
+                </div>
+              </div>
+
+              <div class="labReadout">
+                <div id="labStatus" class="labBad">Ready</div>
+                <div class="labDeltaRow">
+                  Delta <span id="labDelta">0.000s</span>
+                </div>
+              </div>
+
+              <div class="labDeltaMeter" aria-hidden="true">
+                <div id="labDeltaNeedle" class="labDeltaNeedle"></div>
+                <div class="labDeltaCenter"></div>
+              </div>
+
+              <div id="labGamePanel" class="labGamePanel" hidden>
+                <div class="labGameStat">Round <span id="labRound">0</span> of <span id="labRoundsTotal">10</span></div>
+                <div class="labGameStat">Time <span id="labGameTime">0.00s</span></div>
+                <div id="labGameResult" class="labGameResult"></div>
+              </div>
+
+              <div class="labTracks">
+                <div class="labTrack">
+                  <div class="labTrackLabel">Main hand</div>
+                  <div class="labTrackBar">
+                    <div class="labMidTick" aria-hidden="true"></div>
+                    <div id="labMhFill" class="labFill labFillMh" aria-hidden="true"></div>
+                    <div id="labMhDot" class="labDot labDotMh" aria-hidden="true"></div>
+                  </div>
+                  <div class="labTrackMeta" aria-hidden="true"><span>Hit</span><span>Start</span></div>
+                </div>
+
+                <div class="labTrack">
+                  <div class="labTrackLabel">Off hand</div>
+                  <div class="labTrackBar">
+                    <div class="labMidTick" aria-hidden="true"></div>
+                    <div id="labOhFill" class="labFill labFillOh" aria-hidden="true"></div>
+                    <div id="labOhDot" class="labDot labDotOh" aria-hidden="true"></div>
+                  </div>
+                  <div class="labTrackMeta" aria-hidden="true"><span>Hit</span><span>Start</span></div>
+                </div>
+              </div>
+
+              <div class="labActionDock">
+                <div class="labActionHint muted">
+                  Resync uses the macro timing. Wait until the off hand passes midpoint, then tap once.
+                </div>
+                <div class="labActionButtons">
+                  <button id="labDelayOh" class="btn btnSecondary labMacroBtn" type="button">Tap resync macro (delay off hand)</button>
+                </div>
+              </div>
+
+              <details class="labDetails">
+                <summary>Show the macro concept this button represents</summary>
+                <div class="labDetailsBody">
+                  <p class="muted">This is a timing trainer, not a DPS sim. Use it to practice a clean correction. Your target is main hand first, off hand within 0.0 to 0.5 seconds.</p>
+                  <div class="codeBlock"><pre><code>#showtooltip
+/stopattack
+/startattack</code></pre></div>
+                </div>
+              </details>
+
+              <div class="labProcPanel">
+                <div class="labProcHeader">Why this matters (illustrative proc simulation)</div>
+                <div class="labProcStats">
+                  <div><span data-spell="flurry"></span> charges <span id="labFlurryCharges">0</span></div>
+                  <div>Windfury <span id="labWfState">Ready</span></div>
+                </div>
+                <div id="labFeed" class="labFeed labFeedFixed" aria-live="polite"></div>
+              </div>
+            </section>
+
+          </section>
+        </main>
+
+        <!-- TOC. toc.js writes links from h2 and h3 in #appMain -->
+        <aside class="appTocShell" aria-label="On page table of contents">
+          <div class="tocHeader">
+            <div class="tocTitle">On this page</div>
+            <div class="tocHint">Updates as you navigate</div>
+          </div>
+          <nav id="appToc" class="appToc"></nav>
+        </aside>
+      </div>
+
+      <!-- Footer fallback. boot.js will replace it with /components/footer.html -->
+      <footer id="appFooter" class="appFooter" role="contentinfo">
+        <div class="footerInner">
+          <div class="footerLeft">
+            <div class="footerBrand">Enhancement Shaman Guide</div>
+            <div class="footerSub">Fast, readable, decision focused.</div>
+          </div>
+
+          <nav class="footerNav" aria-label="Footer">
+            <a class="footerLink" href="/pages/guide/index.html">Guide</a>
+            <a class="footerLink" href="/pages/tools/index.html">Tools</a>
+            <a class="footerLink" href="/pages/guide/faq.html">FAQ</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/js/app.js"></script>
+  </body>
+</html>

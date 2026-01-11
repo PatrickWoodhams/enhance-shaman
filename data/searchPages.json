@@ -1,0 +1,14 @@
+[
+  { "url": "/pages/guide/index.html", "label": "Guide", "priority": 10 },
+  { "url": "/pages/guide/priorities.html", "label": "Priority system", "priority": 10 },
+  { "url": "/pages/guide/rotation.html", "label": "Rotation decisions", "priority": 10 },
+  { "url": "/pages/guide/cooldowns.html", "label": "Cooldown planning", "priority": 7 },
+  { "url": "/pages/guide/macros.html", "label": "Macros and keybinds", "priority": 7 },
+  { "url": "/pages/guide/addons.html", "label": "Addons and setup", "priority": 7 },
+  { "url": "/pages/builds/index.html", "label": "Builds", "priority": 6 },
+  { "url": "/pages/builds/talents.html", "label": "Talents", "priority": 6 },
+  { "url": "/pages/builds/stats.html", "label": "Stats and caps", "priority": 6 },
+  { "url": "/pages/tools/index.html", "label": "Tools", "priority": 6 },
+  { "url": "/pages/tools/swing-timer.html", "label": "Swing timing", "priority": 9 },
+  { "url": "/pages/tools/shock-planner.html", "label": "Shock planner", "priority": 8 }
+]

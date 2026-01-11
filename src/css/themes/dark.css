@@ -1,0 +1,19 @@
+html[dataTheme="dark"] {
+  color-scheme: dark;
+}
+
+html[dataTheme="dark"] :root {
+  --bg: #0b0f14;
+  --bg2: #0f1620;
+
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel2: rgba(255, 255, 255, 0.09);
+  --stroke: rgba(255, 255, 255, 0.14);
+  --stroke2: rgba(255, 255, 255, 0.22);
+
+  --fg: rgba(255, 255, 255, 0.92);
+  --fg2: rgba(255, 255, 255, 0.74);
+  --fg3: rgba(255, 255, 255, 0.58);
+
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}

@@ -1,0 +1,41 @@
+:root {
+  --bg: #0b0f14;
+  --bg2: #0f1620;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel2: rgba(255, 255, 255, 0.09);
+  --stroke: rgba(255, 255, 255, 0.14);
+  --stroke2: rgba(255, 255, 255, 0.22);
+
+  --fg: rgba(255, 255, 255, 0.92);
+  --fg2: rgba(255, 255, 255, 0.74);
+  --fg3: rgba(255, 255, 255, 0.58);
+
+  --accent: #5a2929;
+  --accent2: #ffbf00;
+
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+
+  --r: 18px;
+  --r2: 24px;
+
+  --pad1: 10px;
+  --pad2: 14px;
+  --pad3: 18px;
+  --pad4: 24px;
+
+  --max: 1440px;
+
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --focus: 0 0 0 3px rgba(255, 191, 0, 0.35);
+}
+
+.appBody {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: clamp(220px, 18vw, 280px) minmax(0, 1fr) clamp(220px, 16vw, 280px);
+  gap: 18px;
+  padding: 16px 16px 28px;
+}
