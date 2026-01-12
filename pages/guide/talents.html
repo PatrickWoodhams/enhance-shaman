@@ -8,7 +8,7 @@
     <title>Talents | Enhancement Shaman Guide</title>
     <meta
       name="description"
-      content="Talent planning for Enhancement Shaman: decision framework, module placeholder, and a ready slot for an interactive talent tool."
+      content="Talent planning for Enhancement Shaman in TBC: why Sub Elemental and Sub Restoration exist, plus an interactive talent calculator with shareable builds."
     />
 
     <meta name="color-scheme" content="light dark" />
@@ -41,9 +41,15 @@
     <div class="appFrame">
       <header id="appHeader" class="appHeader" role="banner">
         <div class="headerInner">
-          <a class="brand" href="/" aria-label="Enhancement Shaman Guide home">
-            <span class="brandMark" aria-hidden="true">’'sA-</span>
-            <span class="brandText">Enhancement Shaman Guide</span>
+          <a class="brand" href="/" aria-label="Dora's Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">⚡</span>
+            <span class="brandText">
+              <span class="brandTitle">Dora's Enhancement Shaman Guide</span>
+              <span class="brandTagline">
+                <span class="brandBadge">TBC</span>
+                The Burning Crusade
+              </span>
+            </span>
           </a>
 
           <nav class="headerNav" aria-label="Primary">
@@ -106,7 +112,129 @@
             <div class="pageKicker">Spend points where they solve problems</div>
             <h1 class="pageTitle">Talents and Build Choices</h1>
             <p class="pageLead">
-              This page is in devlopment. Expect talent explanations soon.
+              Enhancement in TBC has one core tree and two common sub spec variants. This page explains why those variants exist and
+              gives you a talent calculator with shareable builds.
+            </p>
+            <div class="pageMetaRow" aria-label="Page highlights">
+              <span class="metaChip">44 points in Enhancement</span>
+              <span class="metaChip">Sub Elemental</span>
+              <span class="metaChip">Sub Restoration</span>
+              <span class="metaChip">Shareable links</span>
+            </div>
+          </section>
+
+          <section class="contentCard" id="sub_specs">
+            <div class="eyebrow">Build planning</div>
+            <h2>The two Enhancement variants</h2>
+            <p>
+              In TBC, Enhancement generally locks in a 44 point Enhancement core for the spec defining throughput and raid buffs.
+              The remaining points flex into Elemental or Restoration. These are not different roles. They are two ways to solve
+              different constraints: raising the value of shocks and fire totems, or improving hit, mana efficiency, and totem coverage.
+            </p>
+
+            <div class="cardGrid specGrid">
+              <article class="card specCard">
+                <h3 class="specTitle">17/44/00 Sub Elemental</h3>
+                <div class="specChips" aria-label="Sub Elemental focus">
+                  <span class="metaChip">Shock tempo</span>
+                  <span class="metaChip">Fire totem value</span>
+                  <span class="metaChip">Mana smoothing</span>
+                </div>
+
+                <p class="cardBody">
+                  This variant spends 17 points in Elemental to make shocks and fire totems a larger share of your damage. It is built for
+                  players who can consistently spend global cooldowns on shocks without collapsing their mana.
+                </p>
+
+                <div class="specCols">
+                  <div class="specCol">
+                    <div class="specColTitle">What it gives you</div>
+                    <p class="muted specKey">
+                      Key talents in this preset: Convection, Concussion, Call of Flame, Reverberation, Elemental Focus, Improved Fire Totems.
+                    </p>
+                    <ul class="ruleList">
+                      <li><strong>More shock output</strong> through additional shock damage and faster shock cadence.</li>
+                      <li><strong>More fire totem damage</strong> that supports Fire Nova decisions during fire weaving.</li>
+                      <li><strong>Better mana flow</strong> so the extra shocks are easier to afford.</li>
+                    </ul>
+                  </div>
+                  <div class="specCol">
+                    <div class="specColTitle">When to pick it</div>
+                    <ul class="ruleList">
+                      <li>You already have enough hit from gear and raid buffs.</li>
+                      <li>Encounters reward active shock usage and fire totem management.</li>
+                      <li>You are optimizing personal damage and can manage mana pressure.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specTrade">
+                  <div class="specColTitle">Tradeoffs</div>
+                  <ul class="ruleList">
+                    <li>No Restoration hit talent, so you rely more on gear and raid buffs to stay capped.</li>
+                    <li>Totems cost more mana and have less coverage compared to the Restoration variant.</li>
+                    <li>Higher shock usage can raise mana pressure if you overcast.</li>
+                  </ul>
+                </div>
+
+                <div class="panelTip">
+                  In the calculator, choose the preset <strong>17/44/00 Sub Elemental</strong> to load this build, then tailor it for your raid.
+                </div>
+              </article>
+
+              <article class="card specCard">
+                <h3 class="specTitle">03/44/14 Sub Restoration</h3>
+                <div class="specChips" aria-label="Sub Restoration focus">
+                  <span class="metaChip">Hit and consistency</span>
+                  <span class="metaChip">Totem mana</span>
+                  <span class="metaChip">Totem range</span>
+                </div>
+
+                <p class="cardBody">
+                  This variant spends 14 points in Restoration to pick up hit and totem efficiency tools that make your damage more stable
+                  and your group support easier. It is the practical choice when you value consistency, longer fights, or heavy totem work.
+                </p>
+
+                <div class="specCols">
+                  <div class="specCol">
+                    <div class="specColTitle">What it gives you</div>
+                    <p class="muted specKey">
+                      Key talents in this preset: Nature's Guidance, Totemic Focus, Totemic Mastery, plus Concussion on the Elemental side.
+                    </p>
+                    <ul class="ruleList">
+                      <li><strong>Hit</strong> that reduces misses and frees up gear choices.</li>
+                      <li><strong>Lower totem costs</strong> which matters in long fights and frequent twisting.</li>
+                      <li><strong>Wider totem coverage</strong> that helps your party keep buffs without perfect positioning.</li>
+                      <li><strong>Better emergency healing</strong> as a side benefit of the pathing points.</li>
+                    </ul>
+                  </div>
+                  <div class="specCol">
+                    <div class="specColTitle">When to pick it</div>
+                    <ul class="ruleList">
+                      <li>You are early in gearing, hit constrained, or playing without ideal raid buffs.</li>
+                      <li>You are twisting often and want the most efficient totem workflow.</li>
+                      <li>You want a stable, low friction build that still performs well.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="specTrade">
+                  <div class="specColTitle">Tradeoffs</div>
+                  <ul class="ruleList">
+                    <li>Fewer Elemental throughput talents, so shocks and fire totems contribute slightly less damage.</li>
+                    <li>Lower personal damage ceiling, but higher consistency and a smoother totem workflow.</li>
+                  </ul>
+                </div>
+
+                <div class="panelTip">
+                  In the calculator, choose the preset <strong>03/44/14 Sub Restoration</strong> to load this build, then tweak based on your group.
+                </div>
+              </article>
+            </div>
+
+            <p class="muted specNote">
+              Both variants share the same Enhancement core. Your choice is mainly about what you need the extra points to solve:
+              shock and fire throughput, or hit, mana, and totem quality of life.
             </p>
           </section>
 
@@ -114,8 +242,33 @@
             <div class="eyebrow">Tool</div>
             <h2>Talent Calculator</h2>
             <p class="muted">
-              I need to write a description.
+              Use a preset as a baseline, then adjust talents to match your gear, your raid buffs, and your job. Hover talents for details,
+              left click to add points, and right click to remove points. The link button creates a shareable URL for your current build.
             </p>
+
+            <div class="stepList" aria-label="How to use the calculator">
+              <div class="step">
+                <div class="stepIndex">1</div>
+                <div>
+                  <h3 class="stepTitle">Load a baseline build</h3>
+                  <div class="stepBody">Pick Sub Elemental or Sub Restoration from the preset dropdown to start from a proven template.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="stepIndex">2</div>
+                <div>
+                  <h3 class="stepTitle">Spend points with intent</h3>
+                  <div class="stepBody">If a point does not buy damage, mana, hit, or group value for your situation, it is a candidate to move.</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="stepIndex">3</div>
+                <div>
+                  <h3 class="stepTitle">Share and iterate</h3>
+                  <div class="stepBody">Use the share link to send builds to your raid, compare variants, and keep notes on why you chose each point.</div>
+                </div>
+              </div>
+            </div>
             <div class="talentLabShell">
               <div id="talentLab"></div>
             </div>

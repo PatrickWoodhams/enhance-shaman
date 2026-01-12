@@ -17,10 +17,46 @@
 }
 
 .brandText {
-  font-weight: 650;
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.brandTitle {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.brandTagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.brandBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 191, 0, 0.42);
+  background: rgba(255, 191, 0, 0.14);
+  color: rgba(255, 229, 172, 0.95);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
 }
 
 .headerNav {
@@ -533,10 +569,26 @@ body.searchOpen .searchPanel {
 }
 
 .sidebarSupportBtn {
-  margin-top: 4px;
-  width: 100%;
-  justify-content: center;
-}
+    margin-top: 4px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    background: linear-gradient(180deg, rgba(255, 191, 0, 0.22), rgba(255, 191, 0, 0.08)),
+      rgba(0, 0, 0, 0.18);
+    border-color: rgba(255, 191, 0, 0.45);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 191, 0, 0.16) inset;
+    text-align: center;
+  }
+
+  .sidebarSupportBtn:hover {
+    background: linear-gradient(180deg, rgba(255, 191, 0, 0.3), rgba(255, 191, 0, 0.12)),
+      rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 191, 0, 0.6);
+  }
 
 .tocHeader {
   padding: 14px 14px 10px 14px;
@@ -634,6 +686,16 @@ body.searchOpen .searchPanel {
 
   .heroMeta {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .brandTagline {
+    display: none;
+  }
+
+  .brandTitle {
+    font-size: 13px;
   }
 }
 
@@ -2272,15 +2334,63 @@ ol.steps {
 }
 
 .talent_tree_grid {
-  --cell: 46px;
+  --cell: 50px;
+  --talent_gap_y: 28px;
+  --talent_gap_x: var(--talent_gap_y);
+  column-gap: var(--talent_gap_x);
+  row-gap: var(--talent_gap_y);
+  position: relative;
   display: grid;
   grid-template-columns: repeat(var(--talent_cols), var(--cell));
   grid-auto-rows: var(--cell);
-  gap: 10px;
   justify-content: center;
 }
 
+.talent_tree_arrows {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--talent_cols), var(--cell));
+  grid-auto-rows: var(--cell);
+  column-gap: var(--talent_gap_x);
+  row-gap: var(--talent_gap_y);
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.talent_arrow {
+  --arrow-bleed-top: var(--talent_gap_y);
+  --arrow-bleed-bottom: var(--talent_gap_y);
+  width: var(--arrow-width, 15px);
+  height: calc(var(--arrow-height, 100%) + var(--arrow-bleed-top) + var(--arrow-bleed-bottom));
+  background-image: var(--arrow-asset);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  align-self: start;
+  justify-self: center;
+  transform: translateY(calc(-1 * var(--arrow-bleed-top) + var(--arrow-offset, 0px)));
+  opacity: 0.9;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.55));
+}
+
+.talent_arrow.is_horizontal {
+  --arrow-bleed-left: var(--talent_gap_x);
+  --arrow-bleed-right: var(--talent_gap_x);
+
+  width: calc(100% + var(--arrow-bleed-left) + var(--arrow-bleed-right));
+  height: var(--arrow-height, 15px);
+
+  align-self: center;
+  justify-self: start;
+
+  transform: translateX(calc(-1 * var(--arrow-bleed-left) + var(--arrow-offset-x, 0px)));
+}
+
 .talent_cell {
+  position: relative;
+  z-index: 1;
   width: var(--cell);
   height: var(--cell);
   display: flex;
@@ -2382,8 +2492,8 @@ ol.steps {
 .talent_rank {
   position: absolute;
   right: 4px;
-  bottom: 4px;
-  font-size: 10px;
+  bottom: 6px;
+  font-size: 12px;
   font-weight: 800;
   padding: 2px 6px;
   border-radius: 999px;
@@ -2482,4 +2592,228 @@ ol.steps {
   margin-top: 10px;
   font-size: 12px;
   opacity: 0.72;
+}
+
+/* Talent tooltips */
+
+.talent_tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-9999px, -9999px);
+  max-width: 320px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(6,8,12,0.94);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.45);
+  color: rgba(255,255,255,0.92);
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 60;
+  transition: opacity 120ms ease;
+}
+
+.talent_tooltip.is_visible {
+  opacity: 1;
+}
+
+.talent_tooltip .tooltip-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.talent_tooltip .tooltip-table td {
+  padding: 2px 4px 2px 0;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.talent_tooltip .tooltip-double-row td:first-child {
+  font-weight: 800;
+}
+
+.talent_tooltip .rank-padding {
+  padding-left: 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.talent_tooltip .tooltip-gray {
+  color: rgba(255,255,255,0.65);
+}
+
+.talent_tooltip .tooltip-gold {
+  color: rgba(255,199,100,0.95);
+}
+
+.talent_tooltip .tooltip-green {
+  color: rgba(140,255,190,0.95);
+}
+
+.talent_tree_header {
+  margin-bottom: 10px;
+}
+
+.talent_tree_header_card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: 1px solid var(--stroke);
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.18));
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(14px) saturate(120%);
+}
+
+.talent_tree_header_left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.talent_tooltip .tooltip-red {
+  color: rgba(255, 120, 120, 0.95);
+}
+
+.talent_tree_logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(0, 0, 0, 0.22);
+  object-fit: cover;
+
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+
+.talent_tree_title {
+  font-weight: 750;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.talent_tree_points {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 28px;
+  min-width: 42px;
+  padding: 0 10px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255, 191, 0, 0.28);
+
+  background: radial-gradient(circle at 30% 25%, rgba(255, 191, 0, 0.16), transparent 60%),
+    rgba(0, 0, 0, 0.18);
+
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .talent_tooltip {
+    transition: none;
+  }
+}
+/* =========================================================
+   Talents page content
+========================================================= */
+
+.pageTalents .specGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .pageTalents .specGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pageTalents .specCard {
+  position: relative;
+  overflow: hidden;
+}
+
+.pageTalents .specCard::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  background: radial-gradient(circle at 18% 18%, rgba(255, 191, 0, 0.10), transparent 46%);
+  opacity: 0.9;
+}
+
+.pageTalents .specTitle {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.pageTalents .specChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.pageTalents .specCols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 720px) {
+  .pageTalents .specCols {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pageTalents .specColTitle {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  margin-bottom: 8px;
+}
+
+.pageTalents .specCard .ruleList {
+  margin-top: 0;
+}
+
+.pageTalents .specCard .panelTip {
+  margin-top: 12px;
+}
+
+
+.pageTalents .specNote {
+  margin-top: 14px;
+}
+
+.pageTalents .specKey {
+  margin: 10px 0 8px;
+  max-width: none;
+}
+
+.pageTalents .specTrade {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--stroke);
 }

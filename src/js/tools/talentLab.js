@@ -1,3 +1,5 @@
+import { Shaman as TALENT_INFO } from "../data/talent-info.js"
+
 // /src/js/tools/talentLab.js
 
 function el(tag, cls, text) {
@@ -19,14 +21,17 @@ const TALENT_ASSETS = {
   elemental: {
     iconDir: "spec1",
     background: "/assets/talents/Background/Elemental.jpg",
+    logo: "/assets/talents/Spec1Logo.jpg",
   },
   enhancement: {
     iconDir: "spec2",
     background: "/assets/talents/Background/Enhancement.jpg",
+    logo: "/assets/talents/Spec2Logo.jpg",
   },
   restoration: {
     iconDir: "spec3",
     background: "/assets/talents/Background/Restoration.jpg",
+    logo: "/assets/talents/Spec3Logo.jpg",
   },
 }
 
@@ -72,14 +77,14 @@ const TALENT_DATA = {
 
         { name: "Improved Fire Totems", tier: 4, max: 2 },
         { name: "Eye of the Storm", tier: 4, max: 3 },
-        { name: "Elemental Devastation", tier: 4, max: 3 },
+        { name: "Elemental Devastation", tier: 4, max: 3, col: 4 },
 
         { name: "Storm Reach", tier: 5, max: 2 },
         { name: "Elemental Fury", tier: 5, max: 1 },
-        { name: "Unrelenting Storm", tier: 5, max: 5 },
+        { name: "Unrelenting Storm", tier: 5, max: 5, col: 4 },
 
-        { name: "Elemental Precision", tier: 6, max: 3 },
-        { name: "Lightning Mastery", tier: 6, max: 5, req: "Call of Thunder" },
+        { name: "Elemental Precision", tier: 6, max: 3, col: 1 },
+        { name: "Lightning Mastery", tier: 6, max: 5, col: 3, req: "Call of Thunder" },
 
         { name: "Elemental Mastery", tier: 7, max: 1, req: "Elemental Fury" },
         { name: "Elemental Shields", tier: 7, max: 3 },
@@ -102,9 +107,11 @@ const TALENT_DATA = {
         { name: "Improved Ghost Wolf", tier: 2, max: 2 },
         { name: "Improved Lightning Shield", tier: 2, max: 3 },
 
+  
         { name: "Enhancing Totems", tier: 3, max: 2 },
-        { name: "Shamanistic Focus", tier: 3, max: 1 },
-        { name: "Anticipation", tier: 3, max: 5 },
+        { name: "Shamanistic Focus", tier: 3, max: 1, col: 3 },
+        { name: "Anticipation", tier: 3, max: 5, col: 4 },
+
 
         { name: "Flurry", tier: 4, max: 5, req: "Thundering Strikes" },
         { name: "Toughness", tier: 4, max: 5 },
@@ -113,8 +120,8 @@ const TALENT_DATA = {
         { name: "Spirit Weapons", tier: 5, max: 1 },
         { name: "Elemental Weapons", tier: 5, max: 3 },
 
-        { name: "Mental Quickness", tier: 6, max: 3 },
-        { name: "Weapon Mastery", tier: 6, max: 5 },
+        { name: "Mental Quickness", tier: 6, max: 3, col: 1 },
+        { name: "Weapon Mastery", tier: 6, max: 5, col: 4 },
 
         { name: "Dual Wield Specialization", tier: 7, max: 3, req: "Dual Wield" },
         { name: "Dual Wield", tier: 7, max: 1, req: "Spirit Weapons" },
@@ -146,10 +153,10 @@ const TALENT_DATA = {
         { name: "Tidal Mastery", tier: 4, max: 5 },
 
         { name: "Healing Way", tier: 5, max: 3 },
-        { name: "Nature's Swiftness", tier: 5, max: 1 },
-        { name: "Focused Mind", tier: 5, max: 3 },
+        { name: "Nature's Swiftness", tier: 5, max: 1, col: 3 },
+        { name: "Focused Mind", tier: 5, max: 3, col: 4 },
 
-        { name: "Purification", tier: 6, max: 5 },
+        { name: "Purification", tier: 6, max: 5, col: 3 },
 
         { name: "Mana Tide Totem", tier: 7, max: 1, req: "Restorative Totems" },
         { name: "Nature's Guardian", tier: 7, max: 5 },
@@ -162,6 +169,110 @@ const TALENT_DATA = {
     },
   ],
 }
+
+const TALENT_TOOLTIP_MAP = new Map()
+for (const talent of TALENT_INFO) {
+  const key = String(talent.name || "").trim().toLowerCase()
+  if (!key) continue
+  const list = Array.isArray(talent.toolTip) ? talent.toolTip : []
+  TALENT_TOOLTIP_MAP.set(key, list)
+}
+
+const TALENT_DECOR_ARROWS = [
+  {
+    tree: "elemental",
+    from: "Call of Thunder",
+    to: "Lightning Mastery",
+    asset: "/assets/talents/Arrows/DownSilverLarge.png",
+    activeAsset: "/assets/talents/Arrows/DownGoldLarge.png",
+    height: 132,
+    offsetY: "2px",
+    requireMax: true,
+  },
+  {
+    tree: "elemental",
+    from: "Elemental Fury",
+    to: "Elemental Mastery",
+    asset: "/assets/talents/Arrows/DownSilverMedium.png",
+    activeAsset: "/assets/talents/Arrows/DownGoldMedium.png",
+    bleedBottom: 34,
+    requireMax: true,
+  },
+  {
+    tree: "elemental",
+    from: "Lightning Overload",
+    to: "Totem of Wrath",
+    asset: "/assets/talents/Arrows/DownSilverSmall.png",
+    activeAsset: "/assets/talents/Arrows/DownGoldSmall.png",
+    height: 32,
+    bleedTop: 0,
+    bleedBottom: 0,
+    offsetY: "calc(-0.5 * (var(--arrow-height, 28px) + var(--talent_gap_y, 14px)) + 2px)",
+    requireMax: false,
+  },
+  {
+    tree: "enhancement",
+    from: "Thundering Strikes",
+    to: "Flurry",
+    asset: "/assets/talents/Arrows/DownSilverMedium.png",
+    activeAsset: "/assets/talents/Arrows/DownGoldMedium.png",
+    bleedBottom: 34,
+    requireMax: true,
+  },
+  {
+    tree: "enhancement",
+    from: "Spirit Weapons",
+    to: "Dual Wield",
+    asset: "/assets/talents/Arrows/DownSilverMedium.png",
+    activeAsset: "/assets/talents/Arrows/DownGoldMedium.png",
+    bleedBottom: 34,
+    requireMax: true,
+  },
+  {
+    tree: "enhancement",
+    from: "Elemental Weapons",
+    to: "Stormstrike",
+    asset: "/assets/talents/Arrows/DownSilverMedium.png",
+    activeAsset: "/assets/talents/Arrows/DownGoldMedium.png",
+    bleedBottom: 34,
+    requireMax: true,
+  },
+  {
+    tree: "enhancement",
+    from: "Dual Wield",
+    to: "Dual Wield Specialization",
+    asset: "/assets/talents/Arrows/LeftSilverSmall.png",
+    activeAsset: "/assets/talents/Arrows/LeftGoldSmall.png",
+    height: 15, 
+    width:32,
+    bleedRight: 0,
+    bleedLeft: -15,
+    offsetX: "-50px", 
+    requireMax: false,
+  },
+  {
+    tree: "restoration",
+    from: "Restorative Totems",
+    to: "Mana Tide Totem",
+    asset: "/assets/talents/Arrows/DownSilverLarge.png",
+    activeAsset: "/assets/talents/Arrows/DownGoldLarge.png",
+    height: 132,
+    offsetY: "2px",
+    requireMax: true,
+  },
+  {
+    tree: "restoration",
+    from: "Nature's Blessing",
+    to: "Earth Shield",
+    asset: "/assets/talents/Arrows/DownSilverSmall.png",
+    activeAsset: "/assets/talents/Arrows/DownGoldSmall.png",
+    height: 32,
+    bleedTop: 0,
+    bleedBottom: 0,
+    offsetY: "calc(-0.5 * (var(--arrow-height, 28px) + var(--talent_gap_y, 14px)) + 2px)",
+    requireMax: false,
+  },
+]
 
 function buildTalentIndex(data) {
   const byId = {}
@@ -180,6 +291,7 @@ function buildTalentIndex(data) {
         req_name: t.req || null,
         req_id: null,
         col: 1,
+        col_override: Number.isFinite(t.col) ? t.col : null,
       }
       byId[id] = node
       byName[`${tree.key}::${t.name}`] = id
@@ -214,8 +326,26 @@ function buildTalentIndex(data) {
       else if (count === 3) cols = [1, 2, 3]
       else cols = [1, 2, 3, 4]
 
-      for (let i = 0; i < list.length; i++) {
-        list[i].col = cols[i] || (i + 1)
+      const taken = new Set()
+      const floaters = []
+
+      for (const n of list) {
+        if (!Number.isFinite(n.col_override)) {
+          floaters.push(n)
+          continue
+        }
+        const desired = Math.min(Math.max(1, n.col_override), data.cols)
+        if (taken.has(desired)) {
+          floaters.push(n)
+          continue
+        }
+        n.col = desired
+        taken.add(desired)
+      }
+
+      const available = cols.filter((c) => !taken.has(c))
+      for (let i = 0; i < floaters.length; i++) {
+        floaters[i].col = available[i] || (i + 1)
       }
     }
   }
@@ -233,37 +363,65 @@ function sumPoints(ranks, treeKey, idx) {
   return s
 }
 
+function tierPoints(ranks, treeKey, tier, idx) {
+  let s = 0
+  for (const id in idx.byId) {
+    const n = idx.byId[id]
+    if (n.tree !== treeKey) continue
+    if (n.tier !== tier) continue
+    s += ranks[id] || 0
+  }
+  return s
+}
+
 function sumAllPoints(ranks) {
   let s = 0
   for (const id in ranks) s += ranks[id] || 0
   return s
 }
 
-function tierUnlocked(treePoints, tier) {
+function tierUnlocked(ranks, treeKey, tier, idx) {
   if (tier <= 1) return true
-  return treePoints >= (tier - 1) * 5
+  const prev = pointsInPreviousTiers(ranks, treeKey, tier, idx)
+  return prev >= (tier - 1) * 5
 }
 
+function pointsInPreviousTiers(ranks, treeKey, tier, idx) {
+  let s = 0
+  for (const id in idx.byId) {
+    const n = idx.byId[id]
+    if (n.tree !== treeKey) continue
+    if (n.tier >= tier) continue
+    s += ranks[id] || 0
+  }
+  return s
+}
+
+// Prereq rule: prereq must be maxed (5/5 if it is a 5 point talent)
 function prereqMet(ranks, node, idx) {
   if (!node.req_id) return true
-  const r = ranks[node.req_id] || 0
-  return r >= 1
+
+  const reqNode = idx.byId[node.req_id]
+  const needed = reqNode ? reqNode.max : 1
+  const have = ranks[node.req_id] || 0
+
+  return have >= needed
 }
 
 function validateAll(ranks, data, idx) {
-  for (const tree of data.trees) {
-    const treePoints = sumPoints(ranks, tree.key, idx)
-    for (const id in idx.byId) {
-      const n = idx.byId[id]
-      if (n.tree !== tree.key) continue
-      const r = ranks[id] || 0
-      if (r <= 0) continue
+  // Total cap (important for URL loads and presets)
+  if (sumAllPoints(ranks) > data.total_points) return false
 
-      if (!tierUnlocked(treePoints, n.tier)) return false
-      if (!prereqMet(ranks, n, idx)) return false
-      if (r > n.max) return false
-    }
+  for (const id in idx.byId) {
+    const n = idx.byId[id]
+    const r = ranks[id] || 0
+    if (r <= 0) continue
+
+    if (r > n.max) return false
+    if (!tierUnlocked(ranks, n.tree, n.tier, idx)) return false
+    if (!prereqMet(ranks, n, idx)) return false
   }
+
   return true
 }
 
@@ -437,78 +595,169 @@ export function mountTalentLab(root) {
   const treesRow = el("div", "talent_trees_row")
   const treeUIs = {}
 
-  function makeTree(tree) {
-    const panel = el("div", "talent_tree_panel")
-    const assets = TALENT_ASSETS[tree.key]
-    if (assets && assets.background) {
-      panel.style.setProperty("--talent-bg", `url("${assets.background}")`)
-    }
-    const header = el("div", "talent_tree_header", tree.label)
-
-    const grid = el("div", "talent_tree_grid")
-    grid.style.setProperty("--talent_cols", String(TALENT_DATA.cols))
-    grid.style.setProperty("--talent_tiers", String(TALENT_DATA.tiers))
-
-    // Build lookup for grid coords
-    const nodes = Object.values(idx.byId)
-      .filter((n) => n.tree === tree.key)
-      .sort((a, b) => (a.tier - b.tier) || (a.col - b.col) || a.name.localeCompare(b.name))
-
-    const coordMap = {}
-    for (const n of nodes) coordMap[`${n.tier}:${n.col}`] = n
-
-    const nodeEls = {}
-
-    for (let tier = 1; tier <= TALENT_DATA.tiers; tier++) {
-      for (let col = 1; col <= TALENT_DATA.cols; col++) {
-        const cell = el("div", "talent_cell")
-        const n = coordMap[`${tier}:${col}`]
-        if (n) {
-          const btn = el("button", "talent_node")
-          btn.type = "button"
-          btn.dataset.id = n.id
-          btn.title = n.name
-          btn.setAttribute("aria-label", n.name)
-
-          const icon = el("div", "talent_icon")
-          const fallbackText = n.name
-            .split(" ")
-            .slice(0, 2)
-            .map((p) => p[0] || "")
-            .join("")
-            .toUpperCase()
-
-          const iconImg = el("img", "talent_icon_img")
-          iconImg.alt = n.name
-          iconImg.loading = "lazy"
-          iconImg.decoding = "async"
-          if (n.icon) iconImg.src = n.icon
-
-          const iconFallback = el("span", "talent_icon_fallback", fallbackText)
-          icon.append(iconImg, iconFallback)
-
-          if (n.icon) {
-            iconImg.addEventListener("load", () => icon.classList.add("is_loaded"))
-            iconImg.addEventListener("error", () => icon.classList.add("is_missing"))
-          } else {
-            icon.classList.add("is_missing")
-          }
-
-          const rank = el("div", "talent_rank", `0/${n.max}`)
-
-          btn.append(icon, rank)
-          cell.appendChild(btn)
-          nodeEls[n.id] = { btn, rank }
-        } else {
-          cell.classList.add("talent_cell_empty")
-        }
-        grid.appendChild(cell)
-      }
-    }
-
-    panel.append(header, grid)
-    return { panel, nodeEls }
+function makeTree(tree) {
+  const panel = el("div", "talent_tree_panel")
+  const assets = TALENT_ASSETS[tree.key]
+  if (assets && assets.background) {
+    panel.style.setProperty("--talent-bg", `url("${assets.background}")`)
   }
+
+  const header = el("div", "talent_tree_header")
+
+  const headerCard = el("div", "talent_tree_header_card")
+
+  const leftSide = el("div", "talent_tree_header_left")
+
+  const logo = el("img", "talent_tree_logo")
+  logo.alt = `${tree.label} logo`
+  logo.loading = "lazy"
+  logo.decoding = "async"
+  if (assets && assets.logo) logo.src = assets.logo
+
+  const title = el("div", "talent_tree_title", tree.label)
+
+  leftSide.append(logo, title)
+
+  const points = el("div", "talent_tree_points", "0")
+
+  headerCard.append(leftSide, points)
+  header.appendChild(headerCard)
+
+  const grid = el("div", "talent_tree_grid")
+  grid.style.setProperty("--talent_cols", String(TALENT_DATA.cols))
+  grid.style.setProperty("--talent_tiers", String(TALENT_DATA.tiers))
+
+  // Build lookup for grid coords
+  const nodes = Object.values(idx.byId)
+    .filter((n) => n.tree === tree.key)
+    .sort((a, b) => (a.tier - b.tier) || (a.col - b.col) || a.name.localeCompare(b.name))
+
+  const coordMap = {}
+  for (const n of nodes) coordMap[`${n.tier}:${n.col}`] = n
+
+  const arrowEls = []
+  const arrowLinks = TALENT_DECOR_ARROWS.filter((a) => a.tree === tree.key)
+  if (arrowLinks.length) {
+    const arrowLayer = el("div", "talent_tree_arrows")
+    grid.appendChild(arrowLayer)
+
+    for (const link of arrowLinks) {
+      const from = idx.byId[`${tree.key}_${slug(link.from)}`]
+      const to = idx.byId[`${tree.key}_${slug(link.to)}`]
+      if (!from || !to) continue
+
+      const isVertical = from.col === to.col
+      const isHorizontal = from.tier === to.tier
+
+      // Skip diagonals for now
+      if (!isVertical && !isHorizontal) continue
+
+      const arrow = el("div", "talent_arrow")
+
+      if (isVertical) {
+        const tierGap = Math.abs(from.tier - to.tier)
+        const rowStart = Math.min(from.tier, to.tier) + 1
+        const rowEnd = Math.max(from.tier, to.tier) + (tierGap === 1 ? 1 : 0)
+        if (rowStart >= rowEnd) continue
+
+        arrow.style.gridColumn = String(from.col)
+        arrow.style.gridRow = `${rowStart} / ${rowEnd}`
+      } else {
+        arrow.classList.add("is_horizontal")
+
+        const colGap = Math.abs(from.col - to.col)
+        const colStart = Math.min(from.col, to.col) + 1
+        const colEnd = Math.max(from.col, to.col) + (colGap === 1 ? 1 : 0)
+        if (colStart >= colEnd) continue
+
+        arrow.style.gridRow = String(from.tier)
+        arrow.style.gridColumn = `${colStart} / ${colEnd}`
+
+        if (Number.isFinite(link.bleedLeft)) {
+          arrow.style.setProperty("--arrow-bleed-left", `${link.bleedLeft}px`)
+        }
+        if (Number.isFinite(link.bleedRight)) {
+          arrow.style.setProperty("--arrow-bleed-right", `${link.bleedRight}px`)
+        }
+        if (link.offsetX) {
+          arrow.style.setProperty("--arrow-offset-x", link.offsetX)
+        }
+      }
+
+      arrow.style.setProperty("--arrow-asset", `url("${link.asset}")`)
+      if (link.width) arrow.style.setProperty("--arrow-width", `${link.width}px`)
+      if (link.height) arrow.style.setProperty("--arrow-height", `${link.height}px`)
+      if (Number.isFinite(link.bleedTop)) {
+        arrow.style.setProperty("--arrow-bleed-top", `${link.bleedTop}px`)
+      }
+      if (Number.isFinite(link.bleedBottom)) {
+        arrow.style.setProperty("--arrow-bleed-bottom", `${link.bleedBottom}px`)
+      }
+      if (link.offsetY) arrow.style.setProperty("--arrow-offset", link.offsetY)
+
+      arrowLayer.appendChild(arrow)
+      arrowEls.push({
+        el: arrow,
+        fromId: from.id,
+        toId: to.id,
+        baseAsset: link.asset,
+        activeAsset: link.activeAsset || null,
+        requireMax: Boolean(link.requireMax),
+      })
+    }
+  }
+
+  const nodeEls = {}
+
+  for (let tier = 1; tier <= TALENT_DATA.tiers; tier++) {
+    for (let col = 1; col <= TALENT_DATA.cols; col++) {
+      const cell = el("div", "talent_cell")
+      const n = coordMap[`${tier}:${col}`]
+      if (n) {
+        const btn = el("button", "talent_node")
+        btn.type = "button"
+        btn.dataset.id = n.id
+        btn.setAttribute("aria-label", n.name)
+
+        const icon = el("div", "talent_icon")
+        const fallbackText = n.name
+          .split(" ")
+          .slice(0, 2)
+          .map((p) => p[0] || "")
+          .join("")
+          .toUpperCase()
+
+        const iconImg = el("img", "talent_icon_img")
+        iconImg.alt = n.name
+        iconImg.loading = "lazy"
+        iconImg.decoding = "async"
+        if (n.icon) iconImg.src = n.icon
+
+        const iconFallback = el("span", "talent_icon_fallback", fallbackText)
+        icon.append(iconImg, iconFallback)
+
+        if (n.icon) {
+          iconImg.addEventListener("load", () => icon.classList.add("is_loaded"))
+          iconImg.addEventListener("error", () => icon.classList.add("is_missing"))
+        } else {
+          icon.classList.add("is_missing")
+        }
+
+        const rank = el("div", "talent_rank", `0/${n.max}`)
+
+        btn.append(icon, rank)
+        cell.appendChild(btn)
+        nodeEls[n.id] = { btn, rank, cell }
+      } else {
+        cell.classList.add("talent_cell_empty")
+      }
+      grid.appendChild(cell)
+    }
+  }
+
+  panel.append(header, grid)
+  return { panel, nodeEls, arrows: arrowEls, pointsEl: points }
+}
 
   for (const tree of TALENT_DATA.trees) {
     const ui = makeTree(tree)
@@ -565,6 +814,124 @@ export function mountTalentLab(root) {
   wrap.append(top, layout)
   root.appendChild(wrap)
 
+  const tooltipHost = document.body || document.documentElement
+  let tooltip = tooltipHost.querySelector(".talent_tooltip[data-talent-tooltip='1']")
+  if (!tooltip) {
+    tooltip = el("div", "talent_tooltip")
+    tooltip.dataset.talentTooltip = "1"
+    tooltipHost.appendChild(tooltip)
+  }
+  tooltip.setAttribute("role", "tooltip")
+  tooltip.setAttribute("aria-hidden", "true")
+  tooltip.classList.remove("is_visible")
+  tooltip.style.transform = "translate(-9999px, -9999px)"
+
+  const tooltipState = {
+    id: null,
+    anchor: null,
+    lastX: null,
+    lastY: null,
+  }
+
+  function tooltipHtmlFor(id) {
+    const n = idx.byId[id]
+    if (!n) return ""
+    const list = TALENT_TOOLTIP_MAP.get(n.name.toLowerCase())
+    if (!list || !list.length) return ""
+    const points = state.ranks[id] || 0
+    const index = Math.min(Math.max(points, 0), list.length - 1)
+    let html = list[index] || ""
+    if (!html) return ""
+
+    // Replace the trailing "Click to learn" row with requirements when you cannot add
+    if (html.includes("Click to learn")) {
+      if (canAdd(id)) {
+        // leave as is
+      } else {
+        const reasons = cannotAddReasons(id)
+        const rows = (reasons.length ? reasons : ["Cannot learn this talent yet"])
+          .map((t) => `<tr><td class='tooltip-red'>${t}</td></tr>`)
+          .join("")
+
+        html = html.replace(
+          /<tr><td class='tooltip-green'>Click to learn<\/td><\/tr>/g,
+          rows
+        )
+      }
+    }
+    return html
+  }
+
+  function positionTooltip(ev, anchorEl) {
+    if (ev && Number.isFinite(ev.clientX)) {
+      tooltipState.lastX = ev.clientX
+      tooltipState.lastY = ev.clientY
+    }
+
+    const anchor = anchorEl || tooltipState.anchor
+    let x = tooltipState.lastX
+    let y = tooltipState.lastY
+    if (!Number.isFinite(x) || !Number.isFinite(y)) {
+      if (anchor) {
+        const rect = anchor.getBoundingClientRect()
+        x = rect.right + 8
+        y = rect.top + rect.height / 2
+      } else {
+        x = 0
+        y = 0
+      }
+    }
+
+    const rect = tooltip.getBoundingClientRect()
+    const pad = 12
+    let left = x + 14
+    let top = y + 14
+
+    if (left + rect.width > window.innerWidth - pad) left = x - rect.width - 14
+    if (top + rect.height > window.innerHeight - pad) top = y - rect.height - 14
+
+    left = Math.max(pad, Math.min(left, window.innerWidth - rect.width - pad))
+    top = Math.max(pad, Math.min(top, window.innerHeight - rect.height - pad))
+
+    tooltip.style.transform = `translate(${Math.round(left)}px, ${Math.round(top)}px)`
+  }
+
+  function showTooltip(id, ev, anchorEl) {
+    const html = tooltipHtmlFor(id)
+    if (!html) {
+      hideTooltip()
+      return
+    }
+
+    tooltipState.id = id
+    tooltipState.anchor = anchorEl || tooltipState.anchor
+    tooltip.innerHTML = html
+    tooltip.classList.add("is_visible")
+    tooltip.setAttribute("aria-hidden", "false")
+    positionTooltip(ev, anchorEl)
+  }
+
+  function hideTooltip() {
+    tooltipState.id = null
+    tooltipState.anchor = null
+    tooltipState.lastX = null
+    tooltipState.lastY = null
+    tooltip.classList.remove("is_visible")
+    tooltip.setAttribute("aria-hidden", "true")
+    tooltip.style.transform = "translate(-9999px, -9999px)"
+  }
+
+  function refreshTooltip() {
+    if (!tooltipState.id) return
+    const html = tooltipHtmlFor(tooltipState.id)
+    if (!html) {
+      hideTooltip()
+      return
+    }
+    tooltip.innerHTML = html
+    positionTooltip(null, tooltipState.anchor)
+  }
+
   function setSelected(id) {
     state.selected = id
     for (const k in idx.byId) {
@@ -597,8 +964,8 @@ export function mountTalentLab(root) {
     const total = sumAllPoints(state.ranks)
     if (total >= TALENT_DATA.total_points) return false
 
-    const treePoints = sumPoints(state.ranks, n.tree, idx)
-    if (!tierUnlocked(treePoints, n.tier)) return false
+    if (!tierUnlocked(state.ranks, n.tree, n.tier, idx)) return false
+
     if (!prereqMet(state.ranks, n, idx)) return false
 
     return true
@@ -619,6 +986,7 @@ export function mountTalentLab(root) {
     syncUI()
   }
 
+
   function removePoint(id) {
     if (!canRemove(id)) return
     state.ranks[id] = (state.ranks[id] || 0) - 1
@@ -626,14 +994,63 @@ export function mountTalentLab(root) {
     syncUI()
   }
 
+  function treeLabel(treeKey) {
+    const t = TALENT_DATA.trees.find((x) => x.key === treeKey)
+    return t ? t.label : treeKey
+  }
+
+function cannotAddReasons(id) {
+  const n = idx.byId[id]
+  if (!n) return []
+
+  const reasons = []
+  const current = state.ranks[id] || 0
+
+  // Maxed
+  if (current >= n.max) {
+    reasons.push("Already at max rank")
+    return reasons
+  }
+
+  // No points remaining overall
+  const total = sumAllPoints(state.ranks)
+  if (total >= TALENT_DATA.total_points) {
+    reasons.push("No talent points remaining")
+  }
+
+  const prev = pointsInPreviousTiers(state.ranks, n.tree, n.tier, idx)
+  const needed = n.tier <= 1 ? 0 : (n.tier - 1) * 5
+  if (prev < needed) {
+    reasons.push(`Requires ${needed} points in previous tiers of ${treeLabel(n.tree)} Talents`)
+  }
+
+  // Prereq talent not learned
+  if (n.req_id) {
+    const reqNode = idx.byId[n.req_id]
+    const reqName = reqNode ? reqNode.name : n.req_name
+    const needed = reqNode ? reqNode.max : 1
+    const have = state.ranks[n.req_id] || 0
+
+    if (have < needed) {
+      reasons.push(`Requires ${needed} point${needed === 1 ? "" : "s"} in ${reqName}`)
+    }
+  }
+  return reasons
+}
+
   function syncUI() {
     const total = sumAllPoints(state.ranks)
     const atCap = total >= TALENT_DATA.total_points
     totalPtsVal.textContent = `${total} of ${TALENT_DATA.total_points}`
 
+    const treePointsByKey = {}
     for (const tree of TALENT_DATA.trees) {
       const tp = sumPoints(state.ranks, tree.key, idx)
+      treePointsByKey[tree.key] = tp
       treeTotalsEls[tree.key].textContent = String(tp)
+      if (treeUIs && treeUIs[tree.key] && treeUIs[tree.key].pointsEl) {
+        treeUIs[tree.key].pointsEl.textContent = String(tp)
+      }
     }
 
     for (const id in idx.byId) {
@@ -645,8 +1062,7 @@ export function mountTalentLab(root) {
       const r = state.ranks[id] || 0
       e.rank.textContent = `${r}/${n.max}`
 
-      const treePoints = sumPoints(state.ranks, n.tree, idx)
-      const locked = !tierUnlocked(treePoints, n.tier) || !prereqMet(state.ranks, n, idx)
+      const locked = !tierUnlocked(state.ranks, n.tree, n.tier, idx) || !prereqMet(state.ranks, n, idx)
       const full = r >= n.max
       const capped = atCap && r === 0
 
@@ -657,7 +1073,30 @@ export function mountTalentLab(root) {
       e.btn.disabled = locked && r === 0
     }
 
+    for (const tree of TALENT_DATA.trees) {
+      const ui = treeUIs[tree.key]
+      if (!ui.arrows || ui.arrows.length === 0) continue
+      const treePoints = treePointsByKey[tree.key] || 0
+
+      for (const arrow of ui.arrows) {
+        const fromNode = idx.byId[arrow.fromId]
+        const toNode = idx.byId[arrow.toId]
+        if (!fromNode || !toNode) continue
+
+        const fromRank = state.ranks[arrow.fromId] || 0
+        const toRank = state.ranks[arrow.toId] || 0
+        const required = arrow.requireMax ? fromNode.max : 1
+        const isReady = fromRank >= required && tierUnlocked(state.ranks, toNode.tree, toNode.tier, idx)
+        const canSpend = toRank > 0 || (!atCap && canAdd(arrow.toId))
+        const isActive = isReady && canSpend
+        const asset = isActive && arrow.activeAsset ? arrow.activeAsset : arrow.baseAsset
+        if (asset) arrow.el.style.setProperty("--arrow-asset", `url("${asset}")`)
+        arrow.el.classList.toggle("is_active", isActive)
+      }
+    }
+
     setSelected(state.selected)
+    refreshTooltip()
 
     // Keep URL in sync (no forced navigation)
     try {
@@ -672,7 +1111,28 @@ export function mountTalentLab(root) {
   for (const tree of TALENT_DATA.trees) {
     const ui = treeUIs[tree.key]
     for (const id in ui.nodeEls) {
-      const btn = ui.nodeEls[id].btn
+      const { btn, cell } = ui.nodeEls[id]
+      const hoverTarget = cell || btn
+
+      hoverTarget.addEventListener("mouseenter", (ev) => {
+        showTooltip(id, ev, hoverTarget)
+      })
+
+      hoverTarget.addEventListener("mousemove", (ev) => {
+        if (tooltipState.id === id) positionTooltip(ev, hoverTarget)
+      })
+
+      hoverTarget.addEventListener("mouseleave", () => {
+        if (tooltipState.id === id) hideTooltip()
+      })
+
+      btn.addEventListener("focus", () => {
+        showTooltip(id, null, btn)
+      })
+
+      btn.addEventListener("blur", () => {
+        if (tooltipState.id === id) hideTooltip()
+      })
 
       btn.addEventListener("click", () => {
         setSelected(id)
