@@ -36,8 +36,21 @@ a:hover {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
+}
+
+select {
+  color: var(--fg);
+  background-color: var(--panel);
+  border: 1px solid var(--stroke);
+}
+
+select option,
+select optgroup {
+  color: var(--fg);
+  background-color: var(--bg2);
 }
 
 :focus-visible {

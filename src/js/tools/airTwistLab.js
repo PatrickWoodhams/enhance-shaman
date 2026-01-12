@@ -57,6 +57,14 @@ export function mountAirTwistLab(root) {
     partyInRange: true,
     movementLockLeft: 0,
 
+    // Game mode
+    gameArmed: false,
+    gameActive: false,
+    gameTime: 0,
+    gameBest: 0,
+    gameFailed: false,
+    gameFailReason: "",
+
     // Coaching helpers
     wfCastAt: null,
     goaCastAt: null,
@@ -78,6 +86,7 @@ export function mountAirTwistLab(root) {
       <div class="labRow labRowTop">
         <button class="btn" data-act="start" type="button">Start</button>
         <button class="btn btnGhost" data-act="reset" type="button">Reset</button>
+        <button class="btn btnSecondary" data-act="game" type="button">Start run</button>
 
         <label class="labToggle" aria-label="Party in range">
           <input type="checkbox" data-act="range" checked />
@@ -155,6 +164,9 @@ export function mountAirTwistLab(root) {
             <div><strong>Windfury downtime:</strong> <span data-bind="down">0.0</span>s</div>
             <div><strong>Grace uptime:</strong> <span data-bind="gracePct">0</span>%</div>
             <div><strong>Wasted Windfury refreshes:</strong> <span data-bind="waste">0</span></div>
+            <div><strong>Run time:</strong> <span data-bind="gameTime">0.0</span>s</div>
+            <div><strong>Best run:</strong> <span data-bind="gameBest">0.0</span>s</div>
+            <div><strong>Run status:</strong> <span data-bind="gameStatus">Idle</span></div>
           </div>
         </div>
       </div>
@@ -185,9 +197,13 @@ export function mountAirTwistLab(root) {
     down: root.querySelector('[data-bind="down"]'),
     gracePct: root.querySelector('[data-bind="gracePct"]'),
     waste: root.querySelector('[data-bind="waste"]'),
+    gameTime: root.querySelector('[data-bind="gameTime"]'),
+    gameBest: root.querySelector('[data-bind="gameBest"]'),
+    gameStatus: root.querySelector('[data-bind="gameStatus"]'),
 
     btnWf: root.querySelector('[data-act="wf"]'),
     btnGoa: root.querySelector('[data-act="goa"]'),
+    btnGame: root.querySelector('[data-act="game"]'),
 
     btnCdWf: root.querySelector('[data-bind="btnCdWf"]'),
     btnCdGoa: root.querySelector('[data-bind="btnCdGoa"]'),
@@ -260,6 +276,72 @@ export function mountAirTwistLab(root) {
   }
 
   // =========================================================
+  // Game mode
+  // =========================================================
+  function beginGameRun() {
+    if (state.gameActive) return
+    state.gameActive = true
+    state.gameArmed = false
+    state.gameFailed = false
+    state.gameFailReason = ""
+    state.gameTime = 0
+    setCoach("info", "Run started. Keep Windfury up and swap back to Grace quickly.", 2.2)
+  }
+
+  function resetRunState() {
+    state.running = false
+    state.armed = false
+    state.t = 0
+    state.lastTick = 0
+
+    state.gcdLeft = 0
+    state.movementLockLeft = 0
+    state.mana = state.manaMax
+
+    state.airActive = "none"
+    state.wfBuffLeft = 0
+
+    state.wfCastAt = null
+    state.goaCastAt = null
+    state.wfDropAt = null
+  }
+
+  function startGame() {
+    const restarting = state.gameActive || state.gameArmed || state.gameFailed
+    if (restarting) {
+      resetRunState()
+    }
+
+    if (!state.armed) start()
+    state.gameArmed = true
+    state.gameActive = false
+    state.gameFailed = false
+    state.gameFailReason = ""
+    state.gameTime = 0
+
+    if (state.running) {
+      beginGameRun()
+    } else {
+      setCoach("info", "Run armed. First cast starts the timer.", 2.2)
+    }
+    render()
+  }
+
+  function failGame(reason) {
+    if (!state.gameActive) return
+    state.gameActive = false
+    state.gameFailed = true
+    state.gameFailReason = reason
+    if (state.gameTime > state.gameBest) state.gameBest = state.gameTime
+    setCoach("bad", `Run failed: ${reason}`, 2.6)
+    state.running = false
+    state.armed = false
+    state.gcdLeft = 0
+    state.movementLockLeft = 0
+    render()
+  }
+
+  // =========================================================
   // Recommendation
   // =========================================================
   function recommend() {
@@ -294,6 +376,9 @@ export function mountAirTwistLab(root) {
     if (state.running) return
     state.running = true
     state.lastTick = performance.now()
+    if (state.gameArmed && !state.gameActive) {
+      beginGameRun()
+    }
     requestAnimationFrame(loop)
   }
 
@@ -333,6 +418,9 @@ export function mountAirTwistLab(root) {
     } else if (leftBefore > EARLY_REFRESH_WASTE_THRESHOLD) {
       state.wastedWfCasts += 1
       setCoach("warn", `Early refresh, ${leftBefore.toFixed(1)}s still left. Try to wait longer.`)
+      if (state.gameActive) {
+        failGame(`Windfury refreshed too early (${leftBefore.toFixed(1)}s left)`)
+      }
     } else {
       setCoach("ok", `Windfury refreshed. Next cast <span data-spell="grace_of_air_totem"></span>.`)
     }
@@ -345,6 +433,9 @@ export function mountAirTwistLab(root) {
     } else {
       // Totem drop still happens, buff does not apply
       setCoach("warn", "Party out of range. Windfury did not apply.", 3.0)
+      if (state.gameActive) {
+        failGame("Windfury missed (out of range)")
+      }
     }
   }
 
@@ -376,6 +467,9 @@ export function mountAirTwistLab(root) {
           "warn",
           `Late swap back, Grace came ${delay.toFixed(1)}s after Windfury. Aim for the next GCD.`
         )
+        if (state.gameActive) {
+          failGame("Late swap back to Grace")
+        }
       } else {
         setCoach("ok", "Good swap back. Track Windfury and refresh before it expires.")
       }
@@ -414,6 +508,13 @@ export function mountAirTwistLab(root) {
 
     state.movementLockLeft = 0
 
+    state.gameArmed = false
+    state.gameActive = false
+    state.gameTime = 0
+    state.gameBest = 0
+    state.gameFailed = false
+    state.gameFailReason = ""
+
     state.wfCastAt = null
     state.goaCastAt = null
     state.wfDropAt = null
@@ -438,6 +539,14 @@ export function mountAirTwistLab(root) {
   function tick(dt) {
     state.t += dt
 
+    if (state.gameArmed && state.running && !state.gameActive) {
+      beginGameRun()
+    }
+
+    if (state.gameActive) {
+      state.gameTime += dt
+    }
+
     state.gcdLeft = Math.max(0, state.gcdLeft - dt)
     state.movementLockLeft = Math.max(0, state.movementLockLeft - dt)
 
@@ -459,6 +568,23 @@ export function mountAirTwistLab(root) {
       state.wfDrops += 1
       state.wfDropAt = state.t
       setCoach("bad", "Windfury dropped. Cast Windfury as soon as GCD allows.", 3.0)
+      if (state.gameActive) {
+        failGame("Windfury dropped")
+      }
+    }
+
+    if (
+      state.gameActive &&
+      state.partyInRange &&
+      state.airActive === "windfury" &&
+      state.wfCastAt != null &&
+      state.gcdLeft <= 0 &&
+      state.wfBuffLeft > WF_REFRESH_WARN
+    ) {
+      const since = state.t - state.wfCastAt
+      if (since > GCD + GOA_LATE_GRACE) {
+        failGame("Late swap back to Grace")
+      }
     }
 
     // Proactive coaching when not already showing a message
@@ -529,6 +655,19 @@ export function mountAirTwistLab(root) {
     ui.gracePct.textContent = String(Math.round((state.graceTime / total) * 100))
     ui.waste.textContent = String(state.wastedWfCasts)
 
+    ui.gameTime.textContent = state.gameTime.toFixed(1)
+    ui.gameBest.textContent = state.gameBest.toFixed(1)
+
+    let gameStatus = "Idle"
+    if (state.gameActive) gameStatus = "Running"
+    else if (state.gameArmed) gameStatus = "Ready"
+    else if (state.gameFailed) gameStatus = `Failed: ${state.gameFailReason}`
+    ui.gameStatus.textContent = gameStatus
+
+    if (ui.btnGame) {
+      ui.btnGame.textContent = state.gameActive || state.gameArmed ? "Restart run" : "Start run"
+    }
+
     // Button lock and GCD overlay
     const locked = !state.armed || state.gcdLeft > 0 || state.movementLockLeft > 0
     ui.btnWf.disabled = locked || state.mana < MANA_COST.windfury
@@ -569,6 +708,7 @@ export function mountAirTwistLab(root) {
 
     if (act === "start") start()
     if (act === "reset") reset()
+    if (act === "game") startGame()
     if (act === "wf") castWindfury()
     if (act === "goa") castGrace()
   })

@@ -1,0 +1,152 @@
+<!-- /pages/guide/talents.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Talents | Enhancement Shaman Guide</title>
+    <meta
+      name="description"
+      content="Talent planning for Enhancement Shaman: decision framework, module placeholder, and a ready slot for an interactive talent tool."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+    <link rel="stylesheet" href="/src/css/themes/light.css" />
+    <link rel="stylesheet" href="/src/css/themes/dark.css" />
+    <link rel="stylesheet" href="/src/css/themes/high-contrast.css" />
+
+    <link rel="prefetch" href="/pages/guide/index.html" />
+
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
+  </head>
+
+  <body class="pageTalents">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">’'sA-</span>
+            <span class="brandText">Enhancement Shaman Guide</span>
+          </a>
+
+          <nav class="headerNav" aria-label="Primary">
+            <a class="navLink" href="/pages/guide/index.html">Guide</a>
+            <a class="navLink" href="/pages/builds/index.html">Builds</a>
+            <a class="navLink" href="/pages/encounters/index.html">Encounters</a>
+            <a class="navLink" href="/pages/tools/index.html">Tools</a>
+          </nav>
+
+          <div class="headerActions">
+            <label class="searchShell" aria-label="Search the guide">
+              <span class="searchIcon" aria-hidden="true">’'O</span>
+              <input
+                id="globalSearch"
+                class="searchInput"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Search spells, topics, and decisions"
+              />
+            </label>
+
+            <button
+              id="themeToggle"
+              class="btn btnGhost"
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              Theme
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <!-- Sidebar fallback. boot.js will replace it with /components/sidebar.html -->
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Core mechanics</div>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger.html">Sync and Stagger</a>
+            <a class="sidebarLink" href="/pages/guide/weaving_overview.html">Weaving and Twisting Overview</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Build planning</div>
+            <a class="sidebarLink" href="/pages/guide/talents.html">Talents</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Weaving and Twisting</div>
+            <a class="sidebarLink" href="/pages/guide/air_totem_weaving.html">Air totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/fire_totem_weaving.html">Fire totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/shock_weaving.html">Flame Shock weaving</a>
+          </div>
+        </aside>
+
+        <main id="appMain" class="appMain" tabindex="-1">
+          <section class="pageHero">
+            <div class="pageKicker">Spend points where they solve problems</div>
+            <h1 class="pageTitle">Talents and Build Choices</h1>
+            <p class="pageLead">
+              This page is in devlopment. Expect talent explanations soon.
+            </p>
+          </section>
+
+          <section class="contentCard" id="talent-module">
+            <div class="eyebrow">Tool</div>
+            <h2>Talent Calculator</h2>
+            <p class="muted">
+              I need to write a description.
+            </p>
+            <div class="talentLabShell">
+              <div id="talentLab"></div>
+            </div>
+          </section>
+        </main>
+
+        <aside class="appTocShell" aria-label="On page table of contents">
+          <div class="tocHeader">
+            <div class="tocTitle">On this page</div>
+            <div class="tocHint">Updates as you navigate</div>
+          </div>
+          <nav id="appToc" class="appToc"></nav>
+        </aside>
+      </div>
+
+      <footer id="appFooter" class="appFooter" role="contentinfo">
+        <div class="footerInner">
+          <div class="footerLeft">
+            <div class="footerBrand">Enhancement Shaman Guide</div>
+            <div class="footerSub">Fast, readable, decision focused.</div>
+          </div>
+
+          <nav class="footerNav" aria-label="Footer">
+            <a class="footerLink" href="/pages/guide/index.html">Guide</a>
+            <a class="footerLink" href="/pages/tools/index.html">Tools</a>
+            <a class="footerLink" href="/pages/guide/faq.html">FAQ</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/js/app.js"></script>
+  </body>
+</html>

@@ -3,7 +3,7 @@ async function loadInto(selector, url) {
   if (!el) return;
 
   try {
-    const res = await fetch(url, { cache: "force-cache" });
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error(`Failed to load ${url}`);
     el.innerHTML = await res.text();
   } catch (err) {

@@ -14,7 +14,13 @@ export const SPELLS = {
   shamanistic_rage: { name: "Shamanistic Rage", icon: iconUrl("spell_nature_shamanrage") },
   feral_spirit: { name: "Feral Spirit", icon: iconUrl("spell_shaman_feralspirit") },
   dual_wield: { name: "Dual Wield", icon: iconUrl("ability_dualwield") },
-
+  improved_fire_totems: { name: "Improved Fire Totems", icon: iconUrl("spell_fire_sealoffire") },
+  totemic_focus: { name: "Totemic Focus", icon: iconUrl("spell_nature_moonglow") },
+  call_of_flames: { name: "Call of Flames", icon: iconUrl("spell_fire_immolation") },
+  totemic_mastery: { name: "Totemic Mastery", icon: iconUrl("spell_nature_nullward") },
+  improved_weapon_totems: { name: "Improved Weapon Totems", icon: iconUrl("spell_fire_enchantweapon") },
+  guardian_totems: { name: "Guardian Totems", icon: iconUrl("spell_nature_stoneskintotem") },
+  
   // Talents and procs
   flurry: { name: "Flurry", icon: iconUrl("ability_ghoulfrenzy") },
   unleashed_rage: { name: "Unleashed Rage", icon: iconUrl("spell_nature_unleashedrage") },
@@ -44,6 +50,8 @@ export const SPELLS = {
   searing_totem: { name: "Searing Totem", icon: iconUrl("spell_fire_searingtotem") },
   fire_nova_totem: { name: "Fire Nova Totem", icon: iconUrl("spell_fire_sealoffire") },
   magma_totem: { name: "Magma Totem", icon: iconUrl("spell_fire_selfdestruct") },
+  fire_resistance_totem: { name: "Fire Resistance Totem", icon: iconUrl("spell_fireresistancetotem_01") },
+  fire_elemental_totem: { name: "Fire Elemental Totem", icon: iconUrl("spell_fire_elemental_totem") },
   totem_of_wrath: { name: "Totem of Wrath", icon: iconUrl("spell_fire_totemofwrath") },
 
   // Earth totems
