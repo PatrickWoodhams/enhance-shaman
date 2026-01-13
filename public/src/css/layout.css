@@ -1,0 +1,151 @@
+.appFrame {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.appHeader {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(10, 14, 20, 0.7);
+  border-bottom: 1px solid var(--stroke);
+}
+
+.headerInner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.appBody {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px 16px 26px 16px;
+  display: grid;
+  grid-template-columns: 260px 1fr 240px;
+  gap: 16px;
+  align-items: start;
+}
+
+.appSidebar {
+  position: sticky;
+  top: calc(var(--app-header-height, 64px) + var(--pad3));
+  height: fit-content;
+}
+
+.appMain {
+  min-width: 0;
+}
+
+.appTocShell {
+  position: sticky;
+  top: calc(var(--app-header-height, 64px) + var(--pad3));
+  height: fit-content;
+  border: 1px solid var(--stroke);
+  border-radius: var(--r2);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.appFooter {
+  margin-top: auto;
+  border-top: 1px solid var(--stroke);
+  background: rgba(10, 14, 20, 0.55);
+}
+
+.footerInner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+/* Embed mode: show only the main content area */
+.embed .appHeader,
+.embed .appSidebar,
+.embed .appTocShell,
+.embed .appFooter {
+  display: none !important;
+}
+
+.embed .appBody {
+  grid-template-columns: 1fr !important;
+  grid-template-areas: "main" !important;
+  min-height: 100vh;
+}
+
+.embed .appMain {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+.embed .section,
+.embed .hero {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (max-width: 980px) {
+  .appBody {
+    grid-template-columns: 1fr;
+  }
+
+  .appSidebar {
+    position: fixed;
+    inset: calc(var(--app-header-height, 64px)) 12px 12px 12px;
+    z-index: 60;
+    transform: translateY(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+
+  body.sidebarOpen .appSidebar {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .appTocShell {
+    display: none;
+  }
+  
+  @media (max-width: 720px) {
+  .footerInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footerNav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}
+
+}

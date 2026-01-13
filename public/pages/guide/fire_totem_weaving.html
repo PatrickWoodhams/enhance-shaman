@@ -1,0 +1,290 @@
+<!-- /pages/guide/fire_totem_weaving.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Fire Totem Twisting | Enhancement Shaman Guide</title>
+    <meta
+      name="description"
+      content="Fire Totem Twisting in TBC: what each fire totem does, when to run Searing or Magma, how Fire Nova twisting works, when it is worth it, and how to practice with the Fire Totem Lab."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+
+    <!-- Core tokens and resets -->
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+
+    <!-- Structural layout -->
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+
+    <!-- App bootstrap -->
+    <script type="module" src="/app.js"></script>
+  </head>
+
+  <body class="pageFireWeaving">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Dora's Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">⚡</span>
+            <span class="brandText">
+              <span class="brandTitle">Dora's Enhancement Shaman Guide</span>
+              <span class="brandTagline">
+                <span class="brandBadge">TBC</span>
+                The Burning Crusade
+              </span>
+            </span>
+          </a>
+
+          <nav class="headerNav" aria-label="Primary">
+            <a class="navLink" href="/pages/guide/index">Guide</a>
+            <a class="navLink" href="/pages/builds/index.html">Builds</a>
+            <a class="navLink" href="/pages/tools/index">Tools</a>
+          </nav>
+
+          <div class="headerActions">
+            <label class="searchShell" aria-label="Search the guide">
+              <span class="searchIcon" aria-hidden="true">ƒO</span>
+              <input
+                id="globalSearch"
+                class="searchInput"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Search spells, topics, and decisions"
+              />
+            </label>
+
+            <button
+              id="themeToggle"
+              class="btn btnGhost"
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              Theme
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Core mechanics</div>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger.html">Sync and Stagger</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Build planning</div>
+            <a class="sidebarLink" href="/pages/guide/talents.html">Talents</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Twisting</div>
+            <a class="sidebarLink" href="/pages/guide/weaving_overview.html">Weaving and twisting overview</a>
+            <a class="sidebarLink" href="/pages/guide/air_totem_weaving.html">Air totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/fire_totem_weaving.html">Fire totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/shock_weaving.html">Flame shock weaving</a>
+          </div>
+        </aside>
+
+        <main id="appMain" class="appMain" tabindex="-1">
+          <section class="pageHero">
+            <div class="pageKicker">Baseline damage first, burst on purpose</div>
+            <h1 class="pageTitle">Fire Totem Twisting</h1>
+            <p class="pageLead">
+              Fire twisting is the decision of which fire totem you spend your next global on, and how you avoid leaving your fire slot empty.
+              Most of the time you want a baseline totem down, then you convert specific moments into burst by using
+              <span data-spell="fire_nova_totem"></span> and replacing it immediately after it detonates.
+            </p>
+          </section>
+
+          <section class="contentCard" id="what-fire-totems-do">
+            <div class="eyebrow">Reference</div>
+            <h2>What the fire totems do</h2>
+            <br>
+            <h3 id="searing">Searing Totem</h3>
+            <p>
+              Single target baseline damage. In many single target fights, <span data-spell="searing_totem"></span> is the default totem you want down whenever you are not doing something more valuable.
+              If your fire slot is empty, you are usually losing damage.
+            </p><br>
+
+            <h3 id="magma">Magma Totem</h3>
+            <p>
+              Sustained AOE baseline. <span data-spell="magma_totem"></span> deals periodic AOE damage around the totem for a short duration, so it is best when targets stay stacked near the totem.
+              It can be your baseline on multi target pulls, and you can still weave Fire Nova when the moment is right.
+              <span data-spell="magma_totem"></span> also costs more mana than <span data-spell="searing_totem"></span>, so treat it as a real AOE decision, not an automatic swap.
+            </p><br>
+
+            <h3 id="fire-nova">Fire Nova Totem</h3>
+              <p>
+                <span data-spell="fire_nova_totem"></span> provides burst AOE damage, but it does not explode on cast.
+                After the totem is dropped, the nova triggers after a fixed delay. By default this delay is approximately
+                4 seconds. With <span data-spell="improved_fire_totems"></span>, the detonation delay is reduced to
+                roughly 2 seconds.
+              </p>
+              <p>
+                This delay is critical to understand when twisting. The nova only occurs if the totem remains active
+                until the detonation completes. If you replace the <span data-spell="fire_nova_totem"></span> with another fire totem before the
+                delay expires, the nova is lost entirely. In TBC, <span data-spell="fire_nova_totem"></span> has a 15 second cooldown and the
+                explosion originates from the totem itself, affecting enemies within a 10 yard radius.
+              </p>
+          </section>
+
+          <section class="contentCard" id="default-plan">
+            <div class="eyebrow">Default</div>
+            <h2>Start with a baseline plan</h2>
+            <p>
+              Before you think about Fire Nova, decide what your baseline totem is for the current pull:
+            </p>
+            <ul>
+              <li><strong>Single target or spread:</strong> baseline is usually <span data-spell="searing_totem"></span>.</li>
+              <li><strong>Stacked multi target with time to tick:</strong> baseline is usually <span data-spell="magma_totem"></span>.</li>
+              <li><strong>Encounter survival requirement:</strong> baseline may be <span data-spell="fire_resistance_totem"></span>.</li>
+            </ul>
+            <p class="muted">
+              Most errors come from skipping the baseline step and trying to force Fire Nova into situations that cannot support it.
+              Remember that <span data-spell="magma_totem"></span> costs more mana than <span data-spell="searing_totem"></span>, so it should be earned by the pull.
+            </p>
+          </section>
+
+          <section class="contentCard" id="nova-weave-loop">
+            <div class="eyebrow">Execution</div>
+            <h2>The Fire Nova weave loop</h2>
+
+            <h3 id="the-loop">The simple loop</h3>
+            <ol>
+              <li>Keep your baseline fire totem down.</li>
+              <li>When <span data-spell="fire_nova_totem"></span> is ready and targets will remain near the totem, cast Fire Nova.</li>
+              <li>Do not overwrite it. Let the nova trigger (4 seconds later, to 2 seconds with <span data-spell="improved_fire_totems"></span>).</li>
+              <li>Immediately after the nova, replace it with your baseline totem again.</li>
+            </ol>
+
+            <h3 id="what-you-are-optimizing">What you are optimizing</h3>
+            <p>
+              You are trading one baseline global for a burst global, then recovering baseline uptime as quickly as possible.
+              If your replacement is late, you lose baseline time. If you replace too early, you cancel the nova entirely.
+            </p>
+
+            <h3 id="range-rule">Range rule that matters</h3>
+            <p>
+              Fire Nova damage is centered on the totem and has limited radius, so it is only worth casting when targets will still be inside that radius when the nova triggers.
+            </p>
+          </section>
+
+          <section class="contentCard" id="when-to-skip">
+            <div class="eyebrow">Decision</div>
+            <h2>When to skip Fire Nova</h2>
+            <ul>
+              <li><strong>Targets will move:</strong> if they will not be near the totem when the nova triggers, it is wasted value.</li>
+              <li><strong>Short lived adds:</strong> if targets die before the nova, you paid a global for nothing.</li>
+              <li><strong>Mana constraint:</strong> if totem globals start pushing out shocks or required utility, you stop twisting and stabilize.</li>
+              <li><strong>Utility requirement:</strong> if fire resistance is mandatory, you run it and accept the damage trade.</li>
+            </ul>
+          </section>
+
+          <section class="contentCard" id="talents-that-matter">
+            <div class="eyebrow">Build impact</div>
+            <h2>Talents that change fire twisting</h2>
+
+            <h3 id="totemic-focus">Totemic Focus</h3>
+            <p>
+              <span data-spell="totemic_focus"></span> lowers totem costs means you can sustain more twisting without collapsing your mana plan.
+            </p>
+
+            <h3 id="call-of-flame">Call of Flame</h3>
+            <p>
+              <span data-spell="call_of_flames"></span> increases the damage done by your fire totems. This increases the upside of maintaining a baseline and increases the payoff of correct Fire Nova windows.
+            </p>
+
+            <h3 id="improved-fire-totems">Improved Fire Totems</h3>
+            <p>
+              <span data-spell="improved_fire_totems"></span> tightens the Fire Nova loop by reducing the detonation delay.
+              Fire Nova normally detonates about 4 seconds after placement, and this talent can reduce that delay down to about 2 seconds.
+              It also reduces threat generated by <span data-spell="magma_totem"></span>, which can make Magma more practical on stacked pulls.
+            </p>
+
+            <h3 id="totemic-mastery">Totemic Mastery</h3>
+            <p>
+              <span data-spell="totemic_mastery"></span> provides more totem radius makes real world totem value more consistent, especially when targets and players are not perfectly stacked.
+            </p>
+          </section>
+
+          <section class="contentCard" id="fire-twist-lab">
+            <div class="eyebrow">Practice</div>
+            <h2>Fire Totem Twisting Lab</h2>
+            <p class="muted">
+              Drill three things: keep a baseline totem down, never overwrite Fire Nova early, and replace baseline immediately after the nova.
+              Use the target count control to practice the baseline swap between Searing and Magma.
+            </p>
+
+            <div class="fireTwistLabShell">
+              <div id="fireTwistLab"></div>
+            </div>
+          </section>
+
+          <section class="contentCard" id="summary">
+            <div class="eyebrow">Summary</div>
+            <h2>Rules you should remember</h2>
+            <ul>
+              <li>Baseline first: do not leave the fire slot empty.</li>
+              <li>Fire Nova detonates after a delay: about 4 seconds, or about 2 seconds with Improved Fire Totems.</li>
+              <li>Fire Nova is burst, but only when targets will still be in range when it triggers.</li>
+              <li>Never overwrite Fire Nova early.</li>
+              <li>Replace baseline immediately after the nova.</li>
+              <li>Magma costs more mana than Searing, so only use it when the pull will actually support ticks.</li>
+              <li>If mana or mechanics make twisting unstable, stop and stabilize.</li>
+            </ul>
+          </section>
+        </main>
+
+        <aside class="appTocShell" aria-label="On page table of contents">
+          <div class="tocHeader">
+            <div class="tocTitle">On this page</div>
+            <div class="tocHint">Updates as you navigate</div>
+          </div>
+          <nav id="appToc" class="appToc"></nav>
+        </aside>
+      </div>
+
+      <footer id="appFooter" class="appFooter" role="contentinfo">
+        <div class="footerInner">
+          <div class="footerLeft">
+            <div class="footerBrand">Enhancement Shaman Guide</div>
+            <div class="footerSub">Fast, readable, decision focused.</div>
+          </div>
+
+          <nav class="footerNav" aria-label="Footer">
+            <a class="footerLink" href="/pages/guide/index.html">Guide</a>
+            <a class="footerLink" href="/pages/tools/index.html">Tools</a>
+            <a class="footerLink" href="/pages/guide/faq.html">FAQ</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+  </body>
+</html>
+
+

@@ -1,0 +1,436 @@
+<!-- /pages/tools/index.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Tools | Enhancement Shaman Guide</title>
+    <meta
+      name="description"
+      content="Interactive tools and trainers for Enhancement Shaman in The Burning Crusade: swing sync and stagger trainer, talent planner, and totem twisting labs."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+
+    <!-- Core tokens and resets -->
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+
+    <!-- Structural layout -->
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
+
+    <!-- App bootstrap -->
+    <script type="module" src="/app.js"></script>
+
+    <style>
+      /* Page-local helpers (kept small on purpose) */
+      .toolCardActions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      /* Modal */
+      .toolDialog {
+        width: min(1180px, 96vw);
+        height: min(86vh, 920px);
+        padding: 0;
+        border: 1px solid var(--stroke);
+        border-radius: var(--r2);
+        background: var(--bg2);
+        color: var(--fg);
+        box-shadow: var(--shadow);
+      }
+
+      .toolDialog::backdrop {
+        background: rgba(0, 0, 0, 0.66);
+      }
+
+      .toolDialogHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .toolDialogTitle {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .toolDialogTitle h2 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .toolDialogHint {
+        color: var(--fg3);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .toolDialogActions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 0 0 auto;
+      }
+
+      .toolDialogBody {
+        height: calc(100% - 54px);
+      }
+
+      .toolFrame {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: var(--bg);
+      }
+    </style>
+  </head>
+
+  <body class="pageTools">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <!-- Header fallback. boot.js will replace it with /components/header.html -->
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Dora's Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">⚡</span>
+            <span class="brandText">
+              <span class="brandTitle">Dora's Enhancement Shaman Guide</span>
+              <span class="brandTagline">
+                <span class="brandBadge">TBC</span>
+                The Burning Crusade
+              </span>
+            </span>
+          </a>
+
+          <nav class="headerNav" aria-label="Primary">
+            <a class="navLink" href="/pages/guide/index.html">Guide</a>
+            <a class="navLink" href="/pages/builds/index.html">Builds</a>
+            <a class="navLink" href="/pages/encounters/index.html">Encounters</a>
+            <a class="navLink" href="/pages/tools/index.html">Tools</a>
+          </nav>
+
+          <div class="headerActions">
+            <label class="searchShell" aria-label="Search the guide">
+              <span class="searchIcon" aria-hidden="true">⌕</span>
+              <input
+                id="globalSearch"
+                class="searchInput"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Search spells, topics, and decisions"
+              />
+            </label>
+
+            <button
+              id="themeToggle"
+              class="btn btnGhost"
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              Theme
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <!-- Sidebar fallback. boot.js will replace it with /components/sidebar.html -->
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Tools</div>
+            <a class="sidebarLink" href="#available-tools">All tools</a>
+            <a class="sidebarLink" href="#tool-swing">Swing trainer</a>
+            <a class="sidebarLink" href="#tool-talents">Talent planner</a>
+            <a class="sidebarLink" href="#tool-air">Air twist lab</a>
+            <a class="sidebarLink" href="#tool-fire">Fire twist lab</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Guide</div>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger.html">Sync and Stagger</a>
+            <a class="sidebarLink" href="/pages/guide/talents.html">Talents</a>
+            <a class="sidebarLink" href="/pages/guide/weaving_overview.html">Weaving and Twisting Overview</a>
+          </div>
+        </aside>
+
+        <main id="appMain" class="appMain" tabindex="-1">
+          <section class="pageHero">
+            <div class="pageKicker">Interactive trainers</div>
+            <h1 class="pageTitle">Tools</h1>
+            <p class="pageLead">
+              These tools are built to help you practice timing and understand decisions outside the game.
+              Each tool also has a full guide page that explains why it matters and how to apply it.
+            </p>
+
+            <div class="callout calloutRule" role="note" aria-label="Development status">
+              <div class="calloutTitle">In development</div>
+              <div class="calloutBody">
+                This project is still in active development. Information may be incomplete, change quickly, or be wrong.
+                If you spot something off, please treat it as a bug report and double check with logs, sims, and other trusted sources.
+              </div>
+            </div>
+
+            <div class="pageMetaRow" aria-label="Page highlights">
+              <span class="metaChip">Browser trainers</span>
+              <span class="metaChip">Fast reps</span>
+              <span class="metaChip">Decision focused</span>
+              <span class="metaChip">More coming</span>
+            </div>
+          </section>
+
+          <section class="contentCard" id="available-tools">
+            <div class="eyebrow">Available now</div>
+            <h2>Tools you can use today</h2>
+            <p class="muted">
+              Use the modal to open a tool without leaving this page, or jump to the full writeup for context and examples.
+            </p>
+
+            <div class="cardGrid" aria-label="Tool list">
+              <div class="card" id="tool-swing">
+                <h3 class="cardTitle">Swing Sync and Stagger Trainer</h3>
+                <div class="cardBody">
+                  Practice correcting main hand and off hand timing on demand. Includes a game mode for timed reps.
+                </div>
+                <div class="toolCardActions">
+                  <button class="btn btnSecondary" type="button" data-open-tool="swing">Open tool</button>
+                  <a class="btn btnGhost" href="/pages/guide/sync_stagger.html#trainer">Full page</a>
+                </div>
+              </div>
+
+              <div class="card" id="tool-talents">
+                <h3 class="cardTitle">Talent Planner</h3>
+                <div class="cardBody">
+                  Wowhead style talent calculator with presets and shareable links. Use it to compare Sub Elemental vs Sub Restoration.
+                </div>
+                <div class="toolCardActions">
+                  <button class="btn btnSecondary" type="button" data-open-tool="talents">Open tool</button>
+                  <a class="btn btnGhost" href="/pages/guide/talents.html#talent-module">Full page</a>
+                </div>
+              </div>
+
+              <div class="card" id="tool-air">
+                <h3 class="cardTitle">Air Totem Twisting Lab</h3>
+                <div class="cardBody">
+                  Practice Windfury uptime and timed swaps inside the twist window. Includes coaching and a run mode.
+                </div>
+                <div class="toolCardActions">
+                  <button class="btn btnSecondary" type="button" data-open-tool="air">Open tool</button>
+                  <a class="btn btnGhost" href="/pages/guide/air_totem_weaving.html#air-twist-lab">Full page</a>
+                </div>
+              </div>
+
+              <div class="card" id="tool-fire">
+                <h3 class="cardTitle">Fire Totem Twisting Lab</h3>
+                <div class="cardBody">
+                  Practice Fire Nova timing and baseline replacement. Includes coaching for canceling early and replacing late.
+                </div>
+                <div class="toolCardActions">
+                  <button class="btn btnSecondary" type="button" data-open-tool="fire">Open tool</button>
+                  <a class="btn btnGhost" href="/pages/guide/fire_totem_weaving.html#fire-twist-lab">Full page</a>
+                </div>
+              </div>
+
+              <div class="card" id="tool-shock">
+                <h3 class="cardTitle">Shock Weaving Trainer</h3>
+                <div class="cardBody">
+                  Coming soon. The goal is a fast practice tool for Flame Shock weaving decisions and refresh timing.
+                </div>
+                <div class="toolCardActions">
+                  <button class="btn btnGhost" type="button" disabled>Coming soon</button>
+                  <a class="btn btnGhost" href="/pages/guide/shock_weaving.html">Guide page</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="contentCard" id="how-to-use">
+            <div class="eyebrow">Workflow</div>
+            <h2>How to use these tools</h2>
+
+            <div class="stepList" aria-label="Suggested workflow">
+              <div class="step">
+                <div class="stepIndex">1</div>
+                <div>
+                  <h3 class="stepTitle">Read the rule</h3>
+                  <div class="stepBody">
+                    Use the full page when you want the why: thresholds, tradeoffs, and when to stop forcing a technique.
+                  </div>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="stepIndex">2</div>
+                <div>
+                  <h3 class="stepTitle">Drill reps fast</h3>
+                  <div class="stepBody">
+                    Open the tool and run a few short sets. You are building the timing feeling, not chasing perfect runs.
+                  </div>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="stepIndex">3</div>
+                <div>
+                  <h3 class="stepTitle">Bring it back to raid goals</h3>
+                  <div class="stepBody">
+                    If a technique costs attention and you are correcting constantly, step back. Consistency beats flashy execution.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <aside class="appTocShell" aria-label="On page table of contents">
+          <div class="tocHeader">
+            <div class="tocTitle">On this page</div>
+            <div class="tocHint">Updates as you navigate</div>
+          </div>
+          <nav id="appToc" class="appToc"></nav>
+        </aside>
+      </div>
+
+      <footer id="appFooter" class="appFooter" role="contentinfo">
+        <div class="footerInner">
+          <div class="footerLeft">
+            <div class="footerBrand">Enhancement Shaman Guide</div>
+            <div class="footerSub">Fast, readable, decision focused.</div>
+          </div>
+
+          <nav class="footerNav" aria-label="Footer">
+            <a class="footerLink" href="/pages/guide/index.html">Guide</a>
+            <a class="footerLink" href="/pages/tools/index.html">Tools</a>
+            <a class="footerLink" href="/pages/guide/faq.html">FAQ</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Tool modal -->
+    <dialog id="toolModal" class="toolDialog" aria-labelledby="toolModalTitle">
+      <div class="toolDialogHeader">
+        <div class="toolDialogTitle">
+          <h2 id="toolModalTitle">Tool</h2>
+          <div class="toolDialogHint">Esc to close</div>
+        </div>
+        <div class="toolDialogActions">
+          <a id="toolModalFull" class="btn btnGhost" href="#" target="_blank" rel="noopener">Open full page</a>
+          <button id="toolModalClose" class="btn" type="button" aria-label="Close">Close</button>
+        </div>
+      </div>
+      <div class="toolDialogBody">
+        <iframe id="toolFrame" class="toolFrame" title="Tool"></iframe>
+        
+      </div>
+    </dialog>
+
+    <script type="module">
+      const TOOL_MAP = {
+        swing: {
+          title: "Swing Sync and Stagger Trainer",
+          url: "/pages/guide/sync_stagger.html#trainer",
+        },
+        talents: {
+          title: "Talent Planner",
+          url: "/pages/guide/talents.html#talent-module",
+        },
+        air: {
+          title: "Air Totem Twisting Lab",
+          url: "/pages/guide/air_totem_weaving.html#air-twist-lab",
+        },
+        fire: {
+          title: "Fire Totem Twisting Lab",
+          url: "/pages/guide/fire_totem_weaving.html#fire-twist-lab",
+        },
+      }
+
+      const dlg = document.getElementById("toolModal")
+      const frame = document.getElementById("toolFrame")
+      const titleEl = document.getElementById("toolModalTitle")
+      const fullEl = document.getElementById("toolModalFull")
+      const closeBtn = document.getElementById("toolModalClose")
+
+        function toEmbedUrl(raw) {
+            const u = new URL(raw, window.location.origin)
+            u.searchParams.set("embed", "1")
+            return u.pathname + u.search + u.hash
+            }
+
+            function openTool(key) {
+            const t = TOOL_MAP[key]
+            if (!t) return
+
+            // If <dialog> is unsupported, fall back to navigation.
+            if (!dlg || typeof dlg.showModal !== "function") {
+                window.location.href = t.url
+                return
+            }
+
+            titleEl.textContent = t.title
+            fullEl.href = t.url
+            frame.title = t.title
+
+            const embedUrl = toEmbedUrl(t.url)
+
+            // Open the modal in the user gesture, then set iframe src.
+            dlg.showModal()
+            frame.src = "about:blank"
+            setTimeout(() => {
+                frame.src = embedUrl
+            }, 0)
+            }
+
+
+
+      document.addEventListener("click", (ev) => {
+        const btn = ev.target.closest("[data-open-tool]")
+        if (!btn) return
+        ev.preventDefault()
+        openTool(btn.getAttribute("data-open-tool"))
+      })
+
+      closeBtn?.addEventListener("click", () => dlg.close())
+
+      // Clicking the backdrop closes the modal.
+      dlg?.addEventListener("click", (ev) => {
+        if (ev.target === dlg) dlg.close()
+      })
+
+      dlg?.addEventListener("close", () => {
+        // Stop timers and audio in iframes when closing.
+        frame.src = "about:blank"
+      })
+    </script>
+  </body>
+</html>

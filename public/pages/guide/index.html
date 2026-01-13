@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+
+    <title>Guide | Enhancement Shaman (TBC)</title>
+    <meta
+      name="description"
+      content="Learning path for Enhancement Shaman in The Burning Crusade. Start with core mechanics, then move into talents, weaving, and execution."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+
+    <!-- Core tokens and resets -->
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+
+    <!-- Structural layout -->
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
+
+    <!-- App bootstrap -->
+    <script type="module" src="/app.js"></script>
+  </head>
+
+  <body class="pageGuideIndex">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <!-- Header fallback -->
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">⚡</span>
+            <span class="brandText">
+              <span class="brandTitle">Enhancement Shaman Guide</span>
+              <span class="brandTagline">
+                <span class="brandBadge">TBC</span>
+                The Burning Crusade
+              </span>
+            </span>
+          </a>
+
+          <nav class="headerNav" aria-label="Primary">
+            <a class="navLink isActive" href="/pages/guide/index.html">Guide</a>
+            <a class="navLink" href="/pages/builds/index.html">Builds</a>
+            <a class="navLink" href="/pages/encounters/index.html">Encounters</a>
+            <a class="navLink" href="/pages/tools/index.html">Tools</a>
+          </nav>
+
+          <div class="headerActions">
+            <label class="searchShell" aria-label="Search the guide">
+              <span class="searchIcon" aria-hidden="true">⌕</span>
+              <input
+                id="globalSearch"
+                class="searchInput"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Search mechanics, spells, and decisions"
+              />
+            </label>
+
+            <button
+              id="themeToggle"
+              class="btn btnGhost"
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              Theme
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <!-- Sidebar fallback -->
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Guide</div>
+            <a class="sidebarLink isActive" href="/pages/guide/index.html">
+              Learning path
+            </a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Core mechanics</div>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger.html">
+              Sync and Stagger
+            </a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Build planning</div>
+            <a class="sidebarLink" href="/pages/guide/talents.html">Talents</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Weaving</div>
+            <a class="sidebarLink" href="/pages/guide/weaving_overview.html">
+              Weaving and twisting overview
+            </a>
+            <a class="sidebarLink" href="/pages/guide/air_totem_weaving.html">
+              Air totem twisting
+            </a>
+            <a class="sidebarLink" href="/pages/guide/fire_totem_weaving.html">
+              Fire totem twisting
+            </a>
+            <a class="sidebarLink" href="/pages/guide/shock_weaving.html">
+              Flame Shock weaving
+            </a>
+          </div>
+        </aside>
+
+        <!-- Main content -->
+        <main id="appMain" class="appMain" tabindex="-1">
+          <section class="pageHero">
+            <div class="pageKicker">Start here</div>
+            <h1 class="pageTitle">Enhancement Shaman Guide</h1>
+            <p class="pageLead">
+              This guide is organized as a learning path. Each section builds on
+              the last, focusing on decisions and mechanics that actually matter
+              in The Burning Crusade.
+            </p>
+
+            <div class="callout calloutRule" role="note">
+              <div class="calloutTitle">In active development</div>
+              <div class="calloutBody">
+                This project is still being built. Some sections are incomplete
+                and details may change as mechanics are verified and refined.
+                Treat this as a living reference.
+              </div>
+            </div>
+          </section>
+
+          <section class="contentCard">
+            <div class="eyebrow">Learning path</div>
+            <h2>Recommended order</h2>
+
+            <ol class="stepList">
+              <li class="step">
+                <div class="stepIndex">1</div>
+                <div>
+                  <h3 class="stepTitle">Swing Sync and Stagger</h3>
+                  <p class="stepBody">
+                    Learn how swing timing affects Flurry efficiency and
+                    Windfury priority. This is the mechanical foundation of
+                    Enhancement damage in TBC.
+                  </p>
+                  <a class="btn btnSecondary" href="/pages/guide/sync_stagger.html">
+                    Start with Sync and Stagger
+                  </a>
+                </div>
+              </li>
+
+              <li class="step">
+                <div class="stepIndex">2</div>
+                <div>
+                  <h3 class="stepTitle">Talents and Build Choices</h3>
+                  <p class="stepBody">
+                    Understand why Enhancement runs a fixed core and how Sub
+                    Elemental and Sub Restoration solve different constraints.
+                  </p>
+                  <a class="btn btnSecondary" href="/pages/guide/talents.html">
+                    Explore Talents
+                  </a>
+                </div>
+              </li>
+
+              <li class="step">
+                <div class="stepIndex">3</div>
+                <div>
+                  <h3 class="stepTitle">Weaving and Twisting Concepts</h3>
+                  <p class="stepBody">
+                    Learn the decision framework behind weaving. This section
+                    explains when twisting and weaving are actually worth doing.
+                  </p>
+                  <a
+                    class="btn btnSecondary"
+                    href="/pages/guide/weaving_overview.html"
+                  >
+                    Read the Weaving Overview
+                  </a>
+                </div>
+              </li>
+
+              <li class="step">
+                <div class="stepIndex">4</div>
+                <div>
+                  <h3 class="stepTitle">Execution Specific Guides</h3>
+                  <p class="stepBody">
+                    Deep dives into Air Totem twisting, Fire Totem twisting, and
+                    Flame Shock weaving with practical decision rules and labs.
+                  </p>
+                  <div class="btnRow">
+                    <a
+                      class="btn btnGhost"
+                      href="/pages/guide/air_totem_weaving.html"
+                      >Air Totems</a
+                    >
+                    <a
+                      class="btn btnGhost"
+                      href="/pages/guide/fire_totem_weaving.html"
+                      >Fire Totems</a
+                    >
+                    <a
+                      class="btn btnGhost"
+                      href="/pages/guide/shock_weaving.html"
+                      >Flame Shock</a
+                    >
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="contentCard">
+            <div class="eyebrow">Practice</div>
+            <h2>Use the tools</h2>
+            <p class="muted">
+              Most guide pages include an interactive trainer. You can also open
+              all tools directly from the Tools section.
+            </p>
+            <a class="btn btnSecondary" href="/pages/tools/index.html">
+              Go to Tools
+            </a>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

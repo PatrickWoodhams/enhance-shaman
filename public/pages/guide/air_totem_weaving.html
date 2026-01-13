@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Air Totem Twisting | Enhancement Shaman Guide</title>
+    <meta
+      name="description"
+      content="Air Totem Twisting in TBC: what each air totem does, why Windfury twisting works, how to execute a stable twist, and when to stop."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+  
+    <!-- Core tokens and resets -->
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+
+    <!-- Structural layout -->
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+
+    <!-- App bootstrap -->
+    <script type="module" src="/app.js"></script>
+  </head>
+
+  <body class="pageAirWeaving">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Dora's Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">⚡</span>
+            <span class="brandText">
+              <span class="brandTitle">Dora's Enhancement Shaman Guide</span>
+              <span class="brandTagline">
+                <span class="brandBadge">TBC</span>
+                The Burning Crusade
+              </span>
+            </span>
+          </a>
+
+          <nav class="headerNav" aria-label="Primary">
+            <a class="navLink" href="/pages/guide/index">Guide</a>
+            <a class="navLink" href="/pages/builds/index">Builds</a>
+            <a class="navLink" href="/pages/encounters/index">Encounters</a>
+            <a class="navLink" href="/pages/tools/index">Tools</a>
+          </nav>
+
+          <div class="headerActions">
+            <label class="searchShell" aria-label="Search the guide">
+              <span class="searchIcon" aria-hidden="true">ƒO</span>
+              <input
+                id="globalSearch"
+                class="searchInput"
+                type="search"
+                inputmode="search"
+                autocomplete="off"
+                placeholder="Search spells, topics, and decisions"
+              />
+            </label>
+
+            <button
+              id="themeToggle"
+              class="btn btnGhost"
+              type="button"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+            >
+              Theme
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Core mechanics</div>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger">Sync and Stagger</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Build planning</div>
+            <a class="sidebarLink" href="/pages/guide/talents">Talents</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Weaving</div>
+            <a class="sidebarLink" href="/pages/guide/weaving_overview">Weaving and twisting overview</a>
+            <a class="sidebarLink" href="/pages/guide/air_totem_weaving">Air totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/fire_totem_weaving">Fire totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/shock_weaving">Flame shock weaving</a>
+          </div>
+        </aside>
+
+        <main id="appMain" class="appMain" tabindex="-1">
+          <section class="pageHero">
+            <div class="pageKicker">Party value, executed on purpose</div>
+            <h1 class="pageTitle">Air Totem Twisting</h1>
+            <p class="pageLead">
+              Totem twisting is the TBC technique of refreshing <span data-spell="windfury_totem"></span> often enough to keep its
+              short duration weapon enchant active, while spending most of your time with a different air totem down, usually
+              <span data-spell="grace_of_air_totem"></span>. The goal is simple: maximize your party’s net damage and stability,
+              without turning air globals into a constant mistake loop.
+            </p>
+          </section>
+
+          <section class="contentCard" id="why-twist">
+            <div class="eyebrow">Purpose</div>
+            <h2>Why twisting exists</h2>
+            <p>
+              Twisting exists because <span data-spell="windfury_totem"></span> provides a short duration weapon enchant that does not require the
+              totem to remain down for the entire duration. You refresh Windfury to apply the enchant, then you replace the totem with
+              <span data-spell="grace_of_air_totem"></span> so your party gains agility value between refreshes.
+            </p>
+            <p class="muted">
+              If your party is not benefiting from <span data-spell="windfury_totem"></span>, or if your party is out of range, or if you cannot sustain the mana cost,
+              twisting becomes negative value. The technique is only correct when the conditions support it.
+            </p>
+          </section>
+
+          <section class="contentCard" id="how-to-twist">
+            <div class="eyebrow">Execution</div>
+            <h2>The twisting loop</h2>
+
+            <h3 id="baseline-loop">Baseline sequence</h3>
+            <ol>
+              <li>Drop <span data-spell="windfury_totem"></span> to apply the weapon enchant to your party.</li>
+              <li>On your next global, replace it with <span data-spell="grace_of_air_totem"></span>.</li>
+              <li>Before the Windfury enchant expires, repeat the refresh: Windfury, then Grace of Air again.</li>
+            </ol>
+
+            <h3 id="refresh-timing">How to know when to refresh</h3>
+            <p>
+              Your goal is not to refresh as fast as possible. Your goal is to refresh before the enchant drops, while minimizing wasted
+              globals and wasted mana. In practice, this means you track the Windfury enchant on yourself or a party member and refresh
+              with enough buffer for one global and any small movement delay.
+            </p>
+
+            <h3 id="range-and-position">Range and positioning rules</h3>
+            <ul>
+              <li>Totems are placed at your feet. Your party must be within range when the effect is applied.</li>
+              <li>If your party regularly plays outside your totem radius, twisting fails even if your timing is perfect.</li>
+              <li>Totemic Mastery increases your totem radius, which directly improves real uptime in spread scenarios.</li>
+            </ul>
+          </section>
+
+          <section class="contentCard" id="air-twist-lab">
+            <div class="eyebrow">Practice</div>
+            <h2>Air Totem Twist Lab</h2>
+            <p class="muted">
+              Use this trainer to drill a clean twist rhythm without wasting globals. Aim for stable refresh timing and
+              minimize empty windows.
+            </p>
+            <div class="airTwistLabShell">
+              <div id="airTwistLab"></div>
+            </div>
+            <div class="callout calloutRule">
+              <div class="calloutTitle">Want an air totem tracker?</div>
+              <div class="calloutBody">
+                The Enhance Shaman Suite WeakAura includes an air totem tracker that helps you see refresh timing and
+                tighten your twisting rhythm. Don't want the full suite? Grab the standalone Windfury Totem + Tracker WeakAura.
+              </div>
+              <a class="btn btnSecondary" href="https://wago.io/pzFBVUCdX" target="_blank" rel="noreferrer">
+                Get the Enhance Shaman Suite WeakAura
+              </a>
+              <a class="btn btnGhost" href="https://wago.io/DZND2T3w6" target="_blank" rel="noreferrer">
+                Get the standalone Windfury Totem + Tracker
+              </a>
+            </div>
+          </section>
+
+          <section class="contentCard" id="decision-rules">
+            <div class="eyebrow">Decision</div>
+            <h2>When twisting is correct</h2>
+
+            <h3 id="twist-yes">Twist when these conditions are true</h3>
+            <ul>
+              <li>Your party is a physical damage party that benefits from <span data-spell="windfury_totem"></span>.</li>
+              <li>Your party stays within your totem radius for most of the fight.</li>
+              <li>Your mana budget supports repeated totem drops without collapsing your other priorities.</li>
+              <li>The encounter does not require a defensive air totem as a constant tool.</li>
+            </ul>
+
+            <h3 id="twist-no">Stop twisting when any of these conditions appear</h3>
+            <ul>
+              <li>Your party is forced to move out of range for extended periods.</li>
+              <li>You are entering a mana constrained portion of the fight and need to preserve future options.</li>
+              <li><span data-spell="grounding_totem"></span> or <span data-spell="nature_resistance_totem"></span> is required for survival or mechanics.</li>
+              <li>The tank is threat limited and <span data-spell="tranquil_air_totem"></span> is required for stability.</li>
+            </ul>
+
+            <p class="muted">
+              The best Enhancement players treat twisting as an on and off mode. If conditions are not clean, you do not force it.
+              You stabilize, then resume when the fight returns to a state where twisting produces net value.
+            </p>
+          </section>
+
+          <section class="contentCard" id="talents">
+            <div class="eyebrow">Build impact</div>
+            <h2>Talents that change air totems</h2>
+
+            <h3 id="totemic-focus">Totemic Focus</h3>
+            <p>
+              <span data-spell="totemic_focus"></span> reduces the mana cost of your totems. This is a major lever on whether twisting is realistic for an entire fight.
+              If you are twisting without this talent, you are committing to a much larger mana burn for the same party value.
+            </p>
+
+            <h3 id="totemic-mastery">Totemic Mastery</h3>
+            <p>
+              <span data-spell="totemic_mastery"></span> increases totem radius. This directly increases real uptime because your party can stay in range more easily, especially
+              in fights with spread mechanics or awkward boss movement.
+            </p>
+
+            <h3 id="enhancing-totems">Enhancing Totems</h3>
+            <p>
+              <span data-spell="enhancing_totems"></span> Increases the effect of <span data-spell="grace_of_air_totem"></span> and strengthens the case for leaving it down between
+              Windfury refreshes. If your build invests here, your twist partner becomes more valuable.
+            </p>
+
+            <h3 id="improved-weapon-totems">Improved Weapon Totems</h3>
+            <p>
+              <span data-spell="improved_weapon_totems"></span>Increases the attack power bonus provided by <span data-spell="windfury_totem"></span>. This increases the value of Windfury uptime,
+              and it increases the cost of letting the enchant drop due to sloppy refresh timing.
+            </p>
+
+            <h3 id="guardian-totems">Guardian Totems</h3>
+            <p>
+              Improves defensive totems such as <span data-spell="windwall_totem"></span> and can improve the availability of <span data-spell="grounding_totem"></span>.
+              If your raid relies on these tools, your air plan may shift away from pure damage and toward survival and mechanic coverage.
+            </p>
+          </section>
+
+          <section class="contentCard" id="macros">
+            <div class="eyebrow">Practical</div>
+            <h2>Macros and keybind approach</h2>
+
+            <h3 id="castsequence">Simple twist castsequence</h3>
+            <p>
+              A common approach is a two press castsequence that drops Windfury, then drops Grace of Air. The reset timer is tuned so
+              a single press later returns you to Windfury refresh when the enchant is about to fall.
+            </p>
+
+            <pre class="codeBlock"><code>/castsequence reset=8 Windfury Totem, Grace of Air Totem</code></pre>
+
+            <p class="muted">
+              Treat this as a tool, not a crutch. Your awareness still matters: if your party is out of range, if movement is coming,
+              or if you need a defensive air totem, you override the sequence and make the correct choice.
+            </p>
+          </section>
+
+          <section class="contentCard" id="common-mistakes">
+            <div class="eyebrow">Mistakes</div>
+            <h2>Common failure patterns</h2>
+            <ul>
+              <li><strong>Refreshing too late:</strong> the Windfury enchant falls off and your party loses the entire reason you twist.</li>
+              <li><strong>Refreshing too often:</strong> you spend globals and mana that do not create additional value.</li>
+              <li><strong>Twisting out of range:</strong> perfect timing does nothing if your party is not inside the radius when it applies.</li>
+              <li><strong>Forcing twisting through mechanics:</strong> if the fight demands <span data-spell="grounding_totem"></span> or resistance, you switch modes.</li>
+              <li><strong>Ignoring mana reality:</strong> if twisting prevents shocks, fire totems, or survival tools, the trade is often wrong.</li>
+            </ul>
+          </section>
+
+          <section class="contentCard" id="summary">
+            <div class="eyebrow">Summary</div>
+            <h2>Quick rules to remember</h2>
+            <ul>
+              <li><span data-spell="windfury_totem"></span> is your default responsibility in a melee party.</li>
+              <li><span data-spell="grace_of_air_totem"></span> is the common partner when twisting is sustainable.</li>
+              <li>Twisting is a mode you turn on when conditions are clean, and turn off when conditions are not.</li>
+              <li>Range and mana decide whether twisting works in real fights.</li>
+            </ul>
+          </section>
+        </main>
+
+        <aside class="appTocShell" aria-label="On page table of contents">
+          <div class="tocHeader">
+            <div class="tocTitle">On this page</div>
+            <div class="tocHint">Updates as you navigate</div>
+          </div>
+          <nav id="appToc" class="appToc"></nav>
+        </aside>
+      </div>
+
+      <footer id="appFooter" class="appFooter" role="contentinfo">
+        <div class="footerInner">
+          <div class="footerLeft">
+            <div class="footerBrand">Enhancement Shaman Guide</div>
+            <div class="footerSub">Fast, readable, decision focused.</div>
+          </div>
+
+          <nav class="footerNav" aria-label="Footer">
+            <a class="footerLink" href="/pages/guide/index">Guide</a>
+            <a class="footerLink" href="/pages/tools/index">Tools</a>
+            <a class="footerLink" href="/pages/guide/faq">FAQ</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

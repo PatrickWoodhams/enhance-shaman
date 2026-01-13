@@ -1,0 +1,339 @@
+<!-- /pages/guide/index.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>Guide | Enhancement Shaman Guide</title>
+    <meta
+      name="description"
+      content="Short pages, clear decisions for TBC Enhancement Shaman. Start with Sync and Stagger, plan your talents, then learn weaving and twisting with practice labs."
+    />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#072D42" />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icons/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/ui/apple-touch-icon.png" />
+
+    <!-- Core tokens and resets -->
+    <link rel="stylesheet" href="/src/css/tokens.css" />
+    <link rel="stylesheet" href="/src/css/typography.css" />
+    <link rel="stylesheet" href="/src/css/utilities.css" />
+
+    <!-- Structural layout -->
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
+
+    <!-- App bootstrap -->
+    <script type="module" src="/app.js"></script>
+  </head>
+
+  <body class="pageGuideHome">
+    <a class="skipLink" href="#appMain">Skip to content</a>
+
+    <div class="appFrame">
+      <!-- Header fallback. boot.js will replace it with /components/header.html -->
+      <header id="appHeader" class="appHeader" role="banner">
+        <div class="headerInner">
+          <a class="brand" href="/" aria-label="Enhancement Shaman Guide home">
+            <span class="brandMark" aria-hidden="true">⚡</span>
+            <span class="brandText">
+              <span class="brandTitle">Enhancement Shaman Guide</span>
+              <span class="brandTagline">
+                <span class="brandBadge">TBC</span>
+                The Burning Crusade
+              </span>
+            </span>
+          </a>
+        </div>
+      </header>
+
+      <div class="appBody">
+        <!-- Sidebar fallback. boot.js will replace it with /components/sidebar.html -->
+        <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Core mechanics</div>
+            <a class="sidebarLink" href="/pages/guide/sync_stagger.html">Sync and Stagger</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Build planning</div>
+            <a class="sidebarLink" href="/pages/guide/talents.html">Talents</a>
+          </div>
+
+          <div class="sidebarBlock">
+            <div class="sidebarBlockTitle">Weaving and twisting</div>
+            <a class="sidebarLink" href="/pages/guide/weaving_overview.html">Weaving and Twisting Overview</a>
+            <a class="sidebarLink" href="/pages/guide/air_totem_weaving.html">Air totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/fire_totem_weaving.html">Fire totem twisting</a>
+            <a class="sidebarLink" href="/pages/guide/shock_weaving.html">Flame Shock weaving</a>
+          </div>
+        </aside>
+
+        <main id="appMain" class="appMain" tabindex="-1">
+
+          <section class="devBanner" role="note" aria-label="Development notice">
+            <div class="devBannerInner">
+              <div class="devBannerIcon" aria-hidden="true">!</div>
+              <div class="devBannerContent">
+                <div class="devBannerTitle">In development, not complete</div>
+                <p class="devBannerText">
+                  This guide is actively being built. Sections may be unfinished, tool behavior can change, and some information may be
+                  wrong at this time. If you spot an issue, treat it as a content gap and verify in game logs, sims, or trusted references.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Primary hero -->
+          <section class="hero">
+            <div>
+              <div class="muted" style="letter-spacing: 0.12em; text-transform: uppercase; font-size: 12px;">
+                Navigate
+              </div>
+
+              <h1 class="heroTitle">Short pages, clear decisions</h1>
+
+              <p class="heroSubtitle">
+                This guide is built around the decisions that actually move raid damage and stability in TBC Enhancement.
+                No filler. No fake rotations. Each page explains one mechanic, then gives you a way to practice it.
+              </p>
+
+              <div class="heroCtas" role="group" aria-label="Primary actions">
+                <a class="btn btnPrimary" href="/pages/guide/sync_stagger.html">Start with Sync and Stagger</a>
+                <a class="btn btnSecondary" href="/pages/guide/talents.html">Plan your talents</a>
+                <a class="btn btnSecondary" href="/pages/guide/weaving_overview.html">Learn weaving and twisting</a>
+              </div>
+
+              <div class="heroMeta" aria-label="What you get here">
+                <div class="metaItem">
+                  <div class="metaLabel">Mechanics</div>
+                  <div class="metaValue">Understand why things work</div>
+                </div>
+                <div class="metaItem">
+                  <div class="metaLabel">Decisions</div>
+                  <div class="metaValue">Know what to press and when</div>
+                </div>
+                <div class="metaItem">
+                  <div class="metaLabel">Practice</div>
+                  <div class="metaValue">Labs you can use outside the game</div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="heroPanel" aria-label="Quick start panel">
+              <h2 class="panelTitle">A simple reading order</h2>
+              <p class="panelText">
+                If you do not know where to begin, follow this path. It covers the fundamentals first, then adds optional power.
+              </p>
+
+              <div class="panelLinks" role="list">
+                <a class="panelLink" role="listitem" href="/pages/guide/sync_stagger.html">
+                  Sync and Stagger, the core swing relationship
+                </a>
+                <a class="panelLink" role="listitem" href="/pages/guide/talents.html">
+                  Talents, Sub Elemental vs Sub Restoration
+                </a>
+                <a class="panelLink" role="listitem" href="/pages/guide/weaving_overview.html">
+                  Weaving overview, the decision framework
+                </a>
+              </div>
+
+              <div class="panelTip">
+                If a technique is costing you mana, globals, or attention, it is not automatically correct. This guide treats
+                everything as conditional.
+              </div>
+            </aside>
+          </section>
+
+          <!-- Choose your intent -->
+          <section class="section" aria-label="Choose your intent">
+            <h2>Pick what you are trying to improve</h2>
+            <p class="muted">
+              Most players are not missing knowledge. They are missing a clean decision rule for their current problem.
+              Start with the card that matches your situation.
+            </p>
+
+            <div class="cardGrid">
+              <article class="card">
+                <h3 class="cardTitle">I am new to TBC Enhancement</h3>
+                <p class="cardBody">
+                  Build the fundamentals first. Learn what sync means, why stagger matters, then lock in a stable build.
+                </p>
+                <a class="cardLink" href="/pages/guide/sync_stagger.html">Go to Sync and Stagger</a>
+              </article>
+
+              <article class="card">
+                <h3 class="cardTitle">My build feels unclear</h3>
+                <p class="cardBody">
+                  Understand why Sub Elemental and Sub Restoration exist and what problems each one solves in a raid.
+                </p>
+                <a class="cardLink" href="/pages/guide/talents.html">Go to Talents</a>
+              </article>
+
+              <article class="card">
+                <h3 class="cardTitle">I want more value from globals</h3>
+                <p class="cardBody">
+                  Weaving is not a rotation. It is spending a global because conditions are right, then returning to baseline.
+                </p>
+                <a class="cardLink" href="/pages/guide/weaving_overview.html">Go to Weaving Overview</a>
+              </article>
+            </div>
+          </section>
+
+          <!-- Quick start steps -->
+          <section class="section" aria-label="Quick start steps">
+            <h2>Do this in your next raid</h2>
+            <p class="muted">
+              Three actions that move the needle quickly, without creating a new mistake loop.
+            </p>
+
+            <div class="stepList">
+              <article class="step">
+                <div class="stepIndex" aria-hidden="true">1</div>
+                <div>
+                  <h3 class="stepTitle">Stabilize your swings</h3>
+                  <p class="stepBody">
+                    Get into sync, then bias toward main hand first. This improves Flurry charge efficiency and keeps Windfury value
+                    where you want it.
+                  </p>
+                  <a class="stepLink" href="/pages/guide/sync_stagger.html">Read and practice</a>
+                </div>
+              </article>
+
+              <article class="step">
+                <div class="stepIndex" aria-hidden="true">2</div>
+                <div>
+                  <h3 class="stepTitle">Pick the variant that solves your constraint</h3>
+                  <p class="stepBody">
+                    Sub Elemental is about shock tempo and fire value. Sub Restoration is about hit, mana efficiency, and coverage.
+                    Choose based on what is failing, not what looks exciting.
+                  </p>
+                  <a class="stepLink" href="/pages/guide/talents.html">Compare sub specs</a>
+                </div>
+              </article>
+
+              <article class="step">
+                <div class="stepIndex" aria-hidden="true">3</div>
+                <div>
+                  <h3 class="stepTitle">Add one weaving system at a time</h3>
+                  <p class="stepBody">
+                    Twisting and weaving are optional power. Add them only after your baseline is stable, and stop if the conditions
+                    are not there.
+                  </p>
+                  <a class="stepLink" href="/pages/guide/weaving_overview.html">Learn the framework</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- What is live -->
+          <section class="section" aria-label="What is live now">
+            <h2>What is live right now</h2>
+            <p class="muted">
+              These pages are designed to be usable even while the site is still growing.
+            </p>
+
+            <div class="cardGrid">
+              <article class="card">
+                <h3 class="cardTitle">Sync and Stagger</h3>
+                <p class="cardBody">
+                  Why the 0.5 second window matters, why main hand priority matters, and a trainer to practice corrections on demand.
+                </p>
+                <a class="cardLink" href="/pages/guide/sync_stagger.html">Open the page</a>
+              </article>
+
+              <article class="card">
+                <h3 class="cardTitle">Talents</h3>
+                <p class="cardBody">
+                  Enhancement core plus the two common variants, with a talent calculator and shareable builds.
+                </p>
+                <a class="cardLink" href="/pages/guide/talents.html">Open the page</a>
+              </article>
+
+              <article class="card">
+                <h3 class="cardTitle">Weaving and Twisting Overview</h3>
+                <p class="cardBody">
+                  The decision framework that supports air twisting, fire twisting, and Flame Shock weaving.
+                </p>
+                <a class="cardLink" href="/pages/guide/weaving_overview.html">Open the page</a>
+              </article>
+
+              <article class="card">
+                <h3 class="cardTitle">Air totem twisting</h3>
+                <p class="cardBody">
+                  How the loop works, when it is worth it, and what makes it negative value.
+                </p>
+                <a class="cardLink" href="/pages/guide/air_totem_weaving.html">Open the page</a>
+              </article>
+
+              <article class="card">
+                <h3 class="cardTitle">Fire totem twisting</h3>
+                <p class="cardBody">
+                  Baseline fire totem uptime first, then burst conversion with Fire Nova when conditions are right.
+                </p>
+                <a class="cardLink" href="/pages/guide/fire_totem_weaving.html">Open the page</a>
+              </article>
+
+              <article class="card">
+                <h3 class="cardTitle">Flame Shock weaving</h3>
+                <p class="cardBody">
+                  A controlled DoT and shock priority system. Treat as optional power, not mandatory behavior.
+                </p>
+                <a class="cardLink" href="/pages/guide/shock_weaving.html">Open the page</a>
+              </article>
+            </div>
+
+            <div class="note noteWarn" style="margin-top: 12px;">
+              This site is still in active development. If something feels unclear, that is a content gap, not a user problem.
+              The goal is to keep links stable while improving clarity and tools.
+            </div>
+          </section>
+
+          <!-- Support -->
+          <section class="section" aria-label="Support the guide">
+            <h2>Support the guide</h2>
+            <p class="muted">
+              If the guide helps your raids, consider supporting development. It helps keep updates and new tools coming.
+            </p>
+            <a class="btn btnPrimary" href="/support">Buy me a coffee</a>
+          </section>
+        </main>
+
+        <!-- Right rail TOC shell exists on other pages, but guide home can leave it empty or omit entirely.
+             Keeping the element helps layout consistency if your router expects it. -->
+        <aside class="appTocShell" aria-label="On this page">
+          <div class="tocHeader">
+            <div class="tocTitle">On this page</div>
+            <div class="tocHint">Start points</div>
+          </div>
+          <nav class="appToc">
+            <a class="tocItem" href="#appMain">Top</a>
+          </nav>
+        </aside>
+      </div>
+
+      <footer class="appFooter" role="contentinfo">
+        <div class="footerInner">
+          <div>
+            <div class="footerBrand">Enhancement Shaman Guide</div>
+            <div class="footerSub">TBC focused. Decision based. Built with practice tools.</div>
+          </div>
+
+          <nav class="footerNav" aria-label="Footer">
+            <a class="footerLink" href="/pages/guide/index">Guide</a>
+            <a class="footerLink" href="/pages/tools/index">Tools</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
