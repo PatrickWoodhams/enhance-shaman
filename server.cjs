@@ -141,17 +141,10 @@ function renderTalentsPage(req, { title, description, ogImage }) {
 app.use(
   express.static(PUBLIC_DIR, {
     extensions: ["html"],
-    index: false,
+    index: "index.html",
     fallthrough: true,
   })
 )
-
-/*
-  2) Clean URL routes
-*/
-app.get("/", (req, res) => {
-  sendIfExists(res, "index.html")
-})
 
 app.get("/guide", (req, res) => {
   if (!sendIfExists(res, "pages/guide/index.html")) res.status(404).send("Not Found")
