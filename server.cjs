@@ -146,6 +146,15 @@ app.use(
   })
 )
 
+/*
+  2) Clean URL routes
+*/
+app.get("/", (req, res) => {
+  if (!sendIfExists(res, "index.html")) {
+    res.status(404).send("Not Found")
+  }
+})
+
 app.get("/guide", (req, res) => {
   if (!sendIfExists(res, "pages/guide/index.html")) res.status(404).send("Not Found")
 })
