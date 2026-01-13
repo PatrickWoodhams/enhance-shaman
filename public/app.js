@@ -4,7 +4,133 @@ import { initAnalytics, trackPageView } from "./src/js/init/analytics.js"
 import { initControls } from "./src/js/ui/controls.js"
 import { initSwingLab } from "./src/js/tools/swing_lab.js"
 import { hydrateSpellRefs } from "./src/js/ui/spell_refs.js"
+import { bindToolModalOnce } from "./src/js/ui/toolModal.js"
 
+let toolHandlersBound = false;
+
+export function mountToolLaunchers(scope = document) {
+  if (toolHandlersBound) return;
+  toolHandlersBound = true;
+
+  function toEmbedUrl(raw) {
+    const u = new URL(raw, window.location.origin);
+    u.searchParams.set("embed", "1");
+    return u.pathname + u.search + u.hash;
+  }
+
+  function openTool(url, title) {
+    const dlg = document.getElementById("toolModal");
+    const frame = document.getElementById("toolFrame");
+    const titleEl = dlg?.querySelector(".tool_modal_title");
+
+    if (!dlg || !frame) return;
+
+    if (titleEl) titleEl.textContent = title || "Tool";
+
+    frame.src = "about:blank";
+    dlg.showModal();
+
+    requestAnimationFrame(() => {
+      frame.src = toEmbedUrl(url);
+    });
+  }
+
+  function closeTool() {
+    const dlg = document.getElementById("toolModal");
+    const frame = document.getElementById("toolFrame");
+    if (frame) frame.src = "about:blank";
+    if (dlg?.open) dlg.close();
+  }
+
+  document.addEventListener("click", (e) => {
+    const openBtn = e.target.closest("[data-open-tool]");
+    if (openBtn) {
+      e.preventDefault();
+      openTool(
+        openBtn.dataset.openTool,
+        openBtn.dataset.toolTitle
+      );
+    }
+
+    const closeBtn = e.target.closest("[data-tool-close]");
+    if (closeBtn) {
+      e.preventDefault();
+      closeTool();
+    }
+  });
+
+  document.addEventListener("close", (e) => {
+    if (e.target?.id === "toolModal") {
+      const frame = document.getElementById("toolFrame");
+      if (frame) frame.src = "about:blank";
+    }
+  }, true);
+}
+
+let toolLauncherBound = false;
+
+function bindToolLauncher() {
+  if (toolLauncherBound) return;
+  toolLauncherBound = true;
+
+  function toEmbedUrl(rawUrl) {
+    const u = new URL(rawUrl, window.location.origin);
+    u.searchParams.set("embed", "1");
+    return u.pathname + u.search + u.hash;
+  }
+
+  function closeToolModal() {
+    const dlg = document.getElementById("toolModal");
+    const frame = document.getElementById("toolFrame");
+    if (frame) frame.src = "about:blank";
+    if (dlg && dlg.open) dlg.close();
+  }
+
+  function openToolModal(rawUrl, title) {
+    const dlg = document.getElementById("toolModal");
+    const frame = document.getElementById("toolFrame");
+    const titleEl = document.querySelector("#toolModal .tool_modal_title");
+    if (!dlg || !frame) return;
+
+    if (titleEl) titleEl.textContent = title || "Tool";
+
+    frame.src = "about:blank";
+    dlg.showModal();
+
+    const embedUrl = toEmbedUrl(rawUrl);
+    setTimeout(() => {
+      frame.src = embedUrl;
+    }, 0);
+  }
+
+  document.addEventListener("click", (ev) => {
+    const btn = ev.target.closest("[data-open-tool]");
+    if (!btn) return;
+
+    ev.preventDefault();
+    openToolModal(btn.getAttribute("data-open-tool"), btn.getAttribute("data-tool-title"));
+  });
+
+  document.addEventListener("click", (ev) => {
+    const closeBtn = ev.target.closest("[data-tool-close]");
+    if (!closeBtn) return;
+
+    ev.preventDefault();
+    closeToolModal();
+  });
+
+  // Handle ESC close on <dialog>
+  document.addEventListener(
+    "close",
+    (ev) => {
+      if (ev.target && ev.target.id === "toolModal") {
+        const frame = document.getElementById("toolFrame");
+        if (frame) frame.src = "about:blank";
+      }
+    },
+    true
+  );
+}
 
 const CACHE_BUSTER_KEY = "assetCacheBuster"
 
@@ -69,6 +195,7 @@ function updateHeaderOffset() {
 }
 
 async function mountPageTools(scope) {
+  bindToolModalOnce()
   hydrateSpellRefs(scope)
 
   const lab = scope.querySelector("#airTwistLab")
