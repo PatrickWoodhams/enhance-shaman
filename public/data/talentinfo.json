@@ -1,0 +1,1143 @@
+{
+  "version": 1,
+  "game": "tbc",
+  "class": "shaman",
+  "talents": {
+    "elemental_convection": {
+      "summary": "Early mana efficiency for shocks and other spells. Mostly a filler or a support pick for shock heavy Enhancement variants.",
+      "why_take": [
+        "Helps reduce shock mana pressure when you are actively shocking as part of your damage plan.",
+        "Often used as a clean filler to reach the specific Elemental tier where your real target talents live."
+      ],
+      "why_skip": [
+        "If you are not shocking much, the value is mostly invisible.",
+        "If points are tight, you usually prioritize direct damage multipliers like Concussion and cadence tools like Reverberation first."
+      ],
+      "tips": [
+        "This shines most on longer fights where you would otherwise be forced to skip shocks due to mana."
+      ],
+      "rank_notes": {
+        "1": "Even one point can smooth early mana if you shock frequently.",
+        "5": "Max rank is usually only taken when you are intentionally committing to more Elemental filler."
+      },
+      "common_mistakes": [
+        "Taking this while also playing a low shock style, then wondering why the build feels unchanged."
+      ]
+    },
+
+    "elemental_concussion": {
+      "summary": "Straight shock damage multiplier. Common in sub Elemental Enhancement builds.",
+      "why_take": [
+        "Directly increases your shock damage, which is a meaningful slice of Enhancement output in shock forward play.",
+        "Simple and reliable value per point with no rotation complexity."
+      ],
+      "why_skip": [
+        "If your build is minimizing shocks due to mana, mechanics, or pacing, this loses value.",
+        "If you are forced to cut Elemental points to reach more core Enhancement throughput, this is often where you start trimming."
+      ],
+      "tips": [
+        "If you plan an EP section, call out that shock multipliers effectively raise the value of spell power and spell crit for your shocks."
+      ],
+      "rank_notes": {
+        "1": "The first point is immediately relevant if you shock at all.",
+        "5": "Max rank is typical when the build is explicitly shock focused."
+      }
+    },
+
+    "elemental_earths_grasp": {
+      "summary": "Control utility for Earthbind. Valuable in PvP and niche movement control, not a standard raid DPS pick.",
+      "why_take": [
+        "Useful when you value control and kiting tools more than throughput, mainly in PvP or specific leveling routes.",
+        "Can be relevant in certain solo scenarios where you must manage multiple enemies."
+      ],
+      "why_skip": [
+        "For Enhancement raid DPS, these points do not increase your damage or your raid contribution in a consistent way.",
+        "Every point here delays or prevents key Enhancement payoffs deeper in the tree."
+      ],
+      "tips": [
+        "If you include PvP callouts, label this clearly as a control talent, not a damage talent."
+      ],
+      "rank_notes": {
+        "1": "A small investment can still change the feel of your control tools.",
+        "2": "Max rank is mainly for players intentionally optimizing control."
+      }
+    },
+
+    "elemental_elemental_warding": {
+      "summary": "Elemental damage reduction. A defensive layer that can matter on progression, but competes with damage points.",
+      "why_take": [
+        "If you are dying to elemental damage and it is limiting your uptime, defense can become a damage increase indirectly.",
+        "Useful in PvP where survivability often outranks small throughput gains."
+      ],
+      "why_skip": [
+        "Enhancement generally gets more value from damage and consistency talents than from passive mitigation.",
+        "Deepening into Elemental for defense usually costs major Enhancement power such as Unleashed Rage or Shamanistic Rage."
+      ],
+      "tips": [
+        "Only consider defensive talents when deaths are frequent enough to reduce your time on target."
+      ],
+      "rank_notes": {
+        "1": "A first point can be a reasonable compromise when you want a small defensive buffer.",
+        "3": "Max rank is a deliberate defensive commitment."
+      }
+    },
+
+    "elemental_call_of_flame": {
+      "summary": "Fire totem amplifier. Used in fire totem focused Enhancement variations.",
+      "why_take": [
+        "If your fire totem contributes meaningful damage in the content you are doing, this is direct scaling.",
+        "Often chosen when you want more personal fire throughput rather than leaning into weapon totem specialization."
+      ],
+      "why_skip": [
+        "If your fire totem uptime is low due to movement, target swaps, or frequent repositioning, value drops sharply.",
+        "If your plan is not fire focused, these points are usually weaker than shock cadence or core Enhancement points."
+      ],
+      "tips": [
+        "Fire totem value is extremely uptime sensitive. Teach players to think in uptime, not tooltip."
+      ],
+      "rank_notes": {
+        "1": "A small investment can be worthwhile if your fire totem already has high uptime.",
+        "3": "Max rank is best when your build identity is clearly fire focused."
+      }
+    },
+
+    "elemental_elemental_focus": {
+      "summary": "Clearcasting style proc for spell efficiency. Can support shock heavy Enhancement, but rarely beats other Elemental options point for point.",
+      "why_take": [
+        "Can reduce mana strain when you are shocking regularly and want longer rotation stability.",
+        "Has practical value in very long encounters where small efficiency compounds."
+      ],
+      "why_skip": [
+        "Requires getting to its tier, which often means taking filler you would not otherwise want.",
+        "If you are not casting spells frequently, the proc rate and impact are limited."
+      ],
+      "tips": [
+        "This is better framed as a rotation stability talent, not a raw damage talent."
+      ],
+      "rank_notes": {
+        "1": "One point is all you need if you are taking it at all."
+      }
+    },
+
+    "elemental_reverberation": {
+      "summary": "Shock cadence control. Enables more shocks over time when shocks are part of your plan.",
+      "why_take": [
+        "Lets you shock more often, which increases damage when mana and timing allow.",
+        "Pairs well with any setup labeled shock focused, especially when your play emphasizes consistent shock usage."
+      ],
+      "why_skip": [
+        "If shocks are infrequent due to mana, mechanics, or a deliberate low shock style, reduced cooldown does not translate into real value.",
+        "If you are cutting Elemental points to protect deep Enhancement power, this is a common trim."
+      ],
+      "tips": [
+        "More shocks is only good if you can afford the mana and the timing does not disrupt swing planning."
+      ],
+      "rank_notes": {
+        "1": "Early points matter because they change how often you can choose to shock.",
+        "5": "Max rank is a signature of true shock forward builds."
+      },
+      "common_mistakes": [
+        "Taking max Reverberation, then playing too conservatively to actually use the extra shock windows."
+      ]
+    },
+
+    "elemental_call_of_thunder": {
+      "summary": "Caster crit support. Not a typical Enhancement investment because Enhancement does not rely on Lightning Bolt casting for damage.",
+      "why_take": [
+        "Only taken in extremely niche hybrid concepts or PvP variations where you intentionally emphasize caster bursts."
+      ],
+      "why_skip": [
+        "Enhancement damage in raids is primarily weapon and melee event driven, not Lightning Bolt driven.",
+        "Going this deep into Elemental usually costs critical Enhancement talents and raid value."
+      ],
+      "tips": [
+        "If you include this in your guide, mark it clearly as not part of standard Enhancement talent packages."
+      ],
+      "rank_notes": {
+        "1": "If you take it, you typically commit fully because partial value is low compared to the opportunity cost.",
+        "5": "Max rank is a deep Elemental commitment and not an Enhancement default."
+      }
+    },
+
+    "elemental_improved_fire_totems": {
+      "summary": "Fire totem throughput amplifier. Common in fire totem focused Enhancement variants.",
+      "why_take": [
+        "Directly increases the damage value of your fire totems when they have high uptime.",
+        "Often paired with Call of Flame to define a fire oriented sub Elemental package."
+      ],
+      "why_skip": [
+        "If your fire totems are frequently interrupted by movement or mechanics, the real gain is small.",
+        "If you must reduce Elemental investment to keep deep Enhancement power, fire totem talents are often the first cuts."
+      ],
+      "tips": [
+        "Teach players to evaluate fire totem talents using estimated uptime for the content they run."
+      ],
+      "rank_notes": {
+        "1": "A single point is sometimes used as a small bump in mixed packages.",
+        "2": "Max rank is best when fire totems are a meaningful portion of your fight time."
+      }
+    },
+
+    "elemental_eye_of_the_storm": {
+      "summary": "Caster stability after taking damage. Mostly PvP and caster utility, not Enhancement raid DPS.",
+      "why_take": [
+        "Relevant when you are intentionally playing a caster heavy style where pushback is a real limiter.",
+        "Can matter in PvP where you are under constant pressure."
+      ],
+      "why_skip": [
+        "Enhancement rarely relies on cast time spells as its main damage engine in raids.",
+        "Deeper Elemental defensive utility costs core Enhancement throughput."
+      ],
+      "tips": [
+        "This is best labeled as a caster quality talent, not a hybrid throughput talent."
+      ],
+      "rank_notes": {
+        "1": "Small investment can be enough if you are only trying to reduce frustration.",
+        "3": "Max rank is a dedicated caster oriented choice."
+      }
+    },
+
+    "elemental_elemental_devastation": {
+      "summary": "Spell crit to melee crit conversion window. Conceptually attractive for shock builds, but usually too deep and too inconsistent for standard Enhancement.",
+      "why_take": [
+        "If you are building a shock crit centric concept and you can reliably trigger it, the payoff can be noticeable."
+      ],
+      "why_skip": [
+        "This is deep Elemental investment that competes directly with key Enhancement talents that define raid value and consistency.",
+        "Shock crit frequency can be inconsistent without heavy support, which makes the window unreliable."
+      ],
+      "tips": [
+        "If you include it, explain it as a high variance talent that can look great in spikes but underperform in consistent parses."
+      ],
+      "rank_notes": {
+        "1": "One point is all you need if you take it at all."
+      },
+      "common_mistakes": [
+        "Assuming this is a standard Enhancement path because it mentions melee crit, then losing Unleashed Rage or Shamanistic Rage to reach it."
+      ]
+    },
+
+    "elemental_storm_reach": {
+      "summary": "Range extension for lightning spells. Primarily a caster convenience talent, not Enhancement throughput.",
+      "why_take": [
+        "Only taken for niche utility or PvP positioning where range constraints matter for your spell usage."
+      ],
+      "why_skip": [
+        "Enhancement raid damage is not limited by lightning spell range.",
+        "Points spent here delay or prevent deeper Enhancement payoffs."
+      ],
+      "tips": [
+        "If you include this, position it as convenience and utility, not damage."
+      ],
+      "rank_notes": {
+        "1": "A small investment can solve a specific annoyance.",
+        "2": "Max rank is a deliberate utility choice."
+      }
+    },
+
+    "elemental_elemental_fury": {
+      "summary": "Spell crit damage amplifier. Strong for Elemental caster, weak for Enhancement because Enhancement is not built around spell crit damage.",
+      "why_take": [
+        "Only taken in caster oriented builds where your spell crit damage is a core output driver."
+      ],
+      "why_skip": [
+        "Enhancement gains more from melee scaling and swing event consistency than from increasing spell crit damage.",
+        "Reaching this tier costs too many points that should be in Enhancement for raid DPS."
+      ],
+      "tips": [
+        "If you are documenting sub spec options, this is beyond the normal Enhancement sub Elemental range."
+      ],
+      "rank_notes": {
+        "1": "One point is a large commitment because of depth, even if the talent itself is one point."
+      }
+    },
+
+    "elemental_unrelenting_storm": {
+      "summary": "Mana sustain tied to intellect and casting. Primarily for Elemental caster, not a core Enhancement need.",
+      "why_take": [
+        "Only if your concept is extremely mana constrained and you are also investing in intellect and spell usage."
+      ],
+      "why_skip": [
+        "Enhancement typically solves mana through Shamanistic Rage and good shock discipline, not deep Elemental regen.",
+        "This depth costs major Enhancement talents that provide both personal and raid value."
+      ],
+      "tips": [
+        "Frame this as a caster sustain lever rather than an Enhancement solution."
+      ],
+      "rank_notes": {
+        "1": "Early points are low impact without meaningful intellect and cast time usage.",
+        "5": "Max rank is a caster commitment, not an Enhancement default."
+      }
+    },
+
+    "elemental_elemental_precision": {
+      "summary": "Spell hit and efficiency style support. Can stabilize shock consistency, but usually too deep compared to sub resto hit options.",
+      "why_take": [
+        "If you are missing shocks or other spells and you want more consistency, extra spell hit can help.",
+        "Can be used in niche packages where you are already deep in Elemental for other reasons."
+      ],
+      "why_skip": [
+        "For Enhancement, hit consistency is often handled via gear planning and sub resto Nature's Guidance rather than deep Elemental investment.",
+        "The opportunity cost is usually too high compared to deep Enhancement talents."
+      ],
+      "tips": [
+        "Teach the difference between melee hit needs and spell hit needs, and clarify what this actually supports."
+      ],
+      "rank_notes": {
+        "1": "A first point can help if you are specifically missing spells.",
+        "3": "Max rank is a deep commitment and rarely an Enhancement default."
+      }
+    },
+
+    "elemental_lightning_mastery": {
+      "summary": "Caster cast time improvement. Not a standard Enhancement investment.",
+      "why_take": [
+        "Only taken in caster centric builds or PvP hybrids where lightning casts are part of your kill plan."
+      ],
+      "why_skip": [
+        "Enhancement raid DPS does not revolve around repeated cast time lightning spells.",
+        "Depth requirement conflicts with core Enhancement throughput and raid buffs."
+      ],
+      "tips": [
+        "Label as caster only in an Enhancement guide."
+      ],
+      "rank_notes": {
+        "1": "Value depends entirely on how often you cast lightning spells.",
+        "5": "Max rank is a caster identity choice."
+      }
+    },
+
+    "elemental_elemental_mastery": {
+      "summary": "Caster burst control. Not an Enhancement talent package choice for raids.",
+      "why_take": [
+        "PvP burst setups or caster hybrids that want controlled spell crit windows."
+      ],
+      "why_skip": [
+        "Too deep for Enhancement and does not support the core weapon based damage plan.",
+        "Costs key Enhancement raid value such as Unleashed Rage."
+      ],
+      "tips": [
+        "If shown at all, place under a PvP or hybrid appendix."
+      ],
+      "rank_notes": {
+        "1": "One point only, but the depth is the real cost."
+      }
+    },
+
+    "elemental_elemental_shields": {
+      "summary": "Lightning Shield focus. Can be a small passive damage or utility piece, but rarely worth deep Elemental points for Enhancement.",
+      "why_take": [
+        "If you are already deep and want to squeeze extra passive value from Lightning Shield usage.",
+        "In PvP, improved shield effects can matter for pressure."
+      ],
+      "why_skip": [
+        "Enhancement generally gets better returns from direct melee scaling talents.",
+        "If you are investing this deep, you are sacrificing major Enhancement payoffs."
+      ],
+      "tips": [
+        "If you want a Lightning Shield themed package for Enhancement, compare this against Improved Lightning Shield in the Enhancement tree first."
+      ],
+      "rank_notes": {
+        "1": "First points are minor unless Lightning Shield uptime is extremely high.",
+        "3": "Max rank is a niche commitment."
+      }
+    },
+
+    "elemental_lightning_overload": {
+      "summary": "Caster proc talent for lightning spells. Not a typical Enhancement investment.",
+      "why_take": [
+        "Only for Elemental caster builds where lightning spam is central."
+      ],
+      "why_skip": [
+        "Enhancement does not generate enough lightning casts for this to be a strong use of points.",
+        "Depth competes with essential Enhancement talents."
+      ],
+      "tips": [
+        "In an Enhancement guide, treat this as out of scope except for completeness."
+      ],
+      "rank_notes": {
+        "1": "Value grows with cast frequency, which Enhancement typically does not have.",
+        "5": "Max rank is caster only."
+      }
+    },
+
+    "elemental_totem_of_wrath": {
+      "summary": "Deep Elemental raid support totem. Not compatible with standard Enhancement talent priorities.",
+      "why_take": [
+        "Only if you are intentionally playing as an Elemental support style rather than Enhancement DPS."
+      ],
+      "why_skip": [
+        "Depth makes it incompatible with core Enhancement tools and raid value packages.",
+        "If you want Enhancement raid value, your priority is Unleashed Rage and consistent melee throughput."
+      ],
+      "tips": [
+        "Call out clearly that this is not an Enhancement DPS endpoint."
+      ],
+      "rank_notes": {
+        "1": "One point only, but the depth defines the build."
+      }
+    },
+
+    "enhancement_ancestral_knowledge": {
+      "summary": "Intellect scaling for mana and spell based components. Common early filler that supports rotation stability.",
+      "why_take": [
+        "More intellect supports longer fight mana stability and helps support shock usage.",
+        "Pairs naturally with Mental Quickness style scaling where your attack power fuels spell damage components."
+      ],
+      "why_skip": [
+        "If you are building a very specialized setup and points are extremely tight, you may trim filler to reach key thresholds elsewhere."
+      ],
+      "tips": [
+        "When players complain about mana, this is one of the early places that can help without changing playstyle."
+      ],
+      "rank_notes": {
+        "1": "Early points are noticeable while gearing up.",
+        "5": "Max rank is common because it is a clean early value path."
+      }
+    },
+
+    "enhancement_shield_specialization": {
+      "summary": "Shield and block focused defensive talent. Not part of standard dual wield Enhancement DPS.",
+      "why_take": [
+        "Taken for tanking, solo survivability, or PvP defensive setups that prioritize shield usage."
+      ],
+      "why_skip": [
+        "Enhancement raid DPS typically uses dual wield and gains little from shield specific defense points.",
+        "Points here compete with direct damage and raid value talents."
+      ],
+      "tips": [
+        "If you add off spec notes later, tag this as tank oriented rather than DPS oriented."
+      ],
+      "rank_notes": {
+        "1": "A small investment can help early survivability if you are leveling with a shield.",
+        "5": "Max rank is a defensive identity choice."
+      }
+    },
+
+    "enhancement_guardian_totems": {
+      "summary": "Defensive and utility totem improvements. Useful in specific fights or PvP, not a default DPS throughput pick.",
+      "why_take": [
+        "If your content demands higher value from specific defensive totems, this can be worth points.",
+        "Utility can be raid saving in niche scenarios where survival and control matter more than personal damage."
+      ],
+      "why_skip": [
+        "For standard raid DPS, you usually prioritize talents that increase damage and consistency first.",
+        "Utility points often come only after core DPS packages are secured."
+      ],
+      "tips": [
+        "Teach players to only value this when it changes outcomes, not because it looks generally useful."
+      ],
+      "rank_notes": {
+        "1": "One point can be a reasonable compromise if you need a small boost.",
+        "2": "Max rank is for players intentionally optimizing defensive utility."
+      }
+    },
+
+    "enhancement_thundering_strikes": {
+      "summary": "Your baseline crit engine. Enables Flurry uptime and scales every part of your damage kit.",
+      "why_take": [
+        "Crit drives your melee throughput and improves how often Flurry stays active.",
+        "Crit amplifies weapon swing value by increasing the number of meaningful spikes from your swing events.",
+        "One of the best early investments per point on the path to mid tree power talents."
+      ],
+      "why_skip": [
+        "Raid DPS does not skip it. The only time you would is if you are intentionally not progressing deeper into Enhancement."
+      ],
+      "tips": [
+        "If your Flurry uptime feels poor, check hit and expertise first. Misses and dodges reduce crit opportunities."
+      ],
+      "rank_notes": {
+        "1": "Even the first point matters because it starts your Flurry engine earlier.",
+        "5": "At max rank it is one of the highest value early tree investments."
+      },
+      "common_mistakes": [
+        "Judging this talent by crit alone. Its real value is how it enables other talents and smooths your damage profile."
+      ]
+    },
+
+    "enhancement_improved_ghost_wolf": {
+      "summary": "Mobility and quality of life. Strong for movement heavy content and PvP, not a primary raid DPS throughput talent.",
+      "why_take": [
+        "Improves uptime on targets in movement heavy scenarios, which can indirectly increase damage.",
+        "Very useful in PvP and open world play where mobility drives outcomes."
+      ],
+      "why_skip": [
+        "If your encounters are mostly stationary, the indirect damage gain is small compared to direct throughput talents.",
+        "Often trimmed when optimizing pure raid DPS progression to deeper tree power."
+      ],
+      "tips": [
+        "If you add fight tags later, mark this as movement value rather than raw DPS."
+      ],
+      "rank_notes": {
+        "1": "A first point can improve feel immediately.",
+        "2": "Max rank is best when mobility is a constant theme in your content."
+      }
+    },
+
+    "enhancement_improved_lightning_shield": {
+      "summary": "Buffs Lightning Shield value. Small passive value for Enhancement, more noticeable in PvP and solo.",
+      "why_take": [
+        "Adds passive pressure and value when Lightning Shield uptime is high.",
+        "Can be helpful in PvP where passive damage contributes to winning trades."
+      ],
+      "why_skip": [
+        "In raids, Lightning Shield is not usually a top contributor compared to weapon driven damage and deeper Enhancement talents.",
+        "Points are often better spent reaching key core talents sooner."
+      ],
+      "tips": [
+        "If you include a buff maintenance section, connect Lightning Shield uptime to the real value of this."
+      ],
+      "rank_notes": {
+        "1": "Small but consistent value.",
+        "3": "Max rank is mainly for players who value passive pressure and frequent Lightning Shield uptime."
+      }
+    },
+
+    "enhancement_enhancing_totems": {
+      "summary": "Totem buff amplifier. Adds both personal and group value and is commonly taken in raid builds.",
+      "why_take": [
+        "Improves the strength of your key offensive totems, which increases your own damage and often your groups damage.",
+        "High value when your group consistently stays in range of your totems."
+      ],
+      "why_skip": [
+        "If you are in content where totem coverage is inconsistent or the group is spread, real value drops.",
+        "In extremely selfish setups, some players may choose other points, but it is uncommon in raids."
+      ],
+      "tips": [
+        "Totem value is uptime plus coverage. Encourage players to think about range discipline."
+      ],
+      "rank_notes": {
+        "1": "Early points are meaningful in groups that stay stacked.",
+        "2": "Max rank is common for raid focused Enhancement."
+      }
+    },
+
+    "enhancement_shamanistic_focus": {
+      "summary": "Shock mana relief. Key for shock focused play and for keeping rotation stable in long fights.",
+      "why_take": [
+        "Reduces mana pressure from shocks which lets you maintain rotation longer.",
+        "Improves consistency for shock usage without forcing heavy intellect stacking."
+      ],
+      "why_skip": [
+        "If you are playing a low shock style or your fights are short, the gain is less visible.",
+        "If your mana is already stable due to other factors, the point can move elsewhere."
+      ],
+      "tips": [
+        "When people say a build is shock focused, this is one of the talents that enables it from a resource standpoint."
+      ],
+      "common_mistakes": [
+        "Taking it and still going out of mana because of wasted shocks into bad timing windows or poor pacing."
+      ]
+    },
+
+    "enhancement_anticipation": {
+      "summary": "Defensive avoidance. More relevant for tanking and PvP than for pure raid DPS.",
+      "why_take": [
+        "Useful for off tanking, solo survivability, and PvP where you are frequently targeted.",
+        "Can be taken in niche builds where survivability is more important than peak throughput."
+      ],
+      "why_skip": [
+        "Avoidance does not raise your raid DPS output directly.",
+        "These points often block you from key Enhancement throughput later in the tree."
+      ],
+      "tips": [
+        "If you provide a defensive variant build, include this there and keep it out of standard raid DPS paths."
+      ],
+      "rank_notes": {
+        "1": "Early points are a small buffer.",
+        "5": "Max rank is a defensive identity choice."
+      }
+    },
+
+    "enhancement_flurry": {
+      "summary": "Core sustained DPS talent. Converts crit into attack speed, multiplying weapon damage and proc value.",
+      "why_take": [
+        "Attack speed increases your white swings, which increases your total swing events and overall output.",
+        "More swing events improves consistency and increases the value of swing based effects.",
+        "Defining throughput lever for Enhancement in TBC."
+      ],
+      "why_skip": [
+        "Raid DPS does not skip Flurry.",
+        "Only skipped in unusual non DPS setups."
+      ],
+      "tips": [
+        "Do not only chase crit. You want enough hit and expertise so your swings actually land and can crit.",
+        "Flurry uptime is a strong practical metric to surface in your guide."
+      ],
+      "rank_notes": {
+        "1": "Point one is noticeable early.",
+        "5": "Max rank is the target for serious PvE builds."
+      },
+      "common_mistakes": [
+        "Overvaluing other speed sources while undercapping hit, reducing real swing conversion."
+      ]
+    },
+
+    "enhancement_toughness": {
+      "summary": "Durability and control resistance style support. Often taken because it is efficient survivability that also improves uptime in messy fights.",
+      "why_take": [
+        "Increases your durability so you can stay in and keep swinging.",
+        "Helps in movement control situations where slows and similar effects reduce uptime."
+      ],
+      "why_skip": [
+        "If survivability is not a problem and you are optimizing pure throughput, you may trim defensive leaning points.",
+        "In tightly optimized raid DPS paths, some builds only take what they need to reach deeper power."
+      ],
+      "tips": [
+        "If your damage drops because you are forced out or you die, survivability talents become indirect DPS gains."
+      ],
+      "rank_notes": {
+        "1": "A first point is a light survivability bump.",
+        "5": "Max rank is more common in PvP or dangerous content."
+      }
+    },
+
+    "enhancement_improved_weapon_totems": {
+      "summary": "Weapon totem amplifier. A common pick when your totems are contributing meaningful group value.",
+      "why_take": [
+        "Directly boosts the value of weapon based totems, improving both personal and group benefit in range.",
+        "Fits weapon totem focused Enhancement variations."
+      ],
+      "why_skip": [
+        "If your group is spread or weapon totem coverage is inconsistent, value can underperform other options.",
+        "In some builds, fire totem or shock focused points may win depending on encounter style."
+      ],
+      "tips": [
+        "A future tool idea: estimate value by average number of players in range and expected uptime."
+      ],
+      "rank_notes": {
+        "1": "First point is often worth it in stable group stacking.",
+        "2": "Max rank for weapon totem focused identity."
+      }
+    },
+
+    "enhancement_spirit_weapons": {
+      "summary": "Gateway talent that unlocks Dual Wield. Also improves safety through threat and defensive value.",
+      "why_take": [
+        "Required to progress into Dual Wield and deeper Enhancement.",
+        "Helps with threat control and adds defensive value that matters when you are ramping damage."
+      ],
+      "why_skip": [
+        "If you are building Enhancement DPS and going dual wield, you do not skip it."
+      ],
+      "tips": [
+        "If you include threat management notes, this is one of the talents that changes your pull ramp safety."
+      ],
+      "rank_notes": {
+        "1": "One point only, and it is a mandatory gate for standard DPS progression."
+      }
+    },
+
+    "enhancement_elemental_weapons": {
+      "summary": "Enhances your weapon imbues and is a prerequisite for Stormstrike.",
+      "why_take": [
+        "You need it to reach Stormstrike.",
+        "It improves the value of your imbues, which are central to Enhancement damage."
+      ],
+      "why_skip": [
+        "You only skip if you are not taking Stormstrike, which is not standard for raid DPS."
+      ],
+      "tips": [
+        "If you create an imbue section, link it back to this talent because it is part of the imbue scaling story."
+      ],
+      "rank_notes": {
+        "1": "Early points matter because imbues are always active.",
+        "3": "Max rank is standard on the path to Stormstrike."
+      }
+    },
+
+    "enhancement_mental_quickness": {
+      "summary": "Hybrid scaling engine. Converts your melee power into stronger instant spell components and helps rotation stability.",
+      "why_take": [
+        "Improves the damage contribution of shocks and other instant spell based elements of your kit.",
+        "Often improves mana efficiency and makes shock usage feel more sustainable."
+      ],
+      "why_skip": [
+        "If you are playing a very low shock style, the hybrid value is lower.",
+        "Still usually taken because it sits on the standard path to deeper Enhancement power."
+      ],
+      "tips": [
+        "This is a key bridge talent for explaining why Enhancement cares about certain spell oriented stats in specific builds."
+      ],
+      "rank_notes": {
+        "1": "The first point starts the scaling relationship.",
+        "3": "Max rank is common for raid DPS builds."
+      }
+    },
+
+    "enhancement_weapon_mastery": {
+      "summary": "Consistency and expertise style payoff. Increases the chance your melee events actually connect, which stabilizes your whole kit.",
+      "why_take": [
+        "Fewer dodges and parries means more real swing events turning into real damage.",
+        "Consistency is a multiplier for everything else you stack, including crit and attack speed."
+      ],
+      "why_skip": [
+        "It is rarely skipped in serious raid DPS because consistency is too valuable."
+      ],
+      "tips": [
+        "When teaching caps, explain that avoiding failed melee events is often more important than small theoretical gains."
+      ],
+      "rank_notes": {
+        "1": "Early points can noticeably reduce frustrating failure streaks.",
+        "5": "Max rank is standard for PvE DPS."
+      },
+      "common_mistakes": [
+        "Chasing more crit while ignoring consistency talents and caps, then blaming RNG."
+      ]
+    },
+
+    "enhancement_dual_wield": {
+      "summary": "Defines the spec for PvE DPS. Enables off hand swings and unlocks Dual Wield Specialization.",
+      "why_take": [
+        "Massively increases your number of swing events, which drives most Enhancement scaling.",
+        "Opens access to further dual wield throughput talents."
+      ],
+      "why_skip": [
+        "You do not skip in PvE DPS.",
+        "Only skipped in niche defensive or leveling experiments."
+      ],
+      "tips": [
+        "Dual wield changes priorities. Hit and expertise become more important because you now have more swing events that can fail."
+      ],
+      "rank_notes": {
+        "1": "One point only, and it changes your whole gameplay model."
+      }
+    },
+
+    "enhancement_dual_wield_specialization": {
+      "summary": "Turns Dual Wield from enabled to effective. Major throughput increase per point.",
+      "why_take": [
+        "Improves off hand contribution which is a large portion of your total swing count.",
+        "More landed swings increases consistency and makes your damage profile smoother."
+      ],
+      "why_skip": [
+        "PvE DPS does not skip it once you take Dual Wield."
+      ],
+      "tips": [
+        "This is an ideal place to explain why hit and expertise are consistency multipliers, not just small stats."
+      ],
+      "rank_notes": {
+        "1": "First point is immediately noticeable.",
+        "3": "Max rank is standard for raid DPS."
+      }
+    },
+
+    "enhancement_stormstrike": {
+      "summary": "Signature button. Strong weapon based hit that defines burst windows and rotation structure.",
+      "why_take": [
+        "Adds a reliable on demand weapon based damage event.",
+        "Creates a clear rotation anchor point and burst planning window."
+      ],
+      "why_skip": [
+        "You generally do not skip Stormstrike for raid DPS.",
+        "Only skipped in unusual builds that are not playing as a DPS spec."
+      ],
+      "tips": [
+        "If you teach swing syncing and staggering, include notes on how to avoid damaging your swing plan when pressing major buttons."
+      ],
+      "common_mistakes": [
+        "Pressing it on cooldown with no regard for swing planning when the player is actively training swing timing."
+      ],
+      "rank_notes": {
+        "1": "One point only, and it is a defining Enhancement milestone."
+      }
+    },
+
+    "enhancement_unleashed_rage": {
+      "summary": "Raid value talent. Strong personal gain plus group benefit, one of the reasons Enhancement is invited.",
+      "why_take": [
+        "Improves your own throughput while also contributing meaningful group value.",
+        "Rewards consistent crit and stable uptime, reinforcing good fundamentals."
+      ],
+      "why_skip": [
+        "Skipping it is basically never correct for PvE DPS.",
+        "If you cannot reach it, you are likely over investing in Elemental or Restoration and sacrificing core Enhancement identity."
+      ],
+      "tips": [
+        "If you include raid contribution notes, call out this talent as a major reason Enhancement brings value beyond personal damage."
+      ],
+      "rank_notes": {
+        "1": "Early points already add raid value, but you usually commit fully.",
+        "5": "Max rank is standard for raid builds."
+      }
+    },
+
+    "enhancement_shamanistic_rage": {
+      "summary": "Resource and survivability cooldown. Stabilizes mana and helps you recover when pacing goes wrong.",
+      "why_take": [
+        "Solves meaningful mana stress in long fights so you can keep shocking and maintain your plan.",
+        "Provides a safety tool that can prevent rotation collapse after mistakes or unexpected damage."
+      ],
+      "why_skip": [
+        "In real raid DPS builds you do not skip it.",
+        "If you are not reaching it, you are investing too much outside Enhancement and giving up core stability."
+      ],
+      "tips": [
+        "Add encounter notes later for common moments where players press it too late and lose value."
+      ],
+      "rank_notes": {
+        "1": "One point only, and it is a major stability milestone."
+      }
+    },
+
+    "restoration_improved_healing_wave": {
+      "summary": "Healing cast speed support. Primarily Restoration throughput, not a standard Enhancement choice.",
+      "why_take": [
+        "Only taken if you are building a hybrid that must provide meaningful cast healing."
+      ],
+      "why_skip": [
+        "Enhancement raid DPS points are extremely valuable and should not be diverted into pure healing speed unless the role demands it.",
+        "Going deep Restoration for healing usually costs Unleashed Rage and Shamanistic Rage, which are core Enhancement value."
+      ],
+      "tips": [
+        "If you include a hybrid appendix, clarify that this is a role choice, not an optimization for Enhancement DPS."
+      ],
+      "rank_notes": {
+        "1": "Minor unless you are actively casting Healing Wave.",
+        "5": "Max rank is Restoration identity."
+      }
+    },
+
+    "restoration_tidal_focus": {
+      "summary": "Healing mana efficiency. Restoration oriented and not a standard Enhancement investment.",
+      "why_take": [
+        "Only if your role requires frequent healing casts and you need efficiency."
+      ],
+      "why_skip": [
+        "Does not increase Enhancement damage or raid buffs.",
+        "Deep Restoration investment competes with the Enhancement talents that define your spec value."
+      ],
+      "tips": [
+        "For Enhancement context, place this under off role notes only."
+      ],
+      "rank_notes": {
+        "1": "Value depends on how often you cast heals.",
+        "5": "Max rank is for dedicated healers."
+      }
+    },
+
+    "restoration_improved_reincarnation": {
+      "summary": "Reincarnation quality and reliability. Utility talent that can matter on progression, but not a throughput pick.",
+      "why_take": [
+        "If you are learning content and wipes are common, improved reincarnation can be practical value.",
+        "Useful in PvP and open world where self recovery matters."
+      ],
+      "why_skip": [
+        "Does not increase your damage output.",
+        "If points are tight, you normally protect core Enhancement throughput first."
+      ],
+      "tips": [
+        "Treat this as utility insurance. It is valuable when it saves attempts, not when judging raw DPS."
+      ],
+      "rank_notes": {
+        "1": "A small investment can be enough to get the utility you want.",
+        "2": "Max rank is for players who value the safety consistently."
+      }
+    },
+
+    "restoration_ancestral_healing": {
+      "summary": "Healing crit defensive buff support. Restoration focused, not an Enhancement DPS tool.",
+      "why_take": [
+        "Only if you are acting in a meaningful healing capacity where crit heals are common."
+      ],
+      "why_skip": [
+        "Enhancement does not want to spend points on healing crit side effects for raid DPS.",
+        "Deep Restoration costs core Enhancement raid value and personal output."
+      ],
+      "tips": [
+        "If included, label as healer oriented only."
+      ],
+      "rank_notes": {
+        "1": "Value depends on healing crit frequency.",
+        "3": "Max rank is a healer commitment."
+      }
+    },
+
+    "restoration_totemic_focus": {
+      "summary": "Sub resto efficiency pick. Lowers totem cost, supporting long fights and frequent refresh patterns.",
+      "why_take": [
+        "If you maintain multiple totems for long fights, cost adds up and this reduces that burden.",
+        "Supports totem heavy play styles, including frequent updates for coverage."
+      ],
+      "why_skip": [
+        "If fights are short or you are not refreshing often, payoff is smaller.",
+        "If you must protect deep Enhancement talents, you keep sub resto shallow and efficient."
+      ],
+      "tips": [
+        "This is one of the best sub resto fillers because it provides practical quality and stability without changing your rotation."
+      ],
+      "rank_notes": {
+        "1": "A first point is already noticeable on long sessions.",
+        "5": "Max rank is common in sub resto packages that commit for efficiency."
+      }
+    },
+
+    "restoration_natures_guidance": {
+      "summary": "Consistency support through hit for both melee and spells. A cornerstone of sub resto Enhancement builds.",
+      "why_take": [
+        "Improves consistency. Landing key abilities matters more than small theoretical gains when you are below caps.",
+        "Smooths both melee and shock reliability, which stabilizes damage and reduces dead windows."
+      ],
+      "why_skip": [
+        "If your gear already covers hit needs comfortably, value is lower, but still often competitive.",
+        "If you are pushing a sub Elemental concept instead, you may not have points for both."
+      ],
+      "tips": [
+        "Pair this directly with your hit cap explanation. Consistency comes first, then throughput."
+      ],
+      "rank_notes": {
+        "1": "Even one point can reduce early gearing frustration.",
+        "3": "Max rank is common in sub resto packages."
+      }
+    },
+
+    "restoration_healing_focus": {
+      "summary": "Pushback protection for healing casts. Not relevant for Enhancement DPS unless you are acting as a hybrid healer.",
+      "why_take": [
+        "If your role requires cast healing while under pressure, this can increase your effective healing output."
+      ],
+      "why_skip": [
+        "Enhancement raid DPS does not want to allocate points to healing cast stability.",
+        "Depth into Restoration for this purpose costs key Enhancement talents."
+      ],
+      "tips": [
+        "If you include hybrid notes, make the role tradeoff explicit."
+      ],
+      "rank_notes": {
+        "1": "Minor unless you frequently cast heals under pressure.",
+        "5": "Max rank is a healer play pattern choice."
+      }
+    },
+
+    "restoration_totemic_mastery": {
+      "summary": "Totem radius extension. Quality of life that can become real raid value on movement and spread fights.",
+      "why_take": [
+        "In fights where the group spreads or moves, extra radius can translate into real uptime.",
+        "Supports a totem coverage oriented Enhancement approach, especially when positioning is imperfect."
+      ],
+      "why_skip": [
+        "If your group stacks tightly and totem placement is easy, this is more convenience than power.",
+        "If points are tight, Nature's Guidance and Totemic Focus usually provide more direct value."
+      ],
+      "tips": [
+        "Great talent to teach the concept of totem coverage as a real performance driver."
+      ],
+      "rank_notes": {
+        "1": "One point is all you need if you take it."
+      }
+    },
+
+    "restoration_healing_grace": {
+      "summary": "Healing threat reduction. Restoration specific and not relevant to Enhancement DPS.",
+      "why_take": [
+        "Only for builds that regularly heal in group content where healing threat matters."
+      ],
+      "why_skip": [
+        "No DPS gain and rarely a role requirement for Enhancement.",
+        "Deep Restoration investment costs core Enhancement throughput and raid value."
+      ],
+      "tips": [
+        "Keep this as completeness only in an Enhancement guide."
+      ],
+      "rank_notes": {
+        "1": "Value depends entirely on healing role frequency.",
+        "3": "Max rank is for dedicated healers."
+      }
+    },
+
+    "restoration_restorative_totems": {
+      "summary": "Improves restorative totems. Strong for Restoration support, but usually too deep for Enhancement DPS priorities.",
+      "why_take": [
+        "If your group relies heavily on restorative totems for sustain and you are playing a support leaning role."
+      ],
+      "why_skip": [
+        "Depth conflicts with core Enhancement endpoints like Unleashed Rage and Shamanistic Rage.",
+        "Enhancement usually wants sub resto only for efficient utility and consistency, not deep healing throughput."
+      ],
+      "tips": [
+        "If you include it, call out that it is beyond normal Enhancement sub spec depth."
+      ],
+      "rank_notes": {
+        "1": "Early points are only meaningful if your restorative totems are a constant factor.",
+        "5": "Max rank is a Restoration identity choice."
+      }
+    },
+
+    "restoration_tidal_mastery": {
+      "summary": "Healing crit support. Restoration throughput, not Enhancement DPS.",
+      "why_take": [
+        "If you are a healer or hybrid healer and crit healing is part of your plan."
+      ],
+      "why_skip": [
+        "No Enhancement DPS payoff and too deep for normal sub resto packages.",
+        "Opportunity cost against core Enhancement talents is too high."
+      ],
+      "tips": [
+        "In an Enhancement guide, treat this as off role only."
+      ],
+      "rank_notes": {
+        "1": "Value depends on healing crit relevance.",
+        "5": "Max rank is for dedicated healers."
+      }
+    },
+
+    "restoration_healing_way": {
+      "summary": "Healing Wave synergy talent. Restoration oriented, not Enhancement DPS.",
+      "why_take": [
+        "Only if you are repeatedly casting Healing Wave as part of a healing role."
+      ],
+      "why_skip": [
+        "Does not support Enhancement damage or raid buffs.",
+        "Depth competes with Enhancement milestones."
+      ],
+      "tips": [
+        "If you include hybrid builds, make sure the player understands the role change."
+      ],
+      "rank_notes": {
+        "1": "Minor unless Healing Wave is a main spell.",
+        "3": "Max rank is for healing patterns."
+      }
+    },
+
+    "restoration_natures_swiftness": {
+      "summary": "Emergency instant cast utility. Valuable in PvP and hybrid support, but too deep for standard Enhancement raid DPS.",
+      "why_take": [
+        "Provides a clutch emergency tool that can save a pull or secure a PvP moment.",
+        "Useful if your group relies on you for occasional critical saves."
+      ],
+      "why_skip": [
+        "Depth is the primary problem. Reaching it usually forces you to give up core Enhancement raid value and stability.",
+        "If you are focused on raid DPS, you generally cannot afford this much Restoration investment."
+      ],
+      "tips": [
+        "If included, position it as a role and responsibility choice, not a throughput optimization."
+      ],
+      "rank_notes": {
+        "1": "One point only, but the depth defines the build."
+      }
+    },
+
+    "restoration_focused_mind": {
+      "summary": "Casting stability and efficiency style support for healers. Not part of normal Enhancement DPS planning.",
+      "why_take": [
+        "Only if you are frequently casting heals under disruption and need more reliability."
+      ],
+      "why_skip": [
+        "Too deep for Enhancement sub resto and not tied to your weapon based damage plan.",
+        "Opportunity cost against core Enhancement talents is significant."
+      ],
+      "tips": [
+        "Keep this under healer or hybrid notes only."
+      ],
+      "rank_notes": {
+        "1": "Value depends on how often your healing casts are disrupted.",
+        "3": "Max rank is a healer commitment."
+      }
+    },
+
+    "restoration_purification": {
+      "summary": "Healing throughput amplifier. Restoration only from an Enhancement perspective.",
+      "why_take": [
+        "If you are a healer or your role demands strong healing output."
+      ],
+      "why_skip": [
+        "Enhancement raid DPS does not gain value here and the depth is incompatible with standard Enhancement endpoints."
+      ],
+      "tips": [
+        "If shown, label clearly as Restoration throughput."
+      ],
+      "rank_notes": {
+        "1": "Early points only matter if you are healing frequently.",
+        "5": "Max rank is for dedicated healers."
+      }
+    },
+
+    "restoration_mana_tide_totem": {
+      "summary": "Major mana support cooldown for groups. Powerful, but deep Restoration makes it a different spec identity.",
+      "why_take": [
+        "If your primary responsibility is supporting caster mana as a Restoration leaning build."
+      ],
+      "why_skip": [
+        "Deep Restoration conflicts with Enhancement DPS identity and core raid value talents.",
+        "If you want to play Enhancement DPS, you generally cannot justify this depth."
+      ],
+      "tips": [
+        "Call out clearly that taking this effectively shifts your build away from Enhancement DPS priorities."
+      ],
+      "rank_notes": {
+        "1": "One point only, but the depth is the defining cost."
+      }
+    },
+
+    "restoration_natures_guardian": {
+      "summary": "Defensive safety net. Useful in PvP and survival focused play, but too deep for standard Enhancement raid DPS.",
+      "why_take": [
+        "If survivability is a consistent limiter and you are willing to trade deep Enhancement throughput for safety."
+      ],
+      "why_skip": [
+        "Depth competes with Enhancement endpoints and raid value.",
+        "If you are optimizing damage and contribution, you normally solve survival with play and gear first."
+      ],
+      "tips": [
+        "Frame as a survival insurance talent, not as a damage tool."
+      ],
+      "rank_notes": {
+        "1": "Small early value if you are frequently under threat.",
+        "5": "Max rank is a defensive identity decision."
+      }
+    },
+
+    "restoration_natures_blessing": {
+      "summary": "Healing scaling support. Restoration throughput oriented and not part of Enhancement DPS planning.",
+      "why_take": [
+        "Only if you are a healer or hybrid healer where improving heals is a primary goal."
+      ],
+      "why_skip": [
+        "Too deep for Enhancement, and does not support your weapon based damage plan.",
+        "Opportunity cost against Enhancement raid value is too high."
+      ],
+      "tips": [
+        "Treat this as Restoration only in an Enhancement guide."
+      ],
+      "rank_notes": {
+        "1": "Value depends on healing role frequency.",
+        "3": "Max rank is for dedicated healers."
+      }
+    },
+
+    "restoration_improved_chain_heal": {
+      "summary": "Chain Heal specialization. Restoration throughput, not Enhancement DPS.",
+      "why_take": [
+        "If you are assigned to Chain Heal heavy raid healing."
+      ],
+      "why_skip": [
+        "Not relevant to Enhancement damage or raid buff contribution.",
+        "Depth is incompatible with standard Enhancement endpoints."
+      ],
+      "tips": [
+        "Keep as completeness only for Enhancement focused documentation."
+      ],
+      "rank_notes": {
+        "1": "Minor unless Chain Heal is a primary spell.",
+        "2": "Max rank is for dedicated Chain Heal roles."
+      }
+    },
+
+    "restoration_earth_shield": {
+      "summary": "Deep Restoration signature tool. Powerful in its role, but represents a different spec identity than Enhancement DPS.",
+      "why_take": [
+        "If you are functioning as a Restoration support role or PvP build that values Earth Shield highly."
+      ],
+      "why_skip": [
+        "Depth into Restoration prevents you from taking core Enhancement talents that define your raid DPS and raid value.",
+        "If you are playing Enhancement, you typically do not pursue Earth Shield in a raid DPS planner."
+      ],
+      "tips": [
+        "Call out clearly that reaching this changes your role expectations."
+      ],
+      "rank_notes": {
+        "1": "One point only, but the depth is the real trade."
+      }
+    }
+  }
+}

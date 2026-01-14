@@ -88,8 +88,9 @@
           </div>
         </div>
       </header>
-
+      
       <div class="appBody">
+        
         <!-- Sidebar fallback. boot.js will replace it with /components/sidebar.html -->
         <aside id="appSidebar" class="appSidebar" aria-label="Section navigation">
           <div class="sidebarBlock">
@@ -112,6 +113,8 @@
         </aside>
 
         <main id="appMain" class="appMain" tabindex="-1">
+          <div data-page-css="/src/css/pages/talents.css /src/css/labs/talentLab.css"></div>
+          
           <section class="pageHero">
             <div class="pageKicker">Spend points where they solve problems</div>
             <h1 class="pageTitle">Talents and Build Choices</h1>
@@ -127,120 +130,391 @@
             </div>
           </section>
 
-          <section class="contentCard" id="sub_specs">
-            <div class="eyebrow">Build planning</div>
-            <h2>The two Enhancement variants</h2>
-            <p>
-              In TBC, Enhancement generally locks in a 44 point Enhancement core for the spec defining throughput and raid buffs.
-              The remaining points flex into Elemental or Restoration. These are not different roles. They are two ways to solve
-              different constraints: raising the value of shocks and fire totems, or improving hit, mana efficiency, and totem coverage.
-            </p>
+         <section class="contentCard" id="sub_specs">
+  <div class="eyebrow">Build planning</div>
+  <h2>Enhancement variants and presets</h2>
 
-            <div class="cardGrid specGrid">
-              <article class="card specCard">
-                <h3 class="specTitle">17/44/00 Sub Elemental</h3>
-                <div class="specChips" aria-label="Sub Elemental focus">
-                  <span class="metaChip">Shock tempo</span>
-                  <span class="metaChip">Fire totem value</span>
-                  <span class="metaChip">Mana smoothing</span>
-                </div>
+  <p>
+    Enhancement in TBC has one job and one core engine. The last points are where you solve your constraint.
+    Sub Elemental pushes more value into shocks and fire totems or into passive totem throughput.
+    Sub Restoration trades some ceiling for hit, mana efficiency, and smoother totem workflow.
+    These are not different roles. They are different solutions to real raid problems.
+  </p>
 
-                <p class="cardBody">
-                  This variant spends 17 points in Elemental to make shocks and fire totems a larger share of your damage. It is built for
-                  players who can consistently spend global cooldowns on shocks without collapsing their mana.
-                </p>
+  <div class="specFamilies" role="list" aria-label="Variant families">
+    <div class="card specFamilyCard" role="listitem">
+      <div class="specFamilyKicker">Family</div>
+      <h3 class="specFamilyTitle">Sub Elemental</h3>
+      <p class="specFamilyBody">
+        Choose this when hit is already comfortable and you want your extra points to pay out in damage or totem impact.
+        Sub Elemental can be shock driven, fire totem driven, or totem focused through deeper Enhancement.
+      </p>
+      <ul class="ruleList specFamilyList">
+        <li><strong>Shock and fire scaling</strong> when you can spend globals consistently.</li>
+        <li><strong>Stronger passive fire totems</strong> when fights or mana limit shocks.</li>
+        <li><strong>Totem focused variants</strong> when raid buffs and uptime matter most.</li>
+      </ul>
+    </div>
 
-                <div class="specCols">
-                  <div class="specCol">
-                    <div class="specColTitle">What it gives you</div>
-                    <p class="muted specKey">
-                      Key talents in this preset: Convection, Concussion, Call of Flame, Reverberation, Elemental Focus, Improved Fire Totems.
-                    </p>
-                    <ul class="ruleList">
-                      <li><strong>More shock output</strong> through additional shock damage and faster shock cadence.</li>
-                      <li><strong>More fire totem damage</strong> that supports Fire Nova decisions during fire weaving.</li>
-                      <li><strong>Better mana flow</strong> so the extra shocks are easier to afford.</li>
-                    </ul>
-                  </div>
-                  <div class="specCol">
-                    <div class="specColTitle">When to pick it</div>
-                    <ul class="ruleList">
-                      <li>You already have enough hit from gear and raid buffs.</li>
-                      <li>Encounters reward active shock usage and fire totem management.</li>
-                      <li>You are optimizing personal damage and can manage mana pressure.</li>
-                    </ul>
-                  </div>
-                </div>
+    <div class="card specFamilyCard" role="listitem">
+      <div class="specFamilyKicker">Family</div>
+      <h3 class="specFamilyTitle">Sub Restoration</h3>
+      <p class="specFamilyBody">
+        Choose this when you want consistency: hit to reduce misses, lower totem costs, and better totem coverage.
+        It is the practical baseline when gearing is still in progress or when you are doing heavy totem work.
+      </p>
+      <ul class="ruleList specFamilyList">
+        <li><strong>Hit and stability</strong> from <span data-spell="natures_guidance"></span></li>
+        <li><strong>Lower totem costs</strong> for longer fights and frequent twisting.</li>
+        <li><strong>More forgiving coverage</strong> when positioning is not perfect.</li>
+      </ul>
+    </div>
+  </div>
 
-                <div class="specTrade">
-                  <div class="specColTitle">Tradeoffs</div>
-                  <ul class="ruleList">
-                    <li>No Restoration hit talent, so you rely more on gear and raid buffs to stay capped.</li>
-                    <li>Totems cost more mana and have less coverage compared to the Restoration variant.</li>
-                    <li>Higher shock usage can raise mana pressure if you overcast.</li>
-                  </ul>
-                </div>
+  <div class="specFlexNote" role="note" aria-label="Flex points note">
+    <strong>Universal flex slot:</strong> In every preset below, the two points we place in
+    <span data-spell="improved_ghost_wolf"></span>  can be swapped into <span data-spell="guardian_totems"></span> without changing the build identity.
+    Take <span data-spell="improved_ghost_wolf"></span> for movement and quality of life. Take <span data-spell="guardian_totems"></span> for sturdier utility totems.
+  </div>
 
-                <div class="panelTip">
-                  In the calculator, choose the preset <strong>17/44/00 Sub Elemental</strong> to load this build, then tailor it for your raid.
-                </div>
-              </article>
+  <div class="specStackHeader">
+    <div>
+      <h3 class="specStackTitle">Preset breakdown</h3>
+      <p class="muted specStackHint">
+        Pick the preset that matches your constraint, then adjust for your raid and assignments.
+      </p>
+    </div>
+  </div>
 
-              <article class="card specCard">
-                <h3 class="specTitle">03/44/14 Sub Restoration</h3>
-                <div class="specChips" aria-label="Sub Restoration focus">
-                  <span class="metaChip">Hit and consistency</span>
-                  <span class="metaChip">Totem mana</span>
-                  <span class="metaChip">Totem range</span>
-                </div>
+  <div class="specGrid" role="list" aria-label="Talent presets">
+    <!-- 17/44/00 Shock Focused -->
+    <article class="card specRow" role="listitem">
+      <div class="specLeft">
+        <h3 class="specTitle">17/44/00 Sub Elemental</h3>
+        <div class="specDescriptor">Shock Focused</div>
 
-                <p class="cardBody">
-                  This variant spends 14 points in Restoration to pick up hit and totem efficiency tools that make your damage more stable
-                  and your group support easier. It is the practical choice when you value consistency, longer fights, or heavy totem work.
-                </p>
+        <div class="specChips" aria-label="Shock focused tags">
+          <span class="metaChip">Shock tempo</span>
+          <span class="metaChip">Clearcasting value</span>
+          <span class="metaChip">Mana smoothing</span>
+        </div>
+        
 
-                <div class="specCols">
-                  <div class="specCol">
-                    <div class="specColTitle">What it gives you</div>
-                    <p class="muted specKey">
-                      Key talents in this preset: Nature's Guidance, Totemic Focus, Totemic Mastery, plus Concussion on the Elemental side.
-                    </p>
-                    <ul class="ruleList">
-                      <li><strong>Hit</strong> that reduces misses and frees up gear choices.</li>
-                      <li><strong>Lower totem costs</strong> which matters in long fights and frequent twisting.</li>
-                      <li><strong>Wider totem coverage</strong> that helps your party keep buffs without perfect positioning.</li>
-                      <li><strong>Better emergency healing</strong> as a side benefit of the pathing points.</li>
-                    </ul>
-                  </div>
-                  <div class="specCol">
-                    <div class="specColTitle">When to pick it</div>
-                    <ul class="ruleList">
-                      <li>You are early in gearing, hit constrained, or playing without ideal raid buffs.</li>
-                      <li>You are twisting often and want the most efficient totem workflow.</li>
-                      <li>You want a stable, low friction build that still performs well.</li>
-                    </ul>
-                  </div>
-                </div>
+        <div class="specPreset">
+          <div class="specPresetLabel">Calculator preset</div>
+          <div class="specPresetName"><strong>17/44/00 Sub Elemental — Shock Focused</strong></div>
+        </div>
+        <div class="specActions">
+          <button
+            type="button"
+            class="btn btnPrimary specLoadBtn"
+            data-preset-key="enh_a"
+          >
+            Load this preset in calculator
+          </button>
+        </div>
+      </div>
+      
 
-                <div class="specTrade">
-                  <div class="specColTitle">Tradeoffs</div>
-                  <ul class="ruleList">
-                    <li>Fewer Elemental throughput talents, so shocks and fire totems contribute slightly less damage.</li>
-                    <li>Lower personal damage ceiling, but higher consistency and a smoother totem workflow.</li>
-                  </ul>
-                </div>
+      <div class="specRight">
+        <p class="specPurpose">
+          <strong>Purpose:</strong> Maximize shock driven damage when you can spend globals consistently and manage mana.
+        </p>
 
-                <div class="panelTip">
-                  In the calculator, choose the preset <strong>03/44/14 Sub Restoration</strong> to load this build, then tweak based on your group.
-                </div>
-              </article>
-            </div>
+        <div class="specDiff">
+          <div class="specColTitle">Key differences</div>
+          <ul class="ruleList">
+            <li>Leans into shock cadence and shock scaling.</li>
+            <li>Uses <span data-spell="clearcasting"></span> style value to keep the shock plan affordable.</li>
+            <li>Best when your play pattern supports frequent shocks without rotation collapse.</li>
+          </ul>
+        </div>
 
-            <p class="muted specNote">
-              Both variants share the same Enhancement core. Your choice is mainly about what you need the extra points to solve:
-              shock and fire throughput, or hit, mana, and totem quality of life.
-            </p>
-          </section>
+        <div class="specRowCols">
+          <div class="specCol">
+            <div class="specColTitle">Pick it when</div>
+            <ul class="ruleList">
+              <li>Your hit situation is already solved through gear and raid buffs.</li>
+              <li>Encounters reward active global usage and you can keep shocks on pace.</li>
+              <li>You are pushing personal damage and can manage mana pressure.</li>
+            </ul>
+          </div>
+
+          <div class="specCol">
+            <div class="specColTitle">Tradeoffs</div>
+            <ul class="ruleList">
+              <li>More sensitive to mistakes in shock usage and mana management.</li>
+              <li>Less totem focused than the deeper Enhancement variants.</li>
+              <li>Not the best choice when you are frequently forced off your shock plan.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 17/44/00 Fire Totem Focused -->
+    <article class="card specRow" role="listitem">
+      <div class="specLeft">
+        <h3 class="specTitle">17/44/00 Sub Elemental</h3>
+        <div class="specDescriptor">Fire Totem Focused</div>
+
+        <div class="specChips" aria-label="Fire focused tags">
+          <span class="metaChip">Fire totem value</span>
+          <span class="metaChip">Passive damage</span>
+          <span class="metaChip">Simpler shock demands</span>
+        </div>
+
+        <div class="specPreset">
+          <div class="specPresetLabel">Calculator preset</div>
+          <div class="specPresetName"><strong>17/44/00 Sub Elemental — Fire Totem Focused</strong></div>
+        </div>
+        <div class="specActions">
+          <button
+            type="button"
+            class="btn btnPrimary specLoadBtn"
+            data-preset-key="enh_b"
+          >
+            Load this preset in calculator
+          </button>
+        </div>
+      </div>
+
+      <div class="specRight">
+        <p class="specPurpose">
+          <strong>Purpose:</strong> Shift more of your Sub Elemental value into fire totems when shock uptime is not always realistic.
+        </p>
+
+        <div class="specDiff">
+          <div class="specColTitle">Key differences</div>
+          <ul class="ruleList">
+            <li>More passive fire damage that keeps paying out even when globals get tight.</li>
+            <li>Less dependent on shock cadence to justify the Elemental points.</li>
+            <li>Often feels smoother in movement heavy fights or when mana is stressed.</li>
+          </ul>
+        </div>
+
+        <div class="specRowCols">
+          <div class="specCol">
+            <div class="specColTitle">Pick it when</div>
+            <ul class="ruleList">
+              <li>You do a lot of fire totem management and want that damage to matter more.</li>
+              <li>Fights or assignments limit shock usage.</li>
+              <li>You want a strong baseline that is less punishing when globals get disrupted.</li>
+            </ul>
+          </div>
+
+          <div class="specCol">
+            <div class="specColTitle">Tradeoffs</div>
+            <ul class="ruleList">
+              <li>Lower shock driven ceiling than Shock Focused in perfect play.</li>
+              <li>If you overcast shocks anyway, mana can still become the limiting factor.</li>
+              <li>Less specialized than the deeper Enhancement totem variants for raid buff impact.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 15/46/00 Weapon Totem Focused -->
+    <article class="card specRow" role="listitem">
+      <div class="specLeft">
+        <h3 class="specTitle">15/46/00 Sub Elemental</h3>
+        <div class="specDescriptor">Weapon Totem Focused</div>
+
+        <div class="specChips" aria-label="Weapon totem focused tags">
+          <span class="metaChip">Weapon totem power</span>
+          <span class="metaChip">Totem throughput</span>
+          <span class="metaChip">Lower shock dependence</span>
+        </div>
+
+        <div class="specPreset">
+          <div class="specPresetLabel">Calculator preset</div>
+          <div class="specPresetName"><strong>15/46/00 Sub Elemental — Weapon Totem Focused</strong></div>
+        </div>
+        <div class="specActions">
+          <button
+            type="button"
+            class="btn btnPrimary specLoadBtn"
+            data-preset-key="enh_c"
+          >
+            Load this preset in calculator
+          </button>
+        </div>
+      </div>
+
+      <div class="specRight">
+        <p class="specPurpose">
+          <strong>Purpose:</strong> Maximize the impact of your weapon totems while still keeping Elemental support for fire totems.
+        </p>
+
+        <div class="specDiff">
+          <div class="specColTitle">Key differences</div>
+          <ul class="ruleList">
+            <li>Deeper Enhancement points convert directly into weapon totem value.</li>
+            <li>Damage and raid value lean more on totems and less on perfect shock cadence.</li>
+            <li>Excellent when your assignment is buff uptime and group value, not just personal meters.</li>
+          </ul>
+        </div>
+
+        <div class="specRowCols">
+          <div class="specCol">
+            <div class="specColTitle">Pick it when</div>
+            <ul class="ruleList">
+              <li>Your party gain from weapon totems is high and uptime matters.</li>
+              <li>You want steadier output that is not tied to constant shocks.</li>
+              <li>You are optimizing raid contribution while staying in Sub Elemental.</li>
+            </ul>
+          </div>
+
+          <div class="specCol">
+            <div class="specColTitle">Tradeoffs</div>
+            <ul class="ruleList">
+              <li>Lower shock driven ceiling than the 17 point Elemental variants.</li>
+              <li>More of your value is locked into totem choices and assignments.</li>
+              <li>If your group does not benefit from weapon totems, the payoff shrinks.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 15/46/00 Sub Elemental — Balanced Totem Mix -->
+    <article class="card specRow" role="listitem">
+      <div class="specLeft">
+        <h3 class="specTitle">15/46/00 Sub Elemental</h3>
+        <div class="specDescriptor">Balanced Totem Mix</div>
+
+        <div class="specChips" aria-label="Balanced totem mix tags">
+          <span class="metaChip">Mixed totem buffs</span>
+          <span class="metaChip">Steady value</span>
+          <span class="metaChip">Lower shock dependence</span>
+        </div>
+
+        <div class="specPreset">
+          <div class="specPresetLabel">Calculator preset</div>
+          <div class="specPresetName">
+            <strong>15/46/00 Sub Elemental — Balanced Totem Mix</strong>
+          </div>
+        </div>
+
+        <div class="specActions">
+          <button
+            type="button"
+            class="btn btnPrimary specLoadBtn"
+            data-preset-key="enh_c"
+          >
+            Load this preset in calculator
+          </button>
+        </div>
+      </div>
+
+      <div class="specRight">
+        <p class="specPurpose">
+          <strong>Purpose:</strong> Spread your points across melee buff strength, weapon totems, and fire totems to get broad totem value without relying on a shock heavy playstyle.
+        </p>
+
+        <div class="specDiff">
+          <div class="specColTitle">Key differences</div>
+          <ul class="ruleList">
+            <li>Splits investment between <strong>Improved Weapon Totems</strong> and <strong>Improved Fire Totems</strong> rather than maxing one lever.</li>
+            <li>Uses <strong>Enhancing Totems</strong> to raise the value of your melee buff totems for the group.</li>
+            <li>Leans on passive totem contribution, so it holds up when globals or mana make shock cadence inconsistent.</li>
+          </ul>
+        </div>
+
+        <div class="specRowCols">
+          <div class="specCol">
+            <div class="specColTitle">Pick it when</div>
+            <ul class="ruleList">
+              <li>Your party benefits from multiple totems and you want broad value rather than a single specialty.</li>
+              <li>Your assignment changes often and you want a flexible baseline.</li>
+              <li>You want steadier contribution that is not tied to constant shocks.</li>
+            </ul>
+          </div>
+
+          <div class="specCol">
+            <div class="specColTitle">Tradeoffs</div>
+            <ul class="ruleList">
+              <li>Does not maximize weapon totem value like a <strong>2 point</strong> Improved Weapon Totems setup.</li>
+              <li>Does not maximize fire totem value like a <strong>2 point</strong> Improved Fire Totems setup.</li>
+              <li>If you can execute a shock heavy plan consistently, shock focused builds can beat this on ceiling in stationary fights.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- 03/44/14 Sub Restoration -->
+    <article class="card specRow" role="listitem">
+      <div class="specLeft">
+        <h3 class="specTitle">03/44/14 Sub Restoration</h3>
+        <div class="specDescriptor">Consistency and efficiency</div>
+
+        <div class="specChips" aria-label="Sub Restoration tags">
+          <span class="metaChip">Hit and stability</span>
+          <span class="metaChip">Totem mana</span>
+          <span class="metaChip">Totem coverage</span>
+        </div>
+
+        <div class="specPreset">
+          <div class="specPresetLabel">Calculator preset</div>
+          <div class="specPresetName"><strong>03/44/14 Sub Restoration</strong></div>
+        </div>
+        <div class="specActions">
+          <button
+            type="button"
+            class="btn btnPrimary specLoadBtn"
+            data-preset-key="enh_e"
+          >
+            Load this preset in calculator
+          </button>
+        </div>
+      </div>
+
+      <div class="specRight">
+        <p class="specPurpose">
+          <strong>Purpose:</strong> Solve hit and mana constraints while making totem work easier and more reliable across long encounters.
+        </p>
+
+        <div class="specDiff">
+          <div class="specColTitle">Key differences</div>
+          <ul class="ruleList">
+            <li>Hit from <span data-spell="natures_guidance"></span> reduces misses and frees up gearing choices.</li>
+            <li>Totem cost reduction improves long fight stability and frequent twisting.</li>
+            <li>More forgiving totem coverage when positioning is imperfect.</li>
+          </ul>
+        </div>
+
+        <div class="specRowCols">
+          <div class="specCol">
+            <div class="specColTitle">Pick it when</div>
+            <ul class="ruleList">
+              <li>You are early in gearing or hit constrained.</li>
+              <li>You are twisting often and want the most efficient totem workflow.</li>
+              <li>You value a stable baseline that performs well in most raids.</li>
+            </ul>
+          </div>
+
+          <div class="specCol">
+            <div class="specColTitle">Tradeoffs</div>
+            <ul class="ruleList">
+              <li>Lower Elemental throughput, so shocks and fire totems scale less than Sub Elemental.</li>
+              <li>Lower personal ceiling, but smoother consistency and easier execution.</li>
+              <li>Less payoff from perfect shock usage compared to shock focused Sub Elemental.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <p class="muted specNote">
+    Every preset is a starting point. Load one, then adjust points based on your job, your raid buffs, and what your logs show.
+    The important part is matching the build to the constraint you are solving.
+  </p>
+</section>
+
 
           <section class="contentCard" id="talent-module">
             <div class="eyebrow">Tool</div>
@@ -304,7 +578,113 @@
         </div>
       </footer>
     </div>
+    <script type="module">
+  const moduleSection = document.getElementById("talent-module")
 
-    <script type="module" src="/app.js"></script>
+  let pendingPresetKey = null
+  let observer = null
+
+  function scrollToTalentModule() {
+    if (!moduleSection) return
+    moduleSection.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  function findPresetSelect() {
+    const root = document.getElementById("talentLab")
+    if (!root) return null
+
+    const selects = Array.from(root.querySelectorAll("select"))
+    if (!selects.length) return null
+
+    // Prefer the select that looks like a preset dropdown
+    for (const sel of selects) {
+      const opts = Array.from(sel.options || [])
+      const blob = opts.map((o) => `${o.value} ${o.textContent}`).join(" ")
+      if (blob.includes("Sub Elemental") || blob.includes("Sub Restoration") || blob.includes("enh_")) {
+        return sel
+      }
+    }
+
+    // Fallback to first select inside the talent lab
+    return selects[0]
+  }
+
+  function tryApplyPreset(key) {
+    if (!key) return false
+
+    // Preferred path: preset dropdown exists
+    const presetSelect = findPresetSelect()
+    if (presetSelect) {
+      // Only apply if the option exists
+      const hasOption = Array.from(presetSelect.options || []).some((o) => o.value === key)
+      if (!hasOption) return false
+
+      presetSelect.value = key
+      presetSelect.dispatchEvent(new Event("change", { bubbles: true }))
+      return true
+    }
+
+    // Optional fallback path: if your UI uses buttons instead of a select
+    const root = document.getElementById("talentLab")
+    if (root) {
+      const btn = root.querySelector(`[data-preset-key="${CSS.escape(key)}"]`)
+      if (btn) {
+        btn.click()
+        return true
+      }
+    }
+
+    return false
+  }
+
+  function queuePreset(key) {
+    pendingPresetKey = key
+
+    // Persist in URL so refresh keeps selection
+    try {
+      const url = new URL(window.location.href)
+      url.searchParams.set("preset", key)
+      history.replaceState(null, "", url.toString())
+    } catch {}
+
+    // Try now, or wait until the talent UI mounts
+    if (tryApplyPreset(pendingPresetKey)) {
+      pendingPresetKey = null
+      if (observer) observer.disconnect()
+      observer = null
+      return
+    }
+
+    if (!observer) {
+      observer = new MutationObserver(() => {
+        if (pendingPresetKey && tryApplyPreset(pendingPresetKey)) {
+          pendingPresetKey = null
+          observer.disconnect()
+          observer = null
+        }
+      })
+      observer.observe(document.documentElement, { childList: true, subtree: true })
+    }
+  }
+
+  // Click handling for your spec cards
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".specLoadBtn")
+    if (!btn) return
+
+    const key = btn.getAttribute("data-preset-key")
+    if (!key) return
+
+    scrollToTalentModule()
+    queuePreset(key)
+  })
+
+  // Auto apply if page loads with ?preset=...
+  const initialKey = new URLSearchParams(window.location.search).get("preset")
+  if (initialKey) {
+    queuePreset(initialKey)
+  }
+</script>
+
   </body>
 </html>

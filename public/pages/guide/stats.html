@@ -1,0 +1,1525 @@
+<!-- /pages/guide/stats.html -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <title>
+   Stats Explained | Enhancement Shaman Guide
+  </title>
+  <meta content="A deep, decision focused TBC Enhancement Shaman stats guide. Learn what each stat actually does, how EP works, why caps change value, and when you should sim instead of guessing." name="description"/>
+  <meta content="light dark" name="color-scheme"/>
+  <meta content="#072D42" name="theme-color"/>
+  <link href="/manifest.webmanifest" rel="manifest"/>
+  <link href="/assets/icons/ui/favicon.svg" rel="icon" type="image/svg+xml"/>
+  <link href="/assets/icons/ui/apple-touch-icon.png" rel="apple-touch-icon"/>
+  <!-- Core tokens and resets -->
+  <link href="/src/css/tokens.css" rel="stylesheet"/>
+  <link href="/src/css/typography.css" rel="stylesheet"/>
+  <link href="/src/css/utilities.css" rel="stylesheet"/>
+  <link href="/src/css/base.css" rel="stylesheet"/>
+  <link href="/src/css/layout.css" rel="stylesheet"/>
+  <link href="/src/css/components.css" rel="stylesheet"/>
+  <!-- App bootstrap -->
+  <script src="/app.js" type="module">
+  </script>
+ </head>
+ <body class="pageStats">
+  <a class="skipLink" href="#appMain">
+   Skip to content
+  </a>
+  <div class="appFrame">
+   <header class="appHeader" id="appHeader" role="banner">
+    <div class="headerInner">
+     <a aria-label="Dora's Enhancement Shaman Guide home" class="brand" href="/">
+      <span aria-hidden="true" class="brandMark">
+       ⚡
+      </span>
+      <span class="brandText">
+       <span class="brandTitle">
+        Dora's Enhancement Shaman Guide
+       </span>
+       <span class="brandTagline">
+        <span class="brandBadge">
+         TBC
+        </span>
+        The Burning Crusade
+       </span>
+      </span>
+     </a>
+     <nav aria-label="Primary" class="headerNav">
+      <a class="navLink" href="/pages/guide/index.html">
+       Guide
+      </a>
+      <a class="navLink" href="/pages/builds/index.html">
+       Builds
+      </a>
+      <a class="navLink" href="/pages/encounters/index.html">
+       Encounters
+      </a>
+      <a class="navLink" href="/pages/tools/index.html">
+       Tools
+      </a>
+     </nav>
+     <div class="headerActions">
+      <label aria-label="Search the guide" class="searchShell">
+       <span aria-hidden="true" class="searchIcon">
+        &telrec;
+       </span>
+       <input autocomplete="off" class="searchInput" id="globalSearch" inputmode="search" placeholder="Search spells, topics, and decisions" type="search"/>
+      </label>
+      <button aria-label="Toggle theme" aria-pressed="false" class="btn btnGhost" id="themeToggle" type="button">
+       Theme
+      </button>
+     </div>
+    </div>
+   </header>
+   <div class="appBody">
+    <!-- Sidebar fallback. boot.js can replace it with /components/sidebar.html -->
+    <aside aria-label="Section navigation" class="appSidebar" id="appSidebar">
+     <div class="sidebarBlock">
+      <div class="sidebarBlockTitle">
+       Core mechanics
+      </div>
+      <a class="sidebarLink" href="/pages/guide/sync_stagger.html">
+       Sync and Stagger
+      </a>
+      <a class="sidebarLink" href="/pages/guide/weaving_overview.html">
+       Weaving and Twisting Overview
+      </a>
+     </div>
+     <div class="sidebarBlock">
+      <div class="sidebarBlockTitle">
+       Build planning
+      </div>
+      <a class="sidebarLink" href="/pages/guide/talents.html">
+       Talents
+      </a>
+     </div>
+     <div class="sidebarBlock">
+      <div class="sidebarBlockTitle">
+       Gearing
+      </div>
+      <a class="sidebarLink" href="/pages/guide/stats.html">
+       Stats Explained
+      </a>
+      <a class="sidebarLink" href="/pages/guide/gear_and_stats.html">
+       Gear Decisions
+      </a>
+     </div>
+     <div class="sidebarBlock">
+      <div class="sidebarBlockTitle">
+       Weaving and twisting
+      </div>
+      <a class="sidebarLink" href="/pages/guide/air_totem_weaving.html">
+       Air totem twisting
+      </a>
+      <a class="sidebarLink" href="/pages/guide/fire_totem_weaving.html">
+       Fire totem twisting
+      </a>
+      <a class="sidebarLink" href="/pages/guide/shock_weaving.html">
+       Flame shock weaving
+      </a>
+     </div>
+    </aside>
+    <main class="appMain" id="appMain" tabindex="-1">
+    <div data-page-css="/src/css/pages/stats.css"></div>
+        <section class="devBanner" role="note" aria-label="Development notice">
+           <div class="callout calloutRule" role="note">
+            <div class="calloutTitle">In active development</div>
+            <div class="calloutBody">
+                This page is in active development. Lots of changes including tools are coming. Do not use this page as the source of truth at this time.
+            </div>
+          </div>
+          </section>
+
+    
+     <section class="pageHero">
+      <div class="pageKicker">
+       Mental models, not myths
+      </div>
+      <h1 class="pageTitle">
+       Stats Explained
+      </h1>
+      <p class="pageLead">
+       This page teaches you how Enhancement stats actually work in TBC, so you can stop guessing.
+    You will learn what each stat changes, why EP is context dependent, how caps change value,
+    and exactly when you should sim instead of relying on rules of thumb.
+      </p>
+      <div class="pageMetaRow">
+       <div class="metaChip">
+        Icons and intuition
+       </div>
+       <div class="metaChip">
+        EP and caps made practical
+       </div>
+       <div class="metaChip">
+        Room for labs to train decisions
+       </div>
+      </div>
+     </section>
+     <section class="contentCard" id="start_here">
+      <div class="eyebrow">
+       Start here
+      </div>
+      <h2>
+       How to use this stats guide
+      </h2>
+      <p>
+       Read this page once to build your mental model, then use it as a reference when you are comparing upgrades.
+    The goal is not to memorize a single stat priority line.
+    The goal is to understand what changes when you add or remove a stat, and when that change becomes small.
+      </p>
+      <div class="stepList" role="list">
+       <div class="step" role="listitem">
+        <div class="stepTitle">
+         Learn what each stat controls
+        </div>
+        <div class="stepText">
+         Start with the legend and the stat cards. You should be able to describe each stat in one sentence.
+        </div>
+       </div>
+       <div class="step" role="listitem">
+        <div class="stepTitle">
+         Understand EP and why it moves
+        </div>
+        <div class="stepText">
+         EP is a tool to compare tradeoffs. It changes with your weapons, buffs, caps, and rotation choices.
+        </div>
+       </div>
+       <div class="step" role="listitem">
+        <div class="stepTitle">
+         When the decision is close, sim
+        </div>
+        <div class="stepText">
+         If you cannot confidently explain the trade, you should sim the exact items in your current context.
+        </div>
+       </div>
+      </div>
+      <div class="calloutRule">
+       <strong>
+        Rule:
+       </strong>
+       If the upgrade is not obvious, sim. If you are still unsure after simming, you likely missed an input.
+      </div>
+      <p class="muted" style="padding-top:15px;">
+       This page is intentionally thorough. It is written to make you consistent, not to make you feel clever.
+      </p>
+     </section>
+     <section class="contentCard" id="stat_legend">
+  <div class="eyebrow">Icons</div>
+  <h2>Stat Legend</h2>
+  <p>
+    You will see these same icons everywhere in the guide and in the tools.
+    Learn them once, and you can read gear in seconds.
+    If you are new, start here before you look at any EP numbers.
+  </p>
+
+  <div class="statLegend" role="list">
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">STR</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/strength.png" />
+      </div>
+      <div>
+        <div class="statLabel">Strength</div>
+        <div class="statHint">
+          Turns into Attack Power. More Strength means bigger melee hits and stronger physical procs.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">AP</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/attack_power.png" />
+      </div>
+      <div>
+        <div class="statLabel">Attack Power</div>
+        <div class="statHint">
+          Adds raw melee damage to swings and abilities. A reliable damage stat with no cap cliff.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">HIT</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/hit.png" />
+      </div>
+      <div>
+        <div class="statLabel">Hit Rating</div>
+        <div class="statHint">
+          Makes your attacks miss less. Huge early because misses waste damage and waste procs.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">EXP</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/expertise.png" />
+      </div>
+      <div>
+        <div class="statLabel">Expertise</div>
+        <div class="statHint">
+          Makes the boss dodge you less from behind. Very strong until dodges mostly disappear.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">CRIT</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/crit.png" />
+      </div>
+      <div>
+        <div class="statLabel">Crit Rating</div>
+        <div class="statHint">
+          Gives a chance for big double damage hits. Also keeps Flurry running more often.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">AGI</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/agility.png" />
+      </div>
+      <div>
+        <div class="statLabel">Agility</div>
+        <div class="statHint">
+          Adds crit plus a little armor. Often better in raids because Kings increases it.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">HST</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/haste.png" />
+      </div>
+      <div>
+        <div class="statLabel">Haste Rating</div>
+        <div class="statHint">
+          Makes you swing faster. More swings means more Windfury chances and more procs.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">ARP</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/armor_pen.png" />
+      </div>
+      <div>
+        <div class="statLabel">Armor Pen</div>
+        <div class="statHint">
+          Lets physical damage ignore some armor. Usually matters more later when your damage is higher.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">SP</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/spell_power.png" />
+      </div>
+      <div>
+        <div class="statLabel">Spell Power</div>
+        <div class="statHint">
+          Boosts shocks and some proc damage. Not your main scaling, but it still adds damage.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">SH</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/spell_hit.png" />
+      </div>
+      <div>
+        <div class="statLabel">Spell Hit</div>
+        <div class="statHint">
+          Makes shocks and other spells miss less. Mostly helps consistency when you use spells often.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">INT</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/intellect.png" />
+      </div>
+      <div>
+        <div class="statLabel">Intellect</div>
+        <div class="statHint">
+          Gives more mana and a small spell crit boost. Helps you keep casting without going out of mana.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">MP5</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/mp5.png" />
+      </div>
+      <div>
+        <div class="statLabel">Mana per 5</div>
+        <div class="statHint">
+          Restores mana every 5 seconds, even while casting. Helps long fights and learning rotations.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">STA</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/stamina.png" />
+      </div>
+      <div>
+        <div class="statLabel">Stamina</div>
+        <div class="statHint">
+          More health. Lets you survive mistakes and raid damage so you can keep doing damage.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">DPS</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/weapon_dps.png" />
+      </div>
+      <div>
+        <div class="statLabel">Weapon DPS</div>
+        <div class="statHint">
+          Your biggest single upgrade lever. Higher weapon DPS increases almost everything you do.
+        </div>
+      </div>
+    </div>
+
+    <div class="statChip" role="listitem">
+      <div aria-hidden="true" class="statIcon">
+        <span class="statIconGlyph">SPD</span>
+        <img alt="" loading="lazy" src="/assets/icons/stats/weapon_speed.png" />
+      </div>
+      <div>
+        <div class="statLabel">Weapon speed</div>
+        <div class="statHint">
+          Changes how hard each swing hits and how Windfury behaves. Slow weapons often win for a reason.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contentCard" id="stat_cards">
+  <div class="eyebrow">
+    Reference
+  </div>
+  <h2>
+    Stat Breakdown
+  </h2>
+  <p>
+    Each card gives you a usable mental model for what the stat is really buying, plus the common traps that create
+    bad upgrade decisions. If you already feel confident, skim the Common trap line on each card and jump to the labs
+    when you are ready to practice.
+  </p>
+
+  <div class="statGrid" role="list">
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon">
+          <span class="statIconGlyph">
+            DPS
+          </span>
+          <img alt="" loading="lazy" src="/assets/icons/stats/weapon_dps.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">
+            Weapon DPS and speed
+          </p>
+          <div class="statCardMeta">
+            Your biggest lever. Always sim close weapon swaps.
+          </div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>
+            What it does:
+          </strong>
+          Weapon DPS raises your baseline damage, which everything else multiplies. Weapon speed influences swing timing,
+          proc behavior, and how your rotation “fits” between swings.
+        </li>
+        <li>
+          <strong>
+            Why you care:
+          </strong>
+          A small DPS increase on a weapon often beats a large pile of stats on other slots because the whole kit scales
+          off your weapons.
+        </li>
+        <li>
+          <strong>
+            Common trap:
+          </strong>
+          Equipping a faster weapon because the secondary stats look better, then losing Windfury value and messing up
+          timing and consistency. When weapons are close, sim it instead of guessing.
+        </li>
+      </ul>
+    </div>
+
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon">
+          <span class="statIconGlyph">
+            HIT
+          </span>
+          <img alt="" loading="lazy" src="/assets/icons/stats/hit.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">
+            Hit Rating
+          </p>
+          <div class="statCardMeta">
+            Prevents misses. Strong when you are losing key swings.
+          </div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>
+            What it does:
+          </strong>
+          Reduces the chance your attacks miss. A missed swing is not just lost damage, it is also a lost chance to proc
+          effects and a lost chance to crit.
+        </li>
+        <li>
+          Quick number: At level 70, <strong>15.8 Hit Rating</strong> is about <strong>1 percent hit</strong>. 
+        </li>
+        <li>
+          <strong>
+            When it is strongest:
+          </strong>
+          When you are missing important attacks. Early on, each point of hit often creates a noticeable stability gain
+          because fewer swings are completely wasted.
+        </li>
+        <li>
+          <strong>
+            When it collapses:
+          </strong>
+          When you are already covering the thing you are trying to protect. Past that point, hit stops preventing
+          failure and becomes just another small damage stat.
+        </li>
+        <li>
+          <strong>
+            Common trap:
+          </strong>
+          Downgrading a major weapon or Strength upgrade just to “chase a cap number” that does not improve your real
+          results in that gear set.
+        </li>
+      </ul>
+    </div>
+
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon">
+          <span class="statIconGlyph">
+            EXP
+          </span>
+          <img alt="" loading="lazy" src="/assets/icons/stats/expertise.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">
+            Expertise
+          </p>
+          <div class="statCardMeta">
+            Prevents dodges. Extremely valuable until covered.
+          </div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>
+            What it does:
+          </strong>
+          Reduces the chance your attacks are dodged when attacking from behind. Fewer dodges means more landed swings,
+          more procs, and more consistent output.
+        </li>
+        <li>
+          Quick number: About <strong>3.94 Expertise Rating</strong> gives <strong>1 Expertise</strong>, and each point
+          reduces dodge and parry chance by <strong>0.25 percent</strong>. 
+        </li>
+        <li>
+          <strong>
+            Why it is strong:
+          </strong>
+          Turning dodges into hits increases damage and smooths your proc and crit flow. It often feels like your whole
+          rotation gets more reliable.
+        </li>
+        <li>
+          <strong>
+            Common trap:
+          </strong>
+          Treating Expertise like a permanent top stat even after you have effectively removed most boss dodge value for
+          your situation. Once it stops preventing dodges, its value drops sharply.
+        </li>
+      </ul>
+    </div>
+
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon">
+          <span class="statIconGlyph">
+            STR
+          </span>
+          <img alt="" loading="lazy" src="/assets/icons/stats/strength.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">
+            Strength and Attack Power
+          </p>
+          <div class="statCardMeta">
+            Core physical scaling. Usually your safest damage stat.
+          </div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>
+            What it does:
+          </strong>
+          Strength converts into Attack Power and scales your physical damage. It is simple, consistent value that keeps
+          working in every gear set.
+        </li>
+        <li>
+          <strong>
+            Why it stays stable:
+          </strong>
+          Unlike Hit or Expertise, it does not “turn off” when you pass a threshold. It keeps adding damage even when
+          other stats start to lose efficiency.
+        </li>
+        <li>
+          <strong>
+            Common trap:
+          </strong>
+          Ignoring raid context. Buffs like Kings increase Strength and Agility, which can shift the best choice between
+          items that look close.
+        </li>
+      </ul>
+    </div>
+
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon">
+          <span class="statIconGlyph">
+            HST
+          </span>
+          <img alt="" loading="lazy" src="/assets/icons/stats/haste.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">
+            Haste Rating
+          </p>
+          <div class="statCardMeta">
+            More swings, more procs, more scaling when your swings land.
+          </div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>
+            What it does:
+          </strong>
+          Increases swing frequency. More swings means more white damage and more chances for on hit effects to occur.
+        </li>
+        <li>
+          Quick number: At level 70, <strong>15.8 Haste Rating</strong> is about <strong>1 percent haste</strong>.
+        </li>
+        <li>
+          <strong>
+            When it is stronger:
+          </strong>
+          When your swings are consistently landing. Haste multiplies whatever you are already doing well.
+        </li>
+        <li>
+          <strong>
+            Common trap:
+          </strong>
+          Stacking haste while missing or getting dodged, then blaming haste. If swings do not land, haste just creates
+          more failed swings.
+        </li>
+      </ul>
+    </div>
+
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon">
+          <span class="statIconGlyph">
+            CRIT
+          </span>
+          <img alt="" loading="lazy" src="/assets/icons/stats/crit.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">
+            Crit Rating and Agility
+          </p>
+          <div class="statCardMeta">
+            Supports Flurry uptime and burst windows.
+          </div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>
+            What it does:
+          </strong>
+          Increases crit chance, improving burst and reinforcing effects that care about crits, including keeping Flurry
+          rolling.
+        </li>
+        <li>
+          Quick number: At level 70, <strong>22.1 Crit Rating</strong> is about <strong>1 percent crit</strong>.
+        </li>
+        <li>
+          <strong>
+            Agility note:
+          </strong>
+          Agility also provides crit and scales with Kings, so it can gain extra value in buffed raid settings.
+        </li>
+        <li>
+          <strong>
+            Common trap:
+          </strong>
+          Comparing crit numbers without considering how many swings are actually connecting. Misses and dodges reduce
+          the number of chances you even get to roll a crit.
+        </li>
+      </ul>
+    </div>
+
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon">
+          <span class="statIconGlyph">
+            ARP
+          </span>
+          <img alt="" loading="lazy" src="/assets/icons/stats/armor_pen.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">
+            Armor Penetration
+          </p>
+          <div class="statCardMeta">
+            Physical gain that shows up later. Usually not a gem priority early.
+          </div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>
+            What it does:
+          </strong>
+          Lets your physical attacks ignore some armor, increasing the portion of your damage that gets through.
+        </li>
+        <li>
+          <strong>
+            When it shines:
+          </strong>
+          Later gear sets, when your baseline weapon damage and Attack Power are already high enough that reducing armor
+          meaningfully amplifies that damage.
+        </li>
+        <li>
+          <strong>
+            Common trap:
+          </strong>
+          Chasing Armor Pen early at the cost of stats that prevent failures like Hit or Expertise, or giving up major
+          Strength and weapon upgrades.
+        </li>
+      </ul>
+    </div>
+
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon">
+          <span class="statIconGlyph">
+            SP
+          </span>
+          <img alt="" loading="lazy" src="/assets/icons/stats/spell_power.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">
+            Spell stats and mana stats
+          </p>
+          <div class="statCardMeta">
+            Not primary, but not irrelevant. Often decides comfort and consistency.
+          </div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>
+            Spell Power:
+          </strong>
+          Improves shocks and some proc driven magic damage. In most PvE setups it is usually secondary to weapon and
+          physical scaling, but it still contributes.
+        </li>
+        <li>
+          <strong>
+            Intellect and Mana per 5:
+          </strong>
+          Increase your ability to sustain an aggressive rotation without having to stop and recover. If you run out of
+          mana, your real DPS falls off a cliff no matter how strong your gear looks on paper.
+        </li>
+        <li>
+          <strong>
+            Stamina:
+          </strong>
+          Keeps you alive through raid mechanics and mistakes. Dead players do zero DPS, and surviving lets you keep
+          attacking instead of playing scared.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+     <section class="contentCard" id="ep_explained">
+      
+       <div class="eyebrow">Stat weights</div>
+<h2>EP and stat weights</h2>
+
+<p class="lead">
+  EP helps you compare two items faster by converting different stats into one number.
+  It is useful for quick decisions, but the numbers are only true for your exact setup.
+</p>
+
+<div class="note">
+  <strong>EP is personal:</strong> it changes with your gear, talents, buffs, debuffs, and rotation.
+  <br />
+  <strong>EP is not a rule:</strong> do not treat it like a permanent stat priority list.
+</div>
+
+<div class="epExplainGrid">
+
+  <div class="epSplit">
+    <div class="epBlock">
+      <h3>The one sentence definition</h3>
+      <p>
+        Pick a baseline (usually <strong>1 Attack Power</strong>), then write every other stat as
+        “how much Attack Power it is worth” for your current character and raid setup.
+      </p>
+    </div>
+
+    <div class="epBlock">
+      <h3>A simple example</h3>
+      <p>
+        If <strong>1 Strength = 2.20 EP</strong>, then in that setup <strong>1 Strength</strong> gives about the same
+        damage value as <strong>2.20 Attack Power</strong>.
+        If your hit, expertise, buffs, or weapons change, that number can move.
+      </p>
+    </div>
+  </div>
+
+  <div class="epBlock">
+    <h3>How to use EP without getting baited</h3>
+    <ul class="epSteps">
+      <li><strong>Use EP to triage.</strong> Filter obvious upgrades and obvious downgrades quickly.</li>
+      <li><strong>Sim close calls.</strong> If two items look close, run a sim with your exact gear and buffs.</li>
+      <li>
+        <strong>Respect caps.</strong> Hit and Expertise can drop in value fast once you are near or past the cap that
+        matters for that boss.
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+
+
+<h3>Example EP snapshots</h3>
+<p class="muted">
+  These are not a shopping list. They are here to show that weights change as your character and raid context changes.
+</p>
+
+<div class="epTableWrap" role="region" aria-label="Example EP snapshots table">
+  <table class="epTable">
+    <thead>
+      <tr>
+        <th>Context</th>
+        <th>Strength</th>
+        <th>Hit</th>
+        <th>Expertise</th>
+        <th>Haste</th>
+        <th>Crit</th>
+        <th>Agility</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pre raid</td>
+        <td>2.20</td>
+        <td>1.572</td>
+        <td>2.706</td>
+        <td>1.847</td>
+        <td>1.379</td>
+        <td>1.339</td>
+      </tr>
+      <tr>
+        <td>Tier 4</td>
+        <td>2.20</td>
+        <td>1.655</td>
+        <td>2.847</td>
+        <td>1.873</td>
+        <td>1.445</td>
+        <td>1.403</td>
+      </tr>
+      <tr>
+        <td>Tier 5</td>
+        <td>2.20</td>
+        <td>1.665</td>
+        <td>2.871</td>
+        <td>1.944</td>
+        <td>1.357</td>
+        <td>1.317</td>
+      </tr>
+      <tr>
+        <td>Tier 6</td>
+        <td>2.20</td>
+        <td>1.772</td>
+        <td>3.105</td>
+        <td>2.022</td>
+        <td>1.398</td>
+        <td>1.357</td>
+      </tr>
+      <tr>
+        <td>Sunwell</td>
+        <td>2.20</td>
+        <td>1.855</td>
+        <td>3.228</td>
+        <td>2.160</td>
+        <td>1.591</td>
+        <td>1.545</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="calloutRule">
+  <strong>Key idea:</strong>
+  Near a cap, a tiny stat change can flip an upgrade. That is why simming matters most when the trade is close.
+</div>
+
+<details class="epDetails" style="padding-top: 15px;">
+  <summary>Show the full EP breakdown (advanced)</summary>
+
+  <p class="muted">
+    Same snapshots, just including the extra weights that matter for real gear comparisons.
+  </p>
+
+  <div class="epTableWrap" role="region" aria-label="Full EP breakdown table">
+    <table class="epTable">
+      <thead>
+        <tr>
+          <th>Context</th>
+          <th>Str</th>
+          <th>Agi</th>
+          <th>Hit</th>
+          <th>Exp</th>
+          <th>Haste</th>
+          <th>Crit</th>
+          <th>Armor Pen</th>
+          <th>Spell Power</th>
+          <th>Spell Hit</th>
+          <th>Spell Crit</th>
+          <th>Int</th>
+          <th>Spirit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pre raid</td>
+          <td>2.20</td>
+          <td>1.339</td>
+          <td>1.572</td>
+          <td>2.706</td>
+          <td>1.847</td>
+          <td>1.379</td>
+          <td>0.257</td>
+          <td>0.455</td>
+          <td>0.805</td>
+          <td>0.191</td>
+          <td>0.078</td>
+          <td>0.050</td>
+        </tr>
+        <tr>
+          <td>Tier 4</td>
+          <td>2.20</td>
+          <td>1.403</td>
+          <td>1.655</td>
+          <td>2.847</td>
+          <td>1.873</td>
+          <td>1.445</td>
+          <td>0.270</td>
+          <td>0.461</td>
+          <td>0.853</td>
+          <td>0.210</td>
+          <td>0.085</td>
+          <td>0.051</td>
+        </tr>
+        <tr>
+          <td>Tier 5</td>
+          <td>2.20</td>
+          <td>1.317</td>
+          <td>1.665</td>
+          <td>2.871</td>
+          <td>1.944</td>
+          <td>1.357</td>
+          <td>0.283</td>
+          <td>0.433</td>
+          <td>0.802</td>
+          <td>0.191</td>
+          <td>0.078</td>
+          <td>0.048</td>
+        </tr>
+        <tr>
+            <td>Tier 6</td>
+            <td>2.20</td>
+            <td>1.357</td>
+            <td>1.772</td>
+            <td>3.105</td>
+            <td>2.022</td>
+            <td>1.398</td>
+            <td>0.302</td>
+            <td>0.427</td>
+            <td>0.814</td>
+            <td>0.193</td>
+            <td>0.079</td>
+            <td>0.047</td>
+            </tr>
+        <tr>
+          <td>Sunwell</td>
+          <td>2.20</td>
+          <td>1.545</td>
+          <td>1.855</td>
+          <td>3.228</td>
+          <td>2.160</td>
+          <td>1.591</td>
+          <td>0.374</td>
+          <td>0.373</td>
+          <td>0.738</td>
+          <td>0.175</td>
+          <td>0.072</td>
+          <td>0.041</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+     </section>
+     <section class="contentCard capsSection" id="caps_and_tables">
+  <div class="eyebrow">Breakpoints</div>
+  <h2>Caps, attack tables, and why value collapses</h2>
+
+  <p class="lead">
+    A cap is not a goal by itself. A cap is the point where extra rating stops removing real failures in your combat log.
+    When the failure is already rare, the stat stops buying new successful actions, so its EP drops hard.
+  </p>
+
+  <div class="capsGrid">
+    <!-- Left top: teaching model -->
+    <div class="capsPanel capsLearn">
+      <div class="capsHeader">
+        <h3 class="capsTitle">The model that explains everything</h3>
+        <div class="capsTag">Use this for every upgrade</div>
+      </div>
+
+      <ol class="capsSteps">
+        <li>
+          <strong>Name the failure.</strong>
+          Specials missing. White swings missing. Shocks missing. Mana collapse. Timing issues.
+        </li>
+        <li>
+          <strong>Pick the stat that removes it.</strong>
+          Hit removes melee misses. Spell hit removes spell misses. Throughput stats multiply your output once actions are landing reliably.
+        </li>
+        <li>
+          <strong>Stop paying once the failure is mostly gone.</strong>
+          Near a cap there are fewer failures left to convert, so the same rating produces fewer real gains.
+        </li>
+      </ol>
+
+      <div class="capsCallout">
+        <h4 class="capsCalloutTitle">Why EP collapses near caps</h4>
+        <p>
+          EP measures how many new successful actions a stat creates in your current setup. Early on, hit converts many misses into hits.
+          Near a cap, there are not many misses left, so extra hit creates fewer new landed actions over the same time window.
+          That is the value collapse.
+        </p>
+      </div>
+
+      <div class="capsRule">
+        <strong>Enhancement rule:</strong>
+        Make your core abilities land reliably first. Then build throughput with the best stat mix for your gear, buffs, and encounter.
+      </div>
+    </div>
+
+    <!-- Right: priorities and breakpoints -->
+    <div class="capsPanel capsQuick">
+      <h3 class="capsTitle">Enhancement priorities vs a raid boss</h3>
+
+      <div class="capsStack">
+        <article class="capCard">
+          <div class="capCardHead">
+            <div class="capNum">1</div>
+            <div class="capHeadText">
+              <h4 class="capCardTitle">Special hit first</h4>
+              <p class="capCardSub">
+                Your first job is to stop missing key abilities. Missed Stormstrike means lost damage and fewer chances to trigger your core engines.
+              </p>
+            </div>
+          </div>
+
+          <ul class="capBullets">
+            <li>
+              <strong>What you are fixing:</strong> special attack misses against a level 73 boss
+            </li>
+            <li>
+              <strong>Baseline:</strong> specials miss chance is 9 percent vs a boss
+            </li>
+            <li>
+              <strong>Enhancement default:</strong> Nature’s Guidance gives 3 percent hit, so the common target is about 6 percent hit from gear
+            </li>
+            <li>
+              <strong>Reality check:</strong> raid and party effects can change the exact number, so validate using your character sheet and logs
+            </li>
+          </ul>
+        </article>
+
+        <article class="capCard">
+          <div class="capCardHead">
+            <div class="capNum">2</div>
+            <div class="capHeadText">
+              <h4 class="capCardTitle">White swing consistency still matters</h4>
+              <p class="capCardSub">
+                Dual wield white miss stays high. Even after specials are stable, hit can still add value by increasing landed swings, Windfury chances, and Flurry stability.
+              </p>
+            </div>
+          </div>
+
+          <ul class="capBullets">
+            <li>
+              <strong>Key idea:</strong> you are not chasing a white hit cap in normal TBC Enhancement gearing
+            </li>
+            <li>
+              <strong>How to use this:</strong> after special hit is stable, treat hit like any other stat and let your sim decide if it beats haste, crit, and strength in your current setup
+            </li>
+          </ul>
+        </article>
+
+        <article class="capCard">
+          <div class="capCardHead">
+            <div class="capNum">3</div>
+            <div class="capHeadText">
+              <h4 class="capCardTitle">Spell hit is situational</h4>
+              <p class="capCardSub">
+                Shocks use spell hit. The boss spell miss pool is large, so Enhancement typically does not chase a full spell hit cap.
+                Spell hit matters when shock misses are a real problem and you are actually playing a shock heavy style.
+              </p>
+            </div>
+          </div>
+
+          <ul class="capBullets">
+            <li>
+              <strong>Default:</strong> do not chase full spell hit as a baseline goal
+            </li>
+            <li>
+              <strong>When it matters:</strong> if shock misses are frequent in logs and you have the mana and globals to support shocks without breaking the rest of your kit
+            </li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="capsCallout capsConversions">
+        <h4 class="capsCalloutTitle">Quick conversions at level 70</h4>
+        <ul class="capFacts">
+          <li><strong>15.77</strong> melee hit rating ≈ <strong>1 percent</strong> melee hit</li>
+          <li><strong>12.62</strong> spell hit rating ≈ <strong>1 percent</strong> spell hit</li>
+          <li><strong>22.08</strong> crit rating ≈ <strong>1 percent</strong> crit</li>
+          <li><strong>15.77</strong> haste rating ≈ <strong>1 percent</strong> haste</li>
+          <li><strong>3.94</strong> expertise rating ≈ <strong>1 expertise</strong> (bonus if present, not a target)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Left bottom: fills the gap under the left panel on wide screens -->
+    <div class="capsAfter">
+      <h3>Attack tables, in plain English</h3>
+      <p>
+        A melee swing rolls against an outcome table. Miss and dodge happen before crit is even considered.
+        If miss is high, many swings fail before they ever get a chance to be a crit. Hit does not increase crit chance.
+        Hit increases the number of swings that land, which increases the number of chances you have to roll crits, and that stabilizes Flurry and proc flow over time.
+      </p>
+
+      <div class="capsCallout capsExample">
+        <h4 class="capsCalloutTitle">What “value collapse” looks like</h4>
+        <p>
+          When you are missing often, 1 percent hit converts a large number of misses into hits. Once specials rarely miss, the same 1 percent hit converts very few misses.
+          That is why hit EP can drop sharply right after you reach reliable special hit.
+        </p>
+      </div>
+
+      <h3>Expertise, the Enhancement reality</h3>
+      <p>
+        Expertise reduces dodge. That is mechanically good, but TBC has very little Enhancement friendly expertise itemization, and it competes with stronger stat packages.
+        Treat expertise as a bonus when it appears. Do not plan your gearing around an expertise cap.
+      </p>
+
+      <div class="note capsBottomLine">
+        <strong>Bottom line:</strong> the breakpoint you plan around is special hit reliability. After that, use sims to choose the best throughput mix for your gear and raid context.
+      </div>
+    </div>
+  </div>
+</section>
+
+    
+     <section class="contentCard" id="buffs_and_stacking">
+  <div class="eyebrow">Buffs</div>
+  <h2>Buff stacking and raid buffs</h2>
+
+  <p>
+    Your stats do not exist in a vacuum. In raids, your character is constantly boosted by buffs, debuffs, and consumables.
+    Some effects stack, some do not, and a few replace each other.
+    This section gives you a simple mental model so you do not double count power or miss easy upgrades.
+  </p>
+
+  <h3>The stacking rules you actually need</h3>
+  <ul>
+    <li>
+      <strong>Same category usually does not stack.</strong>
+      If two effects give the same type of bonus, you normally only get the strongest one.
+      Example: two different Attack Power blessings do not add together.
+    </li>
+    <li>
+      <strong>Different categories usually do stack.</strong>
+      A stat buff plus a totem plus a consumable usually all apply together.
+      Example: Strength from Kings plus Strength from a scroll plus Strength from food do not all behave the same.
+    </li>
+    <li>
+      <strong>Percent buffs multiply your base stats.</strong>
+      Effects like Kings scale stats you already have.
+      This is why Strength and Agility get better in real raids than they do in a vacuum.
+    </li>
+    <li>
+      <strong>Raid debuffs on the boss are part of your damage.</strong>
+      Armor reduction on the target increases your physical damage even though it is not on your character sheet.
+    </li>
+  </ul>
+
+  <h3>Buff buckets for Enhancement Shaman in TBC</h3>
+  <p class="muted">
+    Think in buckets. One buff from each bucket can apply at the same time.
+    If you have two from the same bucket, the stronger one wins.
+  </p>
+
+  <div class="statGrid">
+    <div class="statCard">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon"><span class="statIconGlyph">STR</span></div>
+        <div>
+          <h3 class="statCardTitle">Stats and percent buffs</h3>
+          <div class="statCardMeta">Strength, Agility, Stamina, Intellect, and percent increases</div>
+        </div>
+      </div>
+      <ul class="miniList">
+        <li><strong>Blessing of Kings</strong> increases your base stats by a percent. It stacks with most other things.</li>
+        <li><strong>Mark of the Wild</strong> gives base stats. It stacks with Kings.</li>
+        <li><strong>Strength and Agility sources</strong> matter more in raids because Kings scales them.</li>
+      </ul>
+    </div>
+
+    <div class="statCard">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon"><span class="statIconGlyph">AP</span></div>
+        <div>
+          <h3 class="statCardTitle">Attack Power and melee buffs</h3>
+          <div class="statCardMeta">Flat Attack Power, melee only boosts, and shout style effects</div>
+        </div>
+      </div>
+      <ul class="miniList">
+        <li><strong>Battle Shout</strong> is a major AP source and is usually present in raids.</li>
+        <li><strong>Blessing of Might</strong> is another AP source. If you have multiple, you get the strongest version.</li>
+        <li><strong>Totems and buffs</strong> often stack with AP buffs because they are different buckets.</li>
+      </ul>
+    </div>
+
+    <div class="statCard">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon"><span class="statIconGlyph">HIT</span></div>
+        <div>
+          <h3 class="statCardTitle">Hit, Expertise, and caps</h3>
+          <div class="statCardMeta">Why some stats stop being valuable after a point</div>
+        </div>
+      </div>
+      <ul class="miniList">
+        <li><strong>Hit and Expertise do not stack like buffs.</strong> They push you toward caps.</li>
+        <li><strong>Once you are capped</strong>, extra rating is much less valuable and can become wasted.</li>
+        <li><strong>Your caps change</strong> based on talents, raid composition, and whether you care about white swings.</li>
+      </ul>
+    </div>
+
+    <div class="statCard">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon"><span class="statIconGlyph">ARP</span></div>
+        <div>
+          <h3 class="statCardTitle">Target debuffs and armor reduction</h3>
+          <div class="statCardMeta">Effects on the boss that increase your physical damage</div>
+        </div>
+      </div>
+      <ul class="miniList">
+        <li><strong>Sunder Armor and Expose Armor</strong> are the same bucket. You usually get one, not both.</li>
+        <li><strong>Faerie Fire</strong> stacks with armor reduction effects and is very common.</li>
+        <li><strong>These debuffs raise the value</strong> of your physical stats because more of your damage is going through.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Common beginner mistakes</h3>
+  <ul>
+    <li><strong>Double counting buffs.</strong> If two buffs do the same job, you do not get both.</li>
+    <li><strong>Ignoring percent scaling.</strong> Stats like Strength and Agility get better when Kings is present.</li>
+    <li><strong>Comparing gear without context.</strong> In a full raid, some stats become stronger, and some drop after caps.</li>
+  </ul>
+
+  <div class="calloutRule">
+    <strong>Rule:</strong> If you are unsure whether two buffs stack, assume they do not if they look like the same effect,
+    and assume they do if they come from different sources and affect different parts of your character.
+  </div>
+</section>
+
+
+     <section class="contentCard" id="sim_and_tools">
+      <div class="eyebrow">
+       Confirm
+      </div>
+      <h2>
+       Sim and sanity check workflow
+      </h2>
+      <p>
+       You should treat sims as the final decision maker, but only after you give them correct inputs.
+    If your sim output looks wrong, it almost always means one of your assumptions or toggles is wrong.
+      </p>
+      <h3 id="what_to_sim">
+       What to sim when you are comparing stats
+      </h3>
+      <ul>
+       <li>
+        <strong>
+         Compare the whole set:
+        </strong>
+        do not swap one item in a vacuum if it changes caps or set bonuses.
+       </li>
+       <li>
+        <strong>
+         Verify buffs:
+        </strong>
+        make sure raid buffs and consumables match the context you actually care about.
+       </li>
+       <li>
+        <strong>
+         Use the right fight style:
+        </strong>
+        patchwerk style can mislead you if your real fights have movement or target switching.
+       </li>
+      </ul>
+      <div class="note">
+       Recommended sim:
+       <a href="https://wowsims.github.io/tbc/enhancement_shaman/">
+        TBC Enhancement Shaman on WowSims
+       </a>
+       .
+    If you do not trust a result, change one variable at a time until the result makes sense.
+      </div>
+     </section>
+     <section class="contentCard" id="labs">
+      <div class="eyebrow">
+       Practice
+      </div>
+      <h2>
+       Labs that will accompany this page
+      </h2>
+      <p>
+       Reading builds knowledge. Practice builds instinct.
+    These labs are designed to train upgrade decisions and help you feel caps and tradeoffs without spreadsheets.
+      </p>
+      <div class="labGrid" role="list">
+       <div class="labCard" role="listitem">
+        <div class="labCardTop">
+         <p class="labCardTitle">
+          EP Visualizer
+         </p>
+         <span class="labBadge">
+          Planned
+         </span>
+        </div>
+        <p>
+         Slide a stat up and down and watch the EP weight respond as caps and weapon configs change.
+        </p>
+        <div class="labActions">
+         <a class="btn btnGhost" href="/pages/tools/">
+          Tools
+         </a>
+        </div>
+       </div>
+       <div class="labCard" role="listitem">
+        <div class="labCardTop">
+         <p class="labCardTitle">
+          Cap impact sandbox
+         </p>
+         <span class="labBadge">
+          Planned
+         </span>
+        </div>
+        <p>
+         Pick a target, choose your hit and expertise, then see exactly what outcomes you are preventing and what you are wasting.
+        </p>
+        <div class="labActions">
+         <a class="btn btnGhost" href="/pages/tools/">
+          Tools
+         </a>
+        </div>
+       </div>
+       <div class="labCard" role="listitem">
+        <div class="labCardTop">
+         <p class="labCardTitle">
+          Attack table trainer
+         </p>
+         <span class="labBadge">
+          Planned
+         </span>
+        </div>
+        <p>
+         Visualize miss, dodge, glancing, hit, and crit outcomes over time so the mechanics stop feeling abstract.
+        </p>
+        <div class="labActions">
+         <a class="btn btnGhost" href="/pages/tools/">
+          Tools
+         </a>
+        </div>
+       </div>
+       <div class="labCard" role="listitem">
+        <div class="labCardTop">
+         <p class="labCardTitle">
+          Upgrade judgment quiz
+         </p>
+         <span class="labBadge">
+          Planned
+         </span>
+        </div>
+        <p>
+         See two fake items and decide which is better. Then reveal the why, and the sim result, and learn the pattern.
+        </p>
+        <div class="labActions">
+         <a class="btn btnGhost" href="/pages/tools/">
+          Tools
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="note">
+       We will build these labs later. This guide is structured so the labs drop in naturally without rewriting the page.
+      </div>
+     </section>
+     <section class="contentCard" id="next_steps">
+      <div class="eyebrow">
+       Next
+      </div>
+      <h2>
+       Where this page fits in your learning path
+      </h2>
+      <p>
+       Stats are the foundation. Gear decisions are the application.
+    Gems and enchants are the fine tuning layer where you express those decisions slot by slot.
+      </p>
+      <div class="stepList" role="list">
+       <div class="step" role="listitem">
+        <div class="stepTitle">
+         Next: gear decisions
+        </div>
+        <div class="stepText">
+         Apply the mental model to real items, set bonuses, and weapon rules.
+        </div>
+       </div>
+       <div class="step" role="listitem">
+        <div class="stepTitle">
+         Then: gems and enchants
+        </div>
+        <div class="stepText">
+         Turn your stat priorities into socket and enchant choices without griefing caps.
+        </div>
+       </div>
+       <div class="step" role="listitem">
+        <div class="stepTitle">
+         Then: practice
+        </div>
+        <div class="stepText">
+         Use the labs to build speed and confidence in upgrade calls.
+        </div>
+       </div>
+      </div>
+      <div class="labActions">
+       <a class="btn" href="/pages/guide/gear_and_stats.html">
+        Go to Gear Decisions
+       </a>
+       <a class="btn btnGhost" href="/pages/tools/">
+        Browse Tools
+       </a>
+      </div>
+     </section>
+    </main>
+    <aside aria-label="On page table of contents" class="appTocShell">
+     <div class="tocHeader">
+      <div class="tocTitle">
+       On this page
+      </div>
+      <div class="tocHint">
+       Updates as you navigate
+      </div>
+     </div>
+     <nav class="appToc" id="appToc">
+     </nav>
+    </aside>
+   </div>
+   <footer class="appFooter" id="appFooter" role="contentinfo">
+    <div class="footerInner">
+     <div class="footerLeft">
+      <div class="footerBrand">
+       Enhancement Shaman Guide
+      </div>
+      <div class="footerSub">
+       Fast, readable, decision focused.
+      </div>
+     </div>
+     <nav aria-label="Footer" class="footerNav">
+      <a class="footerLink" href="/pages/guide/index.html">
+       Guide
+      </a>
+      <a class="footerLink" href="/pages/tools/index.html">
+       Tools
+      </a>
+      <a class="footerLink" href="/pages/guide/faq.html">
+       FAQ
+      </a>
+     </nav>
+    </div>
+   </footer>
+  </div>
+ </body>
+</html>

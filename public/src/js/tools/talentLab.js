@@ -1,6 +1,34 @@
 import { Shaman as TALENT_INFO } from "../data/talent-info.js"
 
-// /src/js/tools/talentLab.js
+const TALENTLAB_CSS_HREF = "/src/css/tools/talentLab.css"
+
+
+const TALENT_GUIDE_URL = "/data/talentinfo.json"
+
+let TALENT_GUIDE_PROMISE = null
+function loadTalentGuide() {
+  if (TALENT_GUIDE_PROMISE) return TALENT_GUIDE_PROMISE
+
+  TALENT_GUIDE_PROMISE = fetch(TALENT_GUIDE_URL, { headers: { "X-Requested-With": "fetch" } })
+    .then((r) => (r.ok ? r.json() : null))
+    .catch(() => null)
+    .then((data) => {
+      if (!data || typeof data !== "object") return { talents: {} }
+      if (!data.talents || typeof data.talents !== "object") data.talents = {}
+      return data
+    })
+
+  return TALENT_GUIDE_PROMISE
+}
+
+function ensureTalentLabCss() {
+  if (document.querySelector('link[data-talentlab-css="1"]')) return
+  const link = document.createElement("link")
+  link.rel = "stylesheet"
+  link.href = TALENTLAB_CSS_HREF
+  link.dataset.talentlabCss = "1"
+  document.head.appendChild(link)
+}
 
 function el(tag, cls, text) {
   const n = document.createElement(tag)
@@ -477,8 +505,8 @@ const PRESETS = [
     },
   },
   {
-    key: "enh_17_44_00",
-    label: "17/44/00 Sub Elemental",
+    key: "enh_a",
+    label: "7/44/00 Sub Elemental — Shock Focused",
     apply(_ranks, data, idx) {
       const next = {
         elemental_convection: 2,
@@ -510,8 +538,105 @@ const PRESETS = [
     },
   },
   {
-    key: "ele_03_44_14",
-    label: "03/44/14 Sub Restoration",
+    key: "enh_b",
+    label: "17/44/00 Sub Elemental — Fire Totem Focused",
+    apply(_ranks, data, idx) {
+      const next = {
+        elemental_convection: 2,
+        elemental_concussion: 5,
+        elemental_call_of_flame: 3,
+        elemental_reverberation: 5,
+        elemental_improved_fire_totems : 2,
+
+        enhancement_ancestral_knowledge: 5,
+        enhancement_thundering_strikes: 5,
+        enhancement_improved_ghost_wolf: 2,
+        enhancement_enhancing_totems: 2,
+        enhancement_shamanistic_focus: 1,
+        enhancement_flurry: 5,
+        enhancement_toughness: 1,
+        enhancement_elemental_weapons: 3,
+        enhancement_spirit_weapons: 1,
+        enhancement_mental_quickness: 3,
+        enhancement_weapon_mastery: 5,
+        enhancement_unleashed_rage: 5,
+        enhancement_dual_wield: 1,
+        enhancement_dual_wield_specialization: 3,
+        enhancement_stormstrike: 1,
+        enhancement_shamanistic_rage: 1,
+      }
+      if (!validateAll(next, data, idx)) return _ranks
+      return next
+    },
+  },
+  {
+    key: "enh_c",
+    label: "15/46/00 Sub Elemental — Weapon Totem Focused",
+    apply(_ranks, data, idx) {
+      const next = {
+        elemental_convection: 2,
+        elemental_concussion: 5,
+        elemental_call_of_flame: 3,
+        elemental_reverberation: 5,
+
+        enhancement_ancestral_knowledge: 5,
+        enhancement_thundering_strikes: 5,
+        enhancement_improved_ghost_wolf: 2,
+        enhancement_enhancing_totems: 2,
+        enhancement_shamanistic_focus: 1,
+        enhancement_flurry: 5,
+        enhancement_toughness: 1,
+        enhancement_elemental_weapons: 3,
+        enhancement_improved_weapon_totems: 2,
+        enhancement_spirit_weapons: 1,
+        enhancement_mental_quickness: 3,
+        enhancement_weapon_mastery: 5,
+        enhancement_unleashed_rage: 5,
+        enhancement_dual_wield: 1,
+        enhancement_dual_wield_specialization: 3,
+        enhancement_stormstrike: 1,
+        enhancement_shamanistic_rage: 1,
+      }
+      if (!validateAll(next, data, idx)) return _ranks
+      return next
+    },
+  },
+  {
+    key: "enh_d",
+    label: "15/46/00 Sub Elemental — Totem Coverage",
+    apply(_ranks, data, idx) {
+      const next = {
+        elemental_convection: 2,
+        elemental_concussion: 5,
+        elemental_call_of_flame: 3,
+        elemental_reverberation: 5,
+        elemental_improved_fire_totems : 1
+        ,
+        enhancement_ancestral_knowledge: 5,
+        enhancement_thundering_strikes: 5,
+        enhancement_improved_ghost_wolf: 2,
+        enhancement_enhancing_totems: 2,
+        enhancement_shamanistic_focus: 1,
+        enhancement_flurry: 5,
+        enhancement_toughness: 1,
+        enhancement_elemental_weapons: 3,
+        enhancement_improved_weapon_totems: 1,
+        enhancement_spirit_weapons: 1,
+        enhancement_mental_quickness: 3,
+        enhancement_weapon_mastery: 5,
+        enhancement_unleashed_rage: 5,
+        enhancement_dual_wield: 1,
+        enhancement_dual_wield_specialization: 3,
+        enhancement_stormstrike: 1,
+        enhancement_shamanistic_rage: 1,
+      }
+      if (!validateAll(next, data, idx)) return _ranks
+      return next
+    },
+  },
+  {
+    key: "enh_e",
+    label: "07/44/14 Sub Restoration",
     apply(_ranks, data, idx) {
       const next = {
         elemental_concussion: 3,
@@ -545,6 +670,7 @@ const PRESETS = [
 ]
 
 export function mountTalentLab(root) {
+  ensureTalentLabCss()
   root.innerHTML = ""
   const idx = buildTalentIndex(TALENT_DATA)
 
@@ -565,28 +691,12 @@ export function mountTalentLab(root) {
 
   const wrap = el("div", "talent_planner")
 
-  const top = el("div", "talent_planner_top")
-  const title = el("div", "talent_planner_title", "Talent Planner")
-  const totals = el("div", "talent_planner_totals")
+const top = el("div", "talent_planner_top")
+const title = el("div", "talent_planner_title", "Talent Planner")
+top.append(title)
 
-  const totalPts = el("div", "talent_stat")
-  const totalPtsLabel = el("div", "talent_stat_label", "Total")
-  const totalPtsVal = el("div", "talent_stat_value", "0 of " + TALENT_DATA.total_points)
-  totalPts.append(totalPtsLabel, totalPtsVal)
-
-  const perTree = el("div", "talent_tree_totals")
-  const treeTotalsEls = {}
-  for (const tree of TALENT_DATA.trees) {
-    const s = el("div", "talent_stat")
-    const l = el("div", "talent_stat_label", tree.label)
-    const v = el("div", "talent_stat_value", "0")
-    s.append(l, v)
-    perTree.appendChild(s)
-    treeTotalsEls[tree.key] = v
-  }
-
-  totals.append(totalPts, perTree)
-  top.append(title, totals)
+// Build controls live above the talent module
+const buildBar = el("div", "talent_build_bar")
 
   const layout = el("div", "talent_planner_layout")
   const left = el("div", "talent_left")
@@ -618,9 +728,7 @@ function makeTree(tree) {
 
   leftSide.append(logo, title)
 
-  const points = el("div", "talent_tree_points", "0")
-
-  headerCard.append(leftSide, points)
+  headerCard.append(leftSide)
   header.appendChild(headerCard)
 
   const grid = el("div", "talent_tree_grid")
@@ -756,7 +864,7 @@ function makeTree(tree) {
   }
 
   panel.append(header, grid)
-  return { panel, nodeEls, arrows: arrowEls, pointsEl: points }
+  return { panel, nodeEls, arrows: arrowEls }
 }
 
   for (const tree of TALENT_DATA.trees) {
@@ -765,7 +873,7 @@ function makeTree(tree) {
     treeUIs[tree.key] = ui
   }
 
-  // Right side: presets and details
+  // Build bar: presets and summary
   const presetsCard = el("div", "talent_card")
   const presetsTitle = el("div", "talent_card_title", "Build presets")
 
@@ -788,17 +896,60 @@ function makeTree(tree) {
 
   presetsCard.append(presetsTitle, presetRow, presetBtns)
 
-  const detailCard = el("div", "talent_card")
-  const detailTitle = el("div", "talent_card_title", "Talent details")
+  // Summary: total points and inferred spec (matches OG image logic in server.cjs)
+  const summaryCard = el("div", "talent_card")
+  const summaryTitle = el("div", "talent_card_title", "Build summary")
+  const summaryRow = el("div", "talent_summary_row")
 
+  const specBox = el("div", "talent_spec_box")
+  const specIconEl = el("img", "talent_spec_icon")
+  specIconEl.alt = "Shaman spec icon"
+  specIconEl.loading = "lazy"
+  specIconEl.decoding = "async"
+  specIconEl.width = 44
+  specIconEl.height = 44
+  const specTextEl = el("div", "talent_spec_text", "Shaman")
+  specBox.append(specIconEl, specTextEl)
+
+  const totalBox = el("div", "talent_total_box")
+  const totalPtsLabel = el("div", "talent_total_label", "Total points")
+  const totalPtsVal = el("div", "talent_total_value", "0 of " + TALENT_DATA.total_points)
+  totalBox.append(totalPtsLabel, totalPtsVal)
+
+  summaryRow.append(specBox, totalBox)
+  summaryCard.append(summaryTitle, summaryRow)
+
+  const SPEC_META = {
+    elemental: { label: "Elemental", icon: (TALENT_ASSETS.elemental && TALENT_ASSETS.elemental.logo) || "" },
+    enhancement: { label: "Enhancement", icon: (TALENT_ASSETS.enhancement && TALENT_ASSETS.enhancement.logo) || "" },
+    restoration: { label: "Restoration", icon: (TALENT_ASSETS.restoration && TALENT_ASSETS.restoration.logo) || "" },
+    neutral: { label: "Shaman", icon: "/assets/talents/Shaman.jpg" },
+  }
+
+  if (SPEC_META.neutral.icon) specIconEl.src = SPEC_META.neutral.icon
+
+  function pickSpec(pts) {
+    const entries = Object.entries(pts).sort((a, b) => b[1] - a[1])
+    const top = entries[0] || ["neutral", 0]
+    const second = entries[1] || ["neutral", 0]
+    const topKey = top[0]
+    const topVal = top[1] || 0
+    const secondVal = second[1] || 0
+
+    // 1+ points over the next spec means that is the spec.
+    // If 2 or more tie, treat as neutral Shaman.
+    if (topVal === 0) return "neutral"
+    if (topVal > secondVal) return topKey
+    return "neutral"
+  }
+
+  buildBar.append(presetsCard, summaryCard)
+
+    const detailCard = el("div", "talent_card")
+  const detailTitle = el("div", "talent_detail_title", "Talent details")
   const detailName = el("div", "talent_detail_name", "Select a talent")
   const detailMeta = el("div", "talent_detail_meta", " ")
-  const detailWhyTitle = el("div", "talent_detail_subtitle", "Why we take it")
-  const detailWhy = el(
-    "div",
-    "talent_detail_body",
-    "This is where the guide becomes better than a normal calculator."
-  )
+  const detailSections = el("div", "talent_detail_sections")
 
   const detailRules = el(
     "div",
@@ -806,12 +957,118 @@ function makeTree(tree) {
     "Click adds points. Right click removes points. Locked talents require tier points and any prerequisites."
   )
 
-  detailCard.append(detailTitle, detailName, detailMeta, detailWhyTitle, detailWhy, detailRules)
-  right.append(presetsCard, detailCard)
+  detailCard.append(detailTitle, detailName, detailMeta, detailSections, detailRules)
+
+  const guideState = { data: { talents: {} }, ready: false }
+
+  function clearNode(node) {
+    while (node.firstChild) node.removeChild(node.firstChild)
+  }
+
+  function addSection(titleText, body) {
+    if (body == null) return
+    if (Array.isArray(body) && body.length === 0) return
+    if (typeof body === "string" && body.trim() === "") return
+
+    const section = el("section", "talent_detail_section")
+    const title = el("div", "talent_detail_section_title", titleText)
+    section.appendChild(title)
+
+    if (Array.isArray(body)) {
+      const ul = el("ul", "talent_detail_list")
+      for (const item of body) {
+        if (!item) continue
+        ul.appendChild(el("li", "talent_detail_li", item))
+      }
+      section.appendChild(ul)
+    } else {
+      section.appendChild(el("div", "talent_detail_section_body", String(body)))
+    }
+
+    detailSections.appendChild(section)
+  }
+
+  function bestRankNote(entry, rank, max) {
+    const rn = entry && entry.rank_notes
+    if (!rn || typeof rn !== "object") return null
+
+    const keys = Object.keys(rn)
+      .map((k) => Number(k))
+      .filter((n) => Number.isFinite(n))
+      .sort((a, b) => a - b)
+
+    if (keys.length === 0) return null
+
+    const r = Math.max(0, Number(rank) || 0)
+    let pick = keys[0]
+
+    for (const k of keys) {
+      if (k <= r) pick = k
+    }
+
+    if (r === 0 && keys.includes(max)) pick = max
+    return rn[String(pick)] || null
+  }
+
+  function getGuideEntry(id) {
+    if (!guideState.ready) return null
+    const g = guideState.data
+    if (!g || !g.talents) return null
+    return g.talents[id] || null
+  }
+
+  function renderTalentDetails() {
+    clearNode(detailSections)
+
+    const id = state.selected
+    if (!id || !idx.byId[id]) {
+      addSection("Overview", "Select a talent to see notes, rank context, and common mistakes.")
+      return
+    }
+
+    if (!guideState.ready) {
+      addSection("Overview", "Loading talent notes.")
+      return
+    }
+
+    const node = idx.byId[id]
+    const rank = state.ranks[id] || 0
+    const max = node.max || 1
+    const entry = getGuideEntry(id)
+
+    if (!entry) {
+      addSection("Overview", "Notes coming soon for this talent.")
+      addSection("Current selection", `Current rank ${rank} of ${max}`)
+      return
+    }
+
+    addSection("Overview", entry.summary)
+    addSection("Current selection", `Current rank ${rank} of ${max}`)
+
+    const rn = bestRankNote(entry, rank, max)
+    if (rn) addSection("Rank notes", rn)
+
+    addSection("Why we take it", entry.why_take)
+    addSection("Why you might skip it", entry.why_skip)
+    addSection("Tips and mechanics", entry.tips)
+    addSection("Common mistakes", entry.common_mistakes)
+  }
+
+  loadTalentGuide().then((data) => {
+    guideState.data = data
+    guideState.ready = true
+    renderTalentDetails()
+  })
+
+  // Talent details should live below the tree row (not in the right sidebar),
+  // so the three trees stay aligned and the details get full width.
+  const detailsPanel = el("div", "talent_details_panel")
+  detailsPanel.append(detailCard)
 
   left.appendChild(treesRow)
+  left.appendChild(detailsPanel)
   layout.append(left, right)
-  wrap.append(top, layout)
+  wrap.append(top, buildBar, layout)
   root.appendChild(wrap)
 
   const tooltipHost = document.body || document.documentElement
@@ -945,6 +1202,7 @@ function makeTree(tree) {
     if (!id || !idx.byId[id]) {
       detailName.textContent = "Select a talent"
       detailMeta.textContent = " "
+      renderTalentDetails()
       return
     }
 
@@ -952,6 +1210,7 @@ function makeTree(tree) {
     const r = state.ranks[id] || 0
     detailName.textContent = n.name
     detailMeta.textContent = `${n.tree_label} tier ${n.tier}  Rank ${r} of ${n.max}`
+    renderTalentDetails()
   }
 
   function canAdd(id) {
@@ -1047,11 +1306,17 @@ function cannotAddReasons(id) {
     for (const tree of TALENT_DATA.trees) {
       const tp = sumPoints(state.ranks, tree.key, idx)
       treePointsByKey[tree.key] = tp
-      treeTotalsEls[tree.key].textContent = String(tp)
-      if (treeUIs && treeUIs[tree.key] && treeUIs[tree.key].pointsEl) {
-        treeUIs[tree.key].pointsEl.textContent = String(tp)
-      }
     }
+
+    const specKey = pickSpec({
+      elemental: treePointsByKey.elemental || 0,
+      enhancement: treePointsByKey.enhancement || 0,
+      restoration: treePointsByKey.restoration || 0,
+    })
+
+    const meta = SPEC_META[specKey] || SPEC_META.neutral
+    if (meta && meta.icon) specIconEl.src = meta.icon
+    specTextEl.textContent = specKey === "neutral" ? "Shaman" : `${meta.label} Shaman`
 
     for (const id in idx.byId) {
       const n = idx.byId[id]

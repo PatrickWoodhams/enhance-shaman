@@ -1,0 +1,1159 @@
+/* /src/css/pages/stats.css */
+/* Stats page: clean, modern, beginner friendly, easy to scan */
+
+.pageStats #appMain {
+  /* Reading comfort */
+  --prose: 72ch;
+  --proseWide: 96ch;
+
+  /* Spacing scale */
+  --s1: 6px;
+  --s2: 10px;
+  --s3: 14px;
+  --s4: 18px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 44px;
+
+  /* Card styling */
+  --cardPad: clamp(16px, 2.0vw, 24px);
+  --cardBg: rgba(0, 0, 0, 0.10);
+  --cardBgSoft: rgba(255, 255, 255, 0.035);
+  --cardStroke: var(--stroke, rgba(255, 255, 255, 0.12));
+  --cardShadow: 0 16px 40px rgba(0, 0, 0, 0.26);
+
+  /* Quiet accent (rules only) */
+  --accentSoft: rgba(255, 191, 0, 0.12);
+  --accentStroke: rgba(255, 191, 0, 0.20);
+
+  /* Legend icon sizing */
+  --statIconSize: 92px;         /* bigger */
+  --statIconRadius: 18px;
+  --statIconPad: 8px;           /* gives the icon room to breathe */
+  --iconWellBg: rgba(0, 0, 0, 0.38); /* blend with icons that have dark edges */
+  --iconWellStroke: rgba(255, 255, 255, 0.12);
+
+  /* In card icons (smaller than legend) */
+  --inlineIconSize: 46px;
+  --inlineIconPad: 6px;
+}
+
+/* Hide page css marker element used by ensurePageCss */
+.pageStats #appMain [data-page-css] {
+  display: none;
+}
+
+/* Better anchor scrolling under sticky header */
+.pageStats #appMain :is(section[id], h2[id], h3[id]) {
+  scroll-margin-top: calc(var(--app-header-height, 64px) + 22px);
+}
+
+/* =========================================================
+   Page hero
+   ========================================================= */
+
+.pageStats .pageHero {
+  margin-bottom: var(--s7);
+}
+
+.pageStats .pageHero .pageKicker {
+  letter-spacing: 0.12em;
+}
+
+.pageStats .pageHero .pageTitle {
+  max-width: 26ch;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.pageStats .pageHero .pageLead {
+  max-width: var(--proseWide);
+  line-height: 1.6;
+}
+
+.pageStats .pageMetaRow {
+  margin-top: var(--s4);
+  gap: var(--s2);
+}
+
+/* =========================================================
+   Content cards and typography rhythm
+   ========================================================= */
+
+.pageStats .contentCard {
+  padding: var(--cardPad);
+  border-radius: var(--r2);
+  border: 1px solid var(--cardStroke);
+  box-shadow: var(--cardShadow);
+  background:
+    radial-gradient(1200px 480px at 14% 0%, rgba(255, 255, 255, 0.06), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.018)),
+    var(--cardBg);
+}
+
+.pageStats .contentCard + .contentCard {
+  margin-top: var(--s7);
+}
+
+.pageStats .contentCard .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg3, rgba(255, 255, 255, 0.62));
+  margin-bottom: var(--s2);
+}
+
+.pageStats .contentCard h2 {
+  margin: 0 0 var(--s3) 0;
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  letter-spacing: -0.016em;
+  text-wrap: balance;
+}
+
+.pageStats .contentCard h3 {
+  margin: var(--s6) 0 var(--s2) 0;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.pageStats .contentCard p {
+  max-width: var(--prose);
+  line-height: 1.64;
+  margin: 0 0 var(--s3) 0;
+  color: var(--fg, rgba(255, 255, 255, 0.90));
+}
+
+.pageStats .contentCard p:last-child {
+  margin-bottom: 0;
+}
+
+.pageStats .contentCard .lead {
+  max-width: var(--proseWide);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--fg, rgba(255, 255, 255, 0.92));
+}
+
+.pageStats .contentCard .muted {
+  color: var(--fg3, rgba(255, 255, 255, 0.62));
+  max-width: var(--prose);
+}
+
+/* Your specific complaint: section descriptions not spanning full card width */
+.pageStats #stat_legend > p,
+.pageStats #stat_legend > p.lead,
+.pageStats #stat_legend > p.muted,
+.pageStats #ep_weights > p,
+.pageStats #ep_weights > p.lead,
+.pageStats #ep_weights > p.muted {
+  max-width: none;
+  width: 100%;
+}
+
+/* EP section intro text should span full card width */
+.pageStats #ep_explained > p,
+.pageStats #ep_explained > p.lead,
+.pageStats #ep_explained > p.muted {
+  max-width: none;
+  width: 100%;
+}
+
+
+/* Lists */
+.pageStats .contentCard :is(ul, ol) {
+  max-width: var(--prose);
+  padding-left: 18px;
+  margin: var(--s3) 0 0 0;
+}
+
+.pageStats .contentCard li {
+  margin: 8px 0;
+  line-height: 1.58;
+  color: var(--fg2, rgba(255, 255, 255, 0.78));
+}
+
+/* Links inside main content */
+.pageStats #appMain a:not(.btn) {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.22);
+}
+
+.pageStats #appMain a:not(.btn):hover {
+  text-decoration-color: rgba(255, 255, 255, 0.52);
+}
+
+/* =========================================================
+   Notes and callouts
+   ========================================================= */
+
+.pageStats .note,
+.pageStats .calloutRule {
+  margin-top: var(--s4);
+  border-radius: var(--r2);
+  border: 1px solid var(--cardStroke);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 14px 14px;
+}
+
+.pageStats .note {
+  color: var(--fg2, rgba(255, 255, 255, 0.78));
+  line-height: 1.62;
+}
+
+.pageStats .note strong {
+  color: var(--fg, rgba(255, 255, 255, 0.92));
+}
+
+.pageStats .calloutRule {
+  position: relative;
+  border-color: var(--accentStroke);
+  background: rgba(255, 191, 0, 0.045);
+  padding-left: 16px;
+}
+
+.pageStats .calloutRule::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--accentSoft);
+}
+
+.pageStats .calloutRule strong {
+  font-weight: 850;
+  color: var(--fg, rgba(255, 255, 255, 0.92));
+}
+
+/* =========================================================
+   Start here steps (counter cards)
+   ========================================================= */
+
+.pageStats .stepList {
+  margin-top: var(--s4);
+  display: grid;
+  gap: 12px;
+  counter-reset: step;
+}
+
+.pageStats .step {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding: 14px;
+  border-radius: var(--r2);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.pageStats .stepTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--fg, rgba(255, 255, 255, 0.92));
+  min-width: 0;
+}
+
+.pageStats .stepTitle::before {
+  content: counter(step);
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--fg2, rgba(255, 255, 255, 0.78));
+  font-size: 12px;
+  font-weight: 800;
+  flex: 0 0 auto;
+}
+
+.pageStats .stepText {
+  color: var(--fg2, rgba(255, 255, 255, 0.78));
+  line-height: 1.55;
+  max-width: var(--prose);
+  padding-left: 34px;
+}
+
+@media (min-width: 760px) {
+  .pageStats .step {
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
+  }
+
+  .pageStats .stepText {
+    padding-left: 0;
+    margin-top: 2px;
+  }
+}
+
+/* =========================================================
+   Stat legend (bigger icons, no weird rounding, better scan)
+   ========================================================= */
+
+.pageStats .statLegend {
+  margin-top: var(--s4);
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 620px) {
+  .pageStats .statLegend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .pageStats .statLegend {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .pageStats .statLegend {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.pageStats .statChip {
+  display: grid;
+  grid-template-columns: var(--statIconSize) 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  border-radius: calc(var(--r2) + 2px);
+  border: 1px solid var(--cardStroke);
+  background: var(--cardBgSoft);
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+@media (hover: hover) {
+  .pageStats .statChip:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.045);
+  }
+}
+
+/*
+  Important: icons are square and already have their own border.
+  So we do NOT clip them with border-radius. We give them a padded well instead.
+*/
+.pageStats .statIcon {
+  width: var(--statIconSize);
+  height: var(--statIconSize);
+  padding: var(--statIconPad);
+
+  display: grid;
+  place-items: center;
+
+  position: relative; /* contains the glyph */
+
+  background: var(--iconWellBg);
+  border: 1px solid var(--iconWellStroke);
+  border-radius: var(--statIconRadius);
+
+  overflow: visible; /* do not clip square icon corners */
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.30),
+    0 10px 20px rgba(0, 0, 0, 0.30);
+}
+
+.pageStats .statIcon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+
+  border-radius: 0;      /* keep square */
+  background: transparent;
+  filter: none;
+}
+
+.pageStats .statIconGlyph {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.86);
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pageStats .statLabel {
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  font-size: 15px;
+}
+
+.pageStats .statHint {
+  margin-top: 6px;
+  color: var(--fg3, rgba(255, 255, 255, 0.62));
+  font-size: 13px;
+  line-height: 1.45;
+  max-width: 56ch;
+}
+
+/* =========================================================
+   EP section blocks (split cards)
+   ========================================================= */
+
+.pageStats .epSplit {
+  margin-top: var(--s4);
+  display: grid;
+  gap: 14px;
+}
+
+/* =========================================================
+   EP explanation grouping
+   ========================================================= */
+
+.pageStats .epExplainGrid {
+  margin-top: var(--s4);
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 900px) {
+  .pageStats .epExplainGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reuse epBlock visual language */
+.pageStats .epExplainGrid > .epBlock {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+
+@media (min-width: 900px) {
+  .pageStats .epSplit {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+.pageStats .epBlock {
+  padding: 14px;
+  border-radius: var(--r2);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.pageStats .epBlock h3 {
+  margin-top: 0;
+}
+
+.pageStats .epSteps {
+  margin-top: var(--s3);
+  padding-left: 18px;
+}
+
+.pageStats .epSteps li {
+  margin: 10px 0;
+}
+
+/* =========================================================
+   EP tables (center text, modern)
+   ========================================================= */
+
+.pageStats .epTableWrap {
+  margin-top: var(--s4);
+  border-radius: var(--r2);
+  border: 1px solid var(--cardStroke);
+  background: rgba(0, 0, 0, 0.12);
+  overflow: auto;
+}
+
+.pageStats table.epTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 720px;
+  font-variant-numeric: tabular-nums;
+}
+
+.pageStats .epTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+.pageStats .epTable th,
+.pageStats .epTable td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+  /* You asked for centered table text */
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+.pageStats .epTable th {
+  color: var(--fg3, rgba(255, 255, 255, 0.62));
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pageStats .epTable tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.pageStats .epTable tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.pageStats .epTable tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================================
+   Stat cards (icon, title, meta, bullets)
+   ========================================================= */
+
+.pageStats .statGrid {
+  margin-top: var(--s4);
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 980px) {
+  .pageStats .statGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+.pageStats .statCard {
+  padding: 16px;
+  border-radius: var(--r2);
+  border: 1px solid var(--cardStroke);
+  background: var(--cardBgSoft);
+}
+
+.pageStats .statCardHeader {
+  display: grid;
+  grid-template-columns: var(--inlineIconSize) 1fr;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pageStats .statCardHeader .statIcon {
+  width: var(--inlineIconSize);
+  height: var(--inlineIconSize);
+  padding: var(--inlineIconPad);
+  border-radius: 14px;
+}
+
+.pageStats .statCardTitle {
+  font-weight: 900;
+  letter-spacing: -0.012em;
+  margin: 0;
+}
+
+.pageStats .statCardMeta {
+  margin-top: 2px;
+  color: var(--fg3, rgba(255, 255, 255, 0.62));
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.pageStats .statCard .miniList {
+  margin: 10px 0 0 0;
+  padding-left: 18px;
+}
+
+.pageStats .statCard .miniList li {
+  margin: 7px 0;
+}
+
+/* =========================================================
+   Labs grid/cards
+   ========================================================= */
+
+.pageStats .labGrid {
+  display: grid;
+  gap: 12px;
+  margin-top: var(--s4);
+}
+
+@media (min-width: 900px) {
+  .pageStats .labGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.pageStats .labCard {
+  padding: 16px;
+  border-radius: var(--r2);
+  border: 1px solid var(--cardStroke);
+  background: var(--cardBgSoft);
+}
+
+.pageStats .labCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: var(--s2);
+}
+
+.pageStats .labCardTitle {
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+}
+
+.pageStats .labBadge {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.16);
+  color: var(--fg3, rgba(255, 255, 255, 0.62));
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pageStats .labCard p {
+  margin: 0;
+  color: var(--fg2, rgba(255, 255, 255, 0.78));
+  line-height: 1.6;
+  max-width: var(--prose);
+}
+
+.pageStats .labActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: var(--s4);
+}
+
+/* Slight button spacing polish */
+.pageStats .labActions .btn {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* Caps section: readable, scannable, premium */
+
+.pageStats .capsGrid {
+  margin-top: var(--s4);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 980px) {
+  .pageStats .capsGrid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+}
+
+.pageStats #caps_and_tables :is(p, ul, ol) {
+  max-width: none;
+}
+
+.pageStats .capsPanel {
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(900px 480px at 15% 0%, rgba(255, 191, 0, 0.07), transparent 55%),
+    rgba(255, 255, 255, 0.02);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.pageStats .capsHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.pageStats .capsTitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.pageStats .capsTag {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.64);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.12);
+  white-space: nowrap;
+}
+
+.pageStats .capsSteps {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.pageStats .capsSteps li {
+  margin: 12px 0;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.pageStats .capsSteps strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.pageStats .capsCallout {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.pageStats .capsCalloutTitle {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.90);
+  letter-spacing: -0.01em;
+}
+
+.pageStats .capsCallout p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.7;
+}
+
+.pageStats .capsRule {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 191, 0, 0.22);
+  background: rgba(255, 191, 0, 0.06);
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+}
+
+.pageStats .capsRule strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.pageStats .capsStack {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+.pageStats .capCard {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 14px;
+}
+
+.pageStats .capCardHead {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.pageStats .capNum {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 191, 0, 0.22);
+  background: rgba(255, 191, 0, 0.08);
+}
+
+.pageStats .capCardTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 950;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.012em;
+}
+
+.pageStats .capCardSub {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.65;
+}
+
+.pageStats .capBullets {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+
+.pageStats .capBullets li {
+  margin: 9px 0;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.pageStats .capBullets strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.pageStats .capsConversions {
+  margin-top: 14px;
+}
+
+.pageStats .capFacts {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.pageStats .capFacts li {
+  margin: 9px 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.pageStats .capFacts strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+@media (max-width: 520px) {
+  .pageStats .capsPanel {
+    padding: 16px;
+  }
+  .pageStats .capCard {
+    padding: 13px;
+  }
+  .pageStats .capsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pageStats .capsTag {
+    white-space: normal;
+  }
+}
+/* =========================================================
+   Caps section, premium layout and no weird gap
+   Drop this in stats.css after your existing rules
+   ========================================================= */
+
+.pageStats .capsSection .lead {
+  margin-bottom: 14px;
+}
+
+/* Main grid */
+.pageStats .capsSection .capsGrid {
+  margin-top: 14px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+/* Desktop layout:
+   Left column has capsLearn then capsAfter
+   Right column has capsQuick and spans both rows
+*/
+@media (min-width: 980px) {
+  .pageStats .capsSection .capsGrid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-rows: auto auto;
+  }
+
+  .pageStats .capsSection .capsLearn {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .pageStats .capsSection .capsQuick {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    position: sticky;
+    top: 96px;
+    align-self: start;
+  }
+
+  .pageStats .capsSection .capsAfter {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
+/* Panels */
+.pageStats .capsSection .capsPanel {
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(900px 480px at 15% 0%, rgba(255, 191, 0, 0.07), transparent 55%),
+    rgba(255, 255, 255, 0.02);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Make sure no global float based layout can mess with this section */
+.pageStats .capsSection .capsGrid,
+.pageStats .capsSection .capsPanel,
+.pageStats .capsSection .capsAfter {
+  float: none;
+}
+
+/* Header row on left panel */
+.pageStats .capsSection .capsHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Small caps titles */
+.pageStats .capsSection .capsTitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* Tag pill */
+.pageStats .capsSection .capsTag {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.64);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.12);
+  white-space: nowrap;
+}
+
+/* Steps list */
+.pageStats .capsSection .capsSteps {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.pageStats .capsSection .capsSteps li {
+  margin: 12px 0;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.pageStats .capsSection .capsSteps strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Callouts */
+.pageStats .capsSection .capsCallout {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.pageStats .capsSection .capsCalloutTitle {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.90);
+  letter-spacing: -0.01em;
+}
+
+.pageStats .capsSection .capsCallout p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.7;
+}
+
+/* Rule bar */
+.pageStats .capsSection .capsRule {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 191, 0, 0.22);
+  background: rgba(255, 191, 0, 0.06);
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+}
+
+.pageStats .capsSection .capsRule strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Right side stack */
+.pageStats .capsSection .capsStack {
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+
+/* Priority cards */
+.pageStats .capsSection .capCard {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.pageStats .capsSection .capCardHead {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.pageStats .capsSection .capNum {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 191, 0, 0.22);
+  background: rgba(255, 191, 0, 0.08);
+}
+
+.pageStats .capsSection .capCardTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 950;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.012em;
+}
+
+.pageStats .capsSection .capCardSub {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.65;
+}
+
+.pageStats .capsSection .capBullets {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+
+.pageStats .capsSection .capBullets li {
+  margin: 9px 0;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.pageStats .capsSection .capBullets strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Conversions callout */
+.pageStats .capsSection .capsConversions {
+  margin-top: 14px;
+}
+
+.pageStats .capsSection .capFacts {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.pageStats .capsSection .capFacts li {
+  margin: 9px 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.pageStats .capsSection .capFacts strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* After content block, fills the left column space */
+.pageStats .capsSection .capsAfter {
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background:
+    radial-gradient(700px 360px at 12% 0%, rgba(255, 255, 255, 0.04), transparent 60%),
+    rgba(0, 0, 0, 0.10);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.pageStats .capsSection .capsAfter > h3 {
+  margin-top: 18px;
+}
+
+.pageStats .capsSection .capsAfter > h3:first-child {
+  margin-top: 0;
+}
+
+.pageStats .capsSection .capsAfter > p {
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.7;
+}
+
+/* Bottom line note spacing */
+.pageStats .capsSection .capsBottomLine {
+  margin-top: 14px;
+}
+
+/* Mobile tightening */
+@media (max-width: 520px) {
+  .pageStats .capsSection .capsPanel,
+  .pageStats .capsSection .capsAfter {
+    padding: 16px;
+  }
+
+  .pageStats .capsSection .capsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pageStats .capsSection .capsTag {
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   Reduced motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .pageStats .statChip {
+    transition: none;
+  }
+}

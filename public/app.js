@@ -4,132 +4,128 @@ import { initAnalytics, trackPageView } from "./src/js/init/analytics.js"
 import { initControls } from "./src/js/ui/controls.js"
 import { initSwingLab } from "./src/js/tools/swing_lab.js"
 import { hydrateSpellRefs } from "./src/js/ui/spell_refs.js"
-import { bindToolModalOnce } from "./src/js/ui/toolModal.js"
+// Remove this import:
+// import { bindToolModalOnce } from "./src/js/ui/toolModal.js"
 
-let toolHandlersBound = false;
+const TOOL_MODAL_STYLE_ID = "toolModalStyles"
+let toolLauncherBound = false
 
-export function mountToolLaunchers(scope = document) {
-  if (toolHandlersBound) return;
-  toolHandlersBound = true;
-
-  function toEmbedUrl(raw) {
-    const u = new URL(raw, window.location.origin);
-    u.searchParams.set("embed", "1");
-    return u.pathname + u.search + u.hash;
-  }
-
-  function openTool(url, title) {
-    const dlg = document.getElementById("toolModal");
-    const frame = document.getElementById("toolFrame");
-    const titleEl = dlg?.querySelector(".tool_modal_title");
-
-    if (!dlg || !frame) return;
-
-    if (titleEl) titleEl.textContent = title || "Tool";
-
-    frame.src = "about:blank";
-    dlg.showModal();
-
-    requestAnimationFrame(() => {
-      frame.src = toEmbedUrl(url);
-    });
-  }
-
-  function closeTool() {
-    const dlg = document.getElementById("toolModal");
-    const frame = document.getElementById("toolFrame");
-    if (frame) frame.src = "about:blank";
-    if (dlg?.open) dlg.close();
-  }
-
-  document.addEventListener("click", (e) => {
-    const openBtn = e.target.closest("[data-open-tool]");
-    if (openBtn) {
-      e.preventDefault();
-      openTool(
-        openBtn.dataset.openTool,
-        openBtn.dataset.toolTitle
-      );
-    }
-
-    const closeBtn = e.target.closest("[data-tool-close]");
-    if (closeBtn) {
-      e.preventDefault();
-      closeTool();
-    }
-  });
-
-  document.addEventListener("close", (e) => {
-    if (e.target?.id === "toolModal") {
-      const frame = document.getElementById("toolFrame");
-      if (frame) frame.src = "about:blank";
-    }
-  }, true);
+const TOOL_MAP = {
+  swing: { title: "Swing Sync and Stagger Trainer", url: "/pages/guide/sync_stagger.html#trainer" },
+  talents: { title: "Talent Planner", url: "/pages/guide/talents.html#talent-module" },
+  air: { title: "Air Totem Twisting Lab", url: "/pages/guide/air_totem_weaving.html#air-twist-lab" },
+  fire: { title: "Fire Totem Twisting Lab", url: "/pages/guide/fire_totem_weaving.html#fire-twist-lab" },
 }
 
-let toolLauncherBound = false;
-
-function bindToolLauncher() {
-  if (toolLauncherBound) return;
-  toolLauncherBound = true;
-
-  function toEmbedUrl(rawUrl) {
-    const u = new URL(rawUrl, window.location.origin);
-    u.searchParams.set("embed", "1");
-    return u.pathname + u.search + u.hash;
+function ensureToolModalShell() {
+  if (!document.getElementById(TOOL_MODAL_STYLE_ID)) {
+    const style = document.createElement("style")
+    style.id = TOOL_MODAL_STYLE_ID
+    style.textContent = `
+      .toolDialog { width: min(1180px, 96vw); height: min(86vh, 920px); padding: 0; border: 1px solid var(--stroke); border-radius: var(--r2); background: var(--bg2); color: var(--fg); box-shadow: var(--shadow); }
+      .toolDialog::backdrop { background: rgba(0,0,0,0.66); }
+      .toolDialogHeader { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-bottom:1px solid var(--stroke); background: rgba(255,255,255,0.03); }
+      .toolDialogTitle { display:flex; align-items:baseline; gap:10px; min-width:0; }
+      .toolDialogTitle h2 { margin:0; font-size:14px; letter-spacing:0.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .toolDialogHint { color: var(--fg3); font-size:12px; white-space:nowrap; }
+      .toolDialogActions { display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+      .toolDialogBody { height: calc(100% - 54px); }
+      .toolFrame { display:block; width:100%; height:100%; border:0; background: var(--bg); }
+    `
+    document.head.appendChild(style)
   }
 
-  function closeToolModal() {
-    const dlg = document.getElementById("toolModal");
-    const frame = document.getElementById("toolFrame");
-    if (frame) frame.src = "about:blank";
-    if (dlg && dlg.open) dlg.close();
-  }
+  if (document.getElementById("toolModal")) return
 
-  function openToolModal(rawUrl, title) {
-    const dlg = document.getElementById("toolModal");
-    const frame = document.getElementById("toolFrame");
-    const titleEl = document.querySelector("#toolModal .tool_modal_title");
-    if (!dlg || !frame) return;
+  const dlg = document.createElement("dialog")
+  dlg.id = "toolModal"
+  dlg.className = "toolDialog"
+  dlg.setAttribute("aria-labelledby", "toolModalTitle")
+  dlg.innerHTML = `
+    <div class="toolDialogHeader">
+      <div class="toolDialogTitle">
+        <h2 id="toolModalTitle">Tool</h2>
+        <div class="toolDialogHint">Esc to close</div>
+      </div>
+      <div class="toolDialogActions">
+        <a id="toolModalFull" class="btn btnGhost" href="#" target="_blank" rel="noopener">Open full page</a>
+        <button id="toolModalClose" class="btn" type="button" aria-label="Close">Close</button>
+      </div>
+    </div>
+    <div class="toolDialogBody">
+      <iframe id="toolFrame" class="toolFrame" title="Tool"></iframe>
+    </div>
+  `
+  document.body.appendChild(dlg)
 
-    if (titleEl) titleEl.textContent = title || "Tool";
+  dlg.addEventListener("click", (ev) => {
+    if (ev.target === dlg) dlg.close()
+  })
 
-    frame.src = "about:blank";
-    dlg.showModal();
+  dlg.addEventListener("close", () => {
+    const frame = document.getElementById("toolFrame")
+    if (frame) frame.src = "about:blank"
+  })
+}
 
-    const embedUrl = toEmbedUrl(rawUrl);
-    setTimeout(() => {
-      frame.src = embedUrl;
-    }, 0);
-  }
+function toEmbedUrl(rawUrl) {
+  const u = new URL(rawUrl, window.location.origin)
+  u.searchParams.set("embed", "1")
+  return u.pathname + u.search + u.hash
+}
+
+function resolveTool(raw, titleHint) {
+  const mapped = TOOL_MAP[raw]
+  if (mapped) return { url: mapped.url, title: mapped.title }
+  return { url: raw, title: titleHint || "Tool" }
+}
+
+function bindToolLauncherOnce() {
+  if (toolLauncherBound) return
+  toolLauncherBound = true
+
+  ensureToolModalShell()
 
   document.addEventListener("click", (ev) => {
-    const btn = ev.target.closest("[data-open-tool]");
-    if (!btn) return;
+    const openBtn = ev.target.closest("[data-open-tool]")
+    if (openBtn) {
+      ev.preventDefault()
 
-    ev.preventDefault();
-    openToolModal(btn.getAttribute("data-open-tool"), btn.getAttribute("data-tool-title"));
-  });
+      const raw = openBtn.getAttribute("data-open-tool") || ""
+      const titleHint = openBtn.getAttribute("data-tool-title") || ""
+      const { url, title } = resolveTool(raw, titleHint)
 
-  document.addEventListener("click", (ev) => {
-    const closeBtn = ev.target.closest("[data-tool-close]");
-    if (!closeBtn) return;
+      const dlg = document.getElementById("toolModal")
+      const frame = document.getElementById("toolFrame")
+      const titleEl = document.getElementById("toolModalTitle")
+      const fullEl = document.getElementById("toolModalFull")
 
-    ev.preventDefault();
-    closeToolModal();
-  });
-
-  // Handle ESC close on <dialog>
-  document.addEventListener(
-    "close",
-    (ev) => {
-      if (ev.target && ev.target.id === "toolModal") {
-        const frame = document.getElementById("toolFrame");
-        if (frame) frame.src = "about:blank";
+      if (!dlg || !frame || typeof dlg.showModal !== "function") {
+        window.location.href = url
+        return
       }
-    },
-    true
-  );
+
+      if (titleEl) titleEl.textContent = title
+      if (fullEl) fullEl.href = url
+      frame.title = title
+
+      frame.src = "about:blank"
+      dlg.showModal()
+
+      const embedUrl = toEmbedUrl(url)
+      setTimeout(() => { frame.src = embedUrl }, 0)
+      return
+    }
+
+    const closeBtn = ev.target.closest("[data-tool-close], #toolModalClose")
+    if (closeBtn) {
+      ev.preventDefault()
+      const dlg = document.getElementById("toolModal")
+      const frame = document.getElementById("toolFrame")
+      if (frame) frame.src = "about:blank"
+      if (dlg && dlg.open) dlg.close()
+    }
+  })
 }
 
 const CACHE_BUSTER_KEY = "assetCacheBuster"
@@ -194,8 +190,59 @@ function updateHeaderOffset() {
   document.documentElement.style.setProperty("--app-header-height", `${height}px`)
 }
 
+function ensurePageCss(scope) {
+  const marker = scope.querySelector("[data-page-css]")
+  const raw = marker?.getAttribute("data-page-css") || ""
+
+  // Allow multiple hrefs separated by spaces
+  const hrefs = raw
+    .split(/\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+
+  // Remove any existing runtime links that are no longer needed
+  const existing = Array.from(document.querySelectorAll('link[data-runtime-page-css="1"]'))
+
+  const buster = getAssetCacheBuster()
+
+  // Ensure we have exactly hrefs.length runtime links
+  for (let i = 0; i < hrefs.length; i++) {
+    const desiredHref = hrefs[i]
+
+    let link = existing[i]
+    if (!link) {
+      link = document.createElement("link")
+      link.rel = "stylesheet"
+      link.setAttribute("data-runtime-page-css", "1")
+      document.head.appendChild(link)
+    }
+
+    // Apply session cache buster so runtime injected CSS behaves like your boot time CSS
+    try {
+      const url = new URL(desiredHref, window.location.origin)
+      url.searchParams.set("v", buster)
+      const finalHref = url.toString()
+      if (link.href !== finalHref) link.href = finalHref
+    } catch {
+      if (link.getAttribute("href") !== desiredHref) link.href = desiredHref
+    }
+  }
+
+  // Remove extra runtime links
+  for (let i = hrefs.length; i < existing.length; i++) {
+    existing[i].remove()
+  }
+
+  // If no page css is specified, remove all runtime links
+  if (hrefs.length === 0) {
+    existing.forEach((l) => l.remove())
+  }
+}
+
+
 async function mountPageTools(scope) {
-  bindToolModalOnce()
+  ensurePageCss(scope)
+  bindToolLauncherOnce()
   hydrateSpellRefs(scope)
 
   const lab = scope.querySelector("#airTwistLab")

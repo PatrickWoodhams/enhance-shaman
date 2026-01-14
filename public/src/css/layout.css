@@ -14,13 +14,28 @@
 }
 
 .headerInner {
-  max-width: var(--max);
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 12px 16px;
-  display: flex;
+  padding: 14px 18px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 14px;
+}
+
+.headerInner > .brand {
+  justify-self: start;
+  min-width: 0;
+}
+
+.headerInner > .headerNav {
+  justify-self: center;
+}
+
+.headerInner > .headerActions {
+  justify-self: end;
+  min-width: 0;
 }
 
 .headerLeft {

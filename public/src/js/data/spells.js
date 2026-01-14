@@ -15,11 +15,14 @@ export const SPELLS = {
   feral_spirit: { name: "Feral Spirit", icon: iconUrl("spell_shaman_feralspirit") },
   dual_wield: { name: "Dual Wield", icon: iconUrl("ability_dualwield") },
   improved_fire_totems: { name: "Improved Fire Totems", icon: iconUrl("spell_fire_sealoffire") },
+  improved_ghost_wolf: { name: "Improved Ghost Wolf", icon: iconUrl("spell_nature_spiritwolf") },
+  guardian_totems: { name: "Guardian Totems", icon: iconUrl("spell_nature_stoneskintotem") },
   totemic_focus: { name: "Totemic Focus", icon: iconUrl("spell_nature_moonglow") },
   call_of_flames: { name: "Call of Flames", icon: iconUrl("spell_fire_immolation") },
   totemic_mastery: { name: "Totemic Mastery", icon: iconUrl("spell_nature_nullward") },
   improved_weapon_totems: { name: "Improved Weapon Totems", icon: iconUrl("spell_fire_enchantweapon") },
-  guardian_totems: { name: "Guardian Totems", icon: iconUrl("spell_nature_stoneskintotem") },
+  natures_guidance: { name: "Nature's Guidance", icon: iconUrl("spell_frost_stun") },
+  clearcasting: { name: "Clearcasting", icon: iconUrl("spell_shadow_manaburn") },
   
   // Talents and procs
   flurry: { name: "Flurry", icon: iconUrl("ability_ghoulfrenzy") },

@@ -1,0 +1,399 @@
+/* /src/css/pages/talents.css */
+/* =========================================================
+   Talents page specific styles
+========================================================= */
+
+.pageTalents .specGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+}
+
+.pageTalents .specCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.pageTalents .cardBody {
+  margin-top: 10px;
+}
+
+.pageTalents .specTrade {
+  margin-top: 18px;
+  padding-top: 14px;
+}
+
+.pageTalents .panelTip {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+/* /src/css/pages/talents.css */
+/* =========================================================
+   Talents page specific styles
+========================================================= */
+
+.pageTalents .specFamilies {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+@media (max-width: 900px) {
+  .pageTalents .specFamilies {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pageTalents .specFamilyCard {
+  position: relative;
+  overflow: hidden;
+}
+
+.pageTalents .specFamilyKicker {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg3);
+}
+
+.pageTalents .specFamilyTitle {
+  margin: 6px 0 0;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.pageTalents .specFamilyBody {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.pageTalents .specFamilyList {
+  margin-top: 10px;
+}
+
+.pageTalents .specFlexNote {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  line-height: 1.45;
+}
+
+.pageTalents .specStackHeader {
+  margin-top: 18px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pageTalents .specStackTitle {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.pageTalents .specStackHint {
+  margin: 6px 0 0;
+}
+
+/* The new layout: a vertical stack of wide, horizontal spec rows */
+.pageTalents .specGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.pageTalents .specRow {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  align-items: start;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 980px) {
+  .pageTalents .specRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pageTalents .specLeft {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pageTalents .specTitle {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.pageTalents .specDescriptor {
+  font-size: 13px;
+  color: var(--fg3);
+  margin-top: -4px;
+}
+
+.pageTalents .specChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.pageTalents .specPreset {
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--stroke);
+}
+
+.pageTalents .specPresetLabel {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  margin-bottom: 6px;
+}
+
+.pageTalents .specPresetName {
+  line-height: 1.35;
+}
+
+.pageTalents .specRight {
+  min-width: 0;
+}
+
+.pageTalents .specPurpose {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.pageTalents .specDiff {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--stroke);
+}
+
+.pageTalents .specRowCols {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 720px) {
+  .pageTalents .specRowCols {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pageTalents .specColTitle {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  margin-bottom: 8px;
+}
+
+.pageTalents .specNote {
+  margin-top: 14px;
+}
+
+/* Existing styles you already had that can stay */
+.pageTalents .talentLabShell {
+  margin-top: 25px;
+}
+
+.pageTalents .devBanner {
+  margin: 16px 0 18px;
+  border: 1px solid rgba(255, 191, 0, 0.35);
+  border-radius: 16px;
+  background: rgba(255, 191, 0, 0.10);
+}
+
+.pageTalents .devBannerInner {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 14px;
+}
+
+.pageTalents .devBannerIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: rgba(255, 191, 0, 0.22);
+  border: 1px solid rgba(255, 191, 0, 0.45);
+  flex: 0 0 auto;
+}
+
+.pageTalents .devBannerTitle {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+}
+
+.pageTalents .devBannerText {
+  margin: 0;
+  opacity: 0.92;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .pageTalents .specGrid {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 2px 12px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .pageTalents .specGrid > .specCard {
+    flex: 0 0 min(520px, 88%);
+    scroll-snap-align: start;
+  }
+}
+
+.pageTalents .specCard {
+  position: relative;
+  overflow: hidden;
+}
+
+.pageTalents .specTitle {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.pageTalents .specChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.pageTalents .specCols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 720px) {
+  .pageTalents .specCols {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pageTalents .specColTitle {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg3);
+  margin-bottom: 8px;
+}
+
+.pageTalents .specCard .ruleList {
+  margin-top: 0;
+}
+
+.pageTalents .specCard .panelTip {
+  margin-top: 12px;
+}
+
+.pageTalents .specNote {
+  margin-top: 14px;
+}
+
+.pageTalents .specKey {
+  margin: 10px 0 8px;
+  max-width: none;
+}
+
+.pageTalents .specTrade {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--stroke);
+}
+
+.pageTalents .talentLabShell {
+  margin-top: 25px;
+}
+
+.pageTalents .devBanner {
+  margin: 16px 0 18px;
+  border: 1px solid rgba(255, 191, 0, 0.35);
+  border-radius: 16px;
+  background: rgba(255, 191, 0, 0.10);
+}
+
+.pageTalents .devBannerInner {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 14px;
+}
+
+.pageTalents .devBannerIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: rgba(255, 191, 0, 0.22);
+  border: 1px solid rgba(255, 191, 0, 0.45);
+  flex: 0 0 auto;
+}
+
+.pageTalents .devBannerTitle {
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+}
+
+.pageTalents .devBannerText {
+  margin: 0;
+  opacity: 0.92;
+  line-height: 1.45;
+}
+
+@media (max-width: 520px) {
+  .pageTalents .specGrid {
+    gap: 12px;
+    padding-bottom: 14px;
+  }
+
+  .pageTalents .specGrid > .specCard {
+    flex-basis: 92%;
+  }
+}
+
+.pageTalents .specActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pageTalents .specLoadBtn {
+  width: 100%;
+}
+
+@media (min-width: 981px) {
+  .pageTalents .specLoadBtn {
+    width: auto;
+  }
+}

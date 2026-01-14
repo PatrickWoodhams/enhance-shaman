@@ -1,0 +1,33 @@
+/* /src/css/builds_index.css */
+.pageBuildsIndex .pageHero {
+  padding-bottom: 0;
+}
+
+.pageBuildsIndex .grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .pageBuildsIndex .grid3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pageBuildsIndex .miniCard {
+  border-radius: 16px;
+  padding: 16px;
+  background: var(--surface-1, rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+
+.pageBuildsIndex .miniTitle {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.pageBuildsIndex .miniBody {
+  margin: 0;
+  color: var(--muted, rgba(255, 255, 255, 0.72));
+}

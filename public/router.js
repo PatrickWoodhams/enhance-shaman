@@ -11,8 +11,32 @@ function applyEmbedMode() {
 
 function isInternalLink(a) {
   if (!a || !a.href) return false;
-  const url = new URL(a.href, window.location.origin);
-  return url.origin === window.location.origin;
+  try {
+    const url = new URL(a.href, window.location.origin);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return false;
+    return url.origin === window.location.origin;
+  } catch {
+    return false;
+  }
+}
+
+function shouldBypassSpaNavigation(e, a) {
+  // Respect any other handler that already claimed the click (tool modal does this)
+  if (e.defaultPrevented) return true;
+
+  // Only intercept plain left clicks
+  if (e.button !== 0) return true;
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return true;
+
+  // Let the browser handle new tab, downloads, and explicit external intent
+  const target = (a.getAttribute("target") || "").toLowerCase();
+  if (target && target !== "_self") return true;
+  if (a.hasAttribute("download")) return true;
+
+  const rel = (a.getAttribute("rel") || "").toLowerCase();
+  if (rel.includes("external")) return true;
+
+  return false;
 }
 
 function scrollToHashIfNeeded() {
@@ -26,39 +50,93 @@ function scrollToHashIfNeeded() {
   if (el) el.scrollIntoView({ block: "start" });
 }
 
-async function swapMainContent(urlPath) {
-  document.body.classList.add("isNavigating");
+function stripHash(urlPath) {
+  const i = urlPath.indexOf("#");
+  return i === -1 ? urlPath : urlPath.slice(0, i);
+}
 
-  const res = await fetch(urlPath, { headers: { "X-Requested-With": "fetch" } });
-  if (!res.ok) throw new Error(`Navigation fetch failed: ${urlPath}`);
+function normalizeInternalPath(url) {
+  let pathname = url.pathname;
 
-  const html = await res.text();
-  const doc = new DOMParser().parseFromString(html, "text/html");
-
-  const nextMain = doc.querySelector("#appMain");
-  const main = document.querySelector("#appMain");
-
-  if (!main || !nextMain) {
-    window.location.href = urlPath;
-    return;
+  // Legacy aliases (your comment mentioned seeing /talent)
+  if (pathname === "/talent" || pathname === "/talents") {
+    pathname = "/guide/talents";
   }
 
-  main.innerHTML = nextMain.innerHTML;
+  // Convert old file paths into clean routes
+  // /pages/guide/sync_stagger.html -> /guide/sync-stagger
+  if (pathname === "/pages/guide/index.html" || pathname === "/pages/guide/index") {
+    pathname = "/guide";
+  } else if (pathname.startsWith("/pages/guide/")) {
+    const file = pathname.slice("/pages/guide/".length);
+    const base = file.replace(/\.html$/i, "");
+    pathname = base === "index" ? "/guide" : `/guide/${base.replace(/_/g, "-")}`;
+  }
 
-  const nextTitle = doc.querySelector("title");
-  if (nextTitle) document.title = nextTitle.textContent || document.title;
+  // /pages/tools/index.html -> /tools, /pages/tools/something.html -> /tools/something
+  if (pathname === "/pages/tools/index.html" || pathname === "/pages/tools/index") {
+    pathname = "/tools";
+  } else if (pathname.startsWith("/pages/tools/")) {
+    const file = pathname.slice("/pages/tools/".length);
+    const base = file.replace(/\.html$/i, "");
+    pathname = base === "index" ? "/tools" : `/tools/${base.replace(/_/g, "-")}`;
+  }
 
-  buildToc();
+  // Simple section indexes
+  if (pathname === "/pages/builds/index.html" || pathname === "/pages/builds/index") pathname = "/builds";
+  if (pathname === "/pages/encounters/index.html" || pathname === "/pages/encounters/index") pathname = "/encounters";
 
-  const mainEl = document.getElementById("appMain");
-  if (mainEl) mainEl.focus();
-
-  window.scrollTo(0, 0);
-  scrollToHashIfNeeded();
-
-  document.body.classList.remove("isNavigating");
-  document.dispatchEvent(new CustomEvent("app:navigated"));
+  return pathname + url.search + url.hash;
 }
+
+async function swapMainContent(urlPath, skipHistory = false) {
+  document.body.classList.add("isNavigating");
+
+  try {
+    const res = await fetch(stripHash(urlPath), { headers: { "X-Requested-With": "fetch" } });
+    if (!res.ok) throw new Error(`Navigation fetch failed: ${urlPath}`);
+
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, "text/html");
+
+    const nextMain = doc.querySelector("#appMain");
+    const main = document.querySelector("#appMain");
+
+    if (!main || !nextMain) {
+      window.location.href = urlPath;
+      return;
+    }
+
+    // ADD THIS: keep body class in sync with the destination page
+    // Preserve your runtime class used for transitions
+    const keep = document.body.classList.contains("isNavigating") ? ["isNavigating"] : [];
+    const nextBodyClasses = (doc.body && doc.body.className) ? doc.body.className : "";
+    document.body.className = [...keep, ...nextBodyClasses.split(/\s+/).filter(Boolean)].join(" ");
+
+    main.innerHTML = nextMain.innerHTML;
+
+    const nextTitle = doc.querySelector("title");
+    if (nextTitle) document.title = nextTitle.textContent || document.title;
+
+    if (!skipHistory) {
+      history.pushState({}, "", urlPath);
+    }
+
+    applyEmbedMode();
+    buildToc();
+
+    const mainEl = document.getElementById("appMain");
+    if (mainEl) mainEl.focus();
+
+    window.scrollTo(0, 0);
+    scrollToHashIfNeeded();
+
+    document.dispatchEvent(new CustomEvent("app:navigated"));
+  } finally {
+    document.body.classList.remove("isNavigating");
+  }
+}
+
 
 export function enhanceNavigation() {
   buildToc();
@@ -68,32 +146,41 @@ export function enhanceNavigation() {
     const a = e.target.closest("a");
     if (!a) return;
 
-    if (a.target && a.target !== "_self") return;
+    if (shouldBypassSpaNavigation(e, a)) return;
     if (!isInternalLink(a)) return;
 
-    const url = new URL(a.href, window.location.href);
+    const rawUrl = new URL(a.href, window.location.origin);
+    const nextPath = normalizeInternalPath(rawUrl);
+    const nextUrl = new URL(nextPath, window.location.origin);
 
-    if (url.pathname === window.location.pathname && url.hash) return;
+    // Allow same page hash jumps without swapping content
+    if (
+      nextUrl.pathname === window.location.pathname &&
+      nextUrl.search === window.location.search &&
+      nextUrl.hash
+    ) {
+      return;
+    }
 
     e.preventDefault();
 
-    history.pushState({}, "", url.pathname + url.search + url.hash);
-
     try {
-      await swapMainContent(url.pathname + url.search);
+      await swapMainContent(nextUrl.pathname + nextUrl.search + nextUrl.hash);
     } catch (err) {
       console.warn(err);
-      window.location.href = url.pathname;
+      window.location.href = nextUrl.pathname + nextUrl.search + nextUrl.hash;
     }
   });
 
   window.addEventListener("popstate", async () => {
     applyEmbedMode();
     try {
-      await swapMainContent(window.location.pathname);
+      await swapMainContent(
+        window.location.pathname + window.location.search + window.location.hash,
+        true
+      );
     } catch {
       window.location.reload();
     }
   });
-
 }
