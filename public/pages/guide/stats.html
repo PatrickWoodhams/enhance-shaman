@@ -414,56 +414,208 @@
 </section>
 
 <section class="contentCard" id="stat_cards">
-  <div class="eyebrow">
-    Reference
-  </div>
-  <h2>
-    Stat Breakdown
-  </h2>
-  <p>
-    Each card gives you a usable mental model for what the stat is really buying, plus the common traps that create
-    bad upgrade decisions. If you already feel confident, skim the Common trap line on each card and jump to the labs
-    when you are ready to practice.
+  <div class="eyebrow">Reference</div>
+  <h2>Stat Breakdown</h2>
+
+  <p class="lead" style="max-width: none; width: 100%;">
+    Each card gives you a usable mental model for what the stat is really buying, plus the common traps that create bad
+    upgrade decisions. This version also includes quick conversions so you can translate item text into real outcomes.
+    Use these numbers to sanity check upgrades, then sim when choices are close or your setup changes.
   </p>
+
+  <div class="epTableWrap" role="region" aria-label="Level 70 conversion cheatsheet">
+  <p class="muted" style="max-width: none; width: 100%; margin: 0 0 10px 0;">
+    Assumes level 70. Each row shows a base conversion plus a Kings line where it meaningfully changes the conversion.
+    Rating based conversions do not change with Kings.
+  </p>
+
+  <table class="epTable">
+    <thead>
+      <tr>
+        <th>Stat</th>
+        <th>Quick conversion</th>
+        <th style="text-align: left;">Notes for Enhancement</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><strong>Strength</strong></td>
+        <td>
+          <div><strong>Base:</strong> 1 Strength = 2 Attack Power</div>
+          <div><strong>Kings:</strong> 1 Strength = 2.2 Attack Power</div>
+        </td>
+        <td style="text-align: left;">
+          Use: your most stable physical scaler. Buff note: Kings increases Strength and therefore your Attack Power from it.
+          Watch for: compare items in the same buff context, especially when choices are close.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Attack Power</strong></td>
+        <td>
+          <div><strong>Rule:</strong> 14 Attack Power ≈ 1 weapon DPS</div>
+          <div><strong>Kings:</strong> no change</div>
+        </td>
+        <td style="text-align: left;">
+          Use: converts directly into weapon damage and scales most of your physical output.
+          Watch for: weapon speed affects the per swing gain from Attack Power, so similar upgrades can feel different across weapons.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Agility</strong></td>
+        <td>
+          <div><strong>Base:</strong> 1 Agility ≈ 0.04 percent crit</div>
+          <div><strong>Kings:</strong> 1 Agility ≈ 0.044 percent crit</div>
+        </td>
+        <td style="text-align: left;">
+          Use: crit plus a small defensive bump. Buff note: Kings increases Agility, so its crit contribution scales up in raids.
+          Watch for: Agility value rises when crit matters for Flurry stability.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Hit Rating</strong></td>
+        <td>
+          <div><strong>Base:</strong> 15.8 rating = 1 percent melee hit</div>
+          <div><strong>Kings:</strong> no change</div>
+        </td>
+        <td style="text-align: left;">
+          Use: reliability stat. Boss context: specials start at 9 percent miss. Dual wield auto swings start much higher, so you
+          typically target special reliability first.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Spell Hit Rating</strong></td>
+        <td>
+          <div><strong>Base:</strong> 12.6 rating = 1 percent spell hit</div>
+          <div><strong>Kings:</strong> no change</div>
+        </td>
+        <td style="text-align: left;">
+          Use: shock reliability. Buff note: separate from Hit Rating in TBC, so melee hit does not automatically fix missed shocks.
+          Watch for: treat spell hit as its own cap decision.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Crit Rating</strong></td>
+        <td>
+          <div><strong>Base:</strong> 22.1 rating = 1 percent crit</div>
+          <div><strong>Kings:</strong> no change</div>
+        </td>
+        <td style="text-align: left;">
+          Use: burst plus Flurry uptime. Buff note: Kings does not change crit rating conversion, but it does increase Agility based crit.
+          Watch for: misses and dodges reduce crit opportunities, which lowers real crit value.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Haste Rating</strong></td>
+        <td>
+          <div><strong>Base:</strong> 15.8 rating = 1 percent haste</div>
+          <div><strong>Kings:</strong> no change</div>
+        </td>
+        <td style="text-align: left;">
+          Use: multiplies landed swings and proc chances. Watch for: haste feels worse when you are missing or getting dodged, because it
+          creates more failed swings instead of more damage.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Expertise</strong></td>
+        <td>
+          <div><strong>Base:</strong> 3.94 rating = 1 Expertise</div>
+          <div><strong>Kings:</strong> no change</div>
+        </td>
+        <td style="text-align: left;">
+          Use: removes dodges, which stabilizes your entire damage engine. Conversion note: 1 Expertise reduces dodge and parry by 0.25 percent.
+          From behind you mostly care about dodge.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Intellect</strong></td>
+        <td>
+          <div><strong>Base:</strong> 1 Intellect = 15 mana</div>
+          <div><strong>Kings:</strong> 1 Intellect = 16.5 mana</div>
+        </td>
+        <td style="text-align: left;">
+          Use: rotation comfort and fewer dead moments. Buff note: Kings increases Intellect, which increases your mana pool.
+          Extra note: Intellect also increases spell crit. Rough rule: about 80 Intellect is 1 percent spell crit.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Mana per 5</strong></td>
+        <td>
+          <div><strong>Base:</strong> 1 Mp5 = 1 mana every 5 seconds</div>
+          <div><strong>Kings:</strong> no change</div>
+        </td>
+        <td style="text-align: left;">
+          Use: steady sustain that supports aggressive shock use and fewer pauses. Watch for: Mp5 value rises on longer fights and in groups
+          with fewer external mana tools.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Spell Power</strong></td>
+        <td>
+          <div><strong>Base:</strong> adds damage to spells</div>
+          <div><strong>Kings:</strong> no change</div>
+        </td>
+        <td style="text-align: left;">
+          Use: shocks and some magic sources. Conversion note: there is no single universal percent conversion for Spell Power in Enhancement,
+          because its value depends on your cast frequency and damage mix. Treat it as a sim stat when choices are close.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>Stamina</strong></td>
+        <td>
+          <div><strong>Base:</strong> 1 Stamina = 10 health</div>
+          <div><strong>Kings:</strong> 1 Stamina = 11 health</div>
+        </td>
+        <td style="text-align: left;">
+          Use: uptime through damage events. Edge case: the first 20 Stamina on your character give 1 health each.
+          Watch for: on progression, survival can be a real DPS gain because living preserves uptime.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
   <div class="statGrid" role="list">
     <div class="statCard" role="listitem">
       <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon">
-          <span class="statIconGlyph">
-            DPS
-          </span>
+        <div aria-hidden="true" class="statIcon" style="--statIconSize: 104px; --statIconPad: 0px;">
           <img alt="" loading="lazy" src="/assets/icons/stats/weapon_dps.png" />
         </div>
         <div>
-          <p class="statCardTitle">
-            Weapon DPS and speed
-          </p>
-          <div class="statCardMeta">
-            Your biggest lever. Always sim close weapon swaps.
-          </div>
+          <p class="statCardTitle">Weapon DPS and speed</p>
+          <div class="statCardMeta">Your biggest lever. Always sim close weapon swaps.</div>
         </div>
       </div>
 
       <ul class="miniList">
         <li>
-          <strong>
-            What it does:
-          </strong>
+          <strong>What it does:</strong>
           Weapon DPS raises your baseline damage, which everything else multiplies. Weapon speed influences swing timing,
-          proc behavior, and how your rotation “fits” between swings.
+          proc behavior, and how your rotation fits between swings.
         </li>
         <li>
-          <strong>
-            Why you care:
-          </strong>
+          <strong>Quick conversion:</strong>
+          Attack Power adds weapon damage at <strong>(Weapon Speed × Attack Power ÷ 14)</strong> per swing. This is why AP
+          and weapon speed both matter when you feel a weapon upgrade.
+        </li>
+        <li>
+          <strong>Why you care:</strong>
           A small DPS increase on a weapon often beats a large pile of stats on other slots because the whole kit scales
           off your weapons.
         </li>
         <li>
-          <strong>
-            Common trap:
-          </strong>
+          <strong>Common trap:</strong>
           Equipping a faster weapon because the secondary stats look better, then losing Windfury value and messing up
           timing and consistency. When weapons are close, sim it instead of guessing.
         </li>
@@ -472,52 +624,43 @@
 
     <div class="statCard" role="listitem">
       <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon">
-          <span class="statIconGlyph">
-            HIT
-          </span>
+        <div aria-hidden="true" class="statIcon" style="--statIconSize: 104px; --statIconPad: 0px;">
           <img alt="" loading="lazy" src="/assets/icons/stats/hit.png" />
         </div>
         <div>
-          <p class="statCardTitle">
-            Hit Rating
-          </p>
-          <div class="statCardMeta">
-            Prevents misses. Strong when you are losing key swings.
-          </div>
+          <p class="statCardTitle">Hit Rating</p>
+          <div class="statCardMeta">Prevents misses. Strong when you are losing key swings.</div>
         </div>
       </div>
 
       <ul class="miniList">
         <li>
-          <strong>
-            What it does:
-          </strong>
-          Reduces the chance your attacks miss. A missed swing is not just lost damage, it is also a lost chance to proc
-          effects and a lost chance to crit.
+          <strong>What it does:</strong>
+          Reduces the chance your physical attacks miss. A missed swing is not just lost damage, it is also a lost chance
+          to proc effects and a lost chance to crit.
         </li>
         <li>
-          Quick number: At level 70, <strong>15.8 Hit Rating</strong> is about <strong>1 percent hit</strong>. 
+          <strong>Conversion:</strong>
+          At level 70, <strong>15.8 Hit Rating</strong> is about <strong>1 percent melee hit</strong>.
         </li>
         <li>
-          <strong>
-            When it is strongest:
-          </strong>
+          <strong>Boss context:</strong>
+          Against level 73 bosses, special attacks start at <strong>9 percent</strong> base miss. Dual wield auto swings
+          have an additional miss penalty, so fully capping white swings is usually not the goal.
+        </li>
+        <li>
+          <strong>When it is strongest:</strong>
           When you are missing important attacks. Early on, each point of hit often creates a noticeable stability gain
           because fewer swings are completely wasted.
         </li>
         <li>
-          <strong>
-            When it collapses:
-          </strong>
-          When you are already covering the thing you are trying to protect. Past that point, hit stops preventing
-          failure and becomes just another small damage stat.
+          <strong>When it collapses:</strong>
+          When you are already covering the thing you are trying to protect for your current content and rotation.
+          Past that point, hit stops preventing failure and becomes just another small damage stat.
         </li>
         <li>
-          <strong>
-            Common trap:
-          </strong>
-          Downgrading a major weapon or Strength upgrade just to “chase a cap number” that does not improve your real
+          <strong>Common trap:</strong>
+          Downgrading a major weapon or Strength upgrade just to chase a cap number that does not improve your real
           results in that gear set.
         </li>
       </ul>
@@ -525,177 +668,103 @@
 
     <div class="statCard" role="listitem">
       <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon">
-          <span class="statIconGlyph">
-            EXP
-          </span>
+        <div aria-hidden="true" class="statIcon" style="--statIconSize: 104px; --statIconPad: 0px;">
           <img alt="" loading="lazy" src="/assets/icons/stats/expertise.png" />
         </div>
         <div>
-          <p class="statCardTitle">
-            Expertise
-          </p>
-          <div class="statCardMeta">
-            Prevents dodges. Extremely valuable until covered.
-          </div>
+          <p class="statCardTitle">Expertise</p>
+          <div class="statCardMeta">Prevents dodges. Extremely valuable until covered.</div>
         </div>
       </div>
 
       <ul class="miniList">
         <li>
-          <strong>
-            What it does:
-          </strong>
-          Reduces the chance your attacks are dodged when attacking from behind. Fewer dodges means more landed swings,
-          more procs, and more consistent output.
+          <strong>What it does:</strong>
+          Reduces the chance your attacks are dodged and parried. From behind, bosses cannot parry you, so the practical
+          value is mostly about removing dodges.
         </li>
         <li>
-          Quick number: About <strong>3.94 Expertise Rating</strong> gives <strong>1 Expertise</strong>, and each point
-          reduces dodge and parry chance by <strong>0.25 percent</strong>. 
+          <strong>Conversion:</strong>
+          About <strong>3.94 Expertise Rating</strong> gives <strong>1 Expertise</strong>. Each point reduces dodge and
+          parry chance by <strong>0.25 percent</strong>.
         </li>
         <li>
-          <strong>
-            Why it is strong:
-          </strong>
+          <strong>Why it is strong:</strong>
           Turning dodges into hits increases damage and smooths your proc and crit flow. It often feels like your whole
           rotation gets more reliable.
         </li>
         <li>
-          <strong>
-            Common trap:
-          </strong>
-          Treating Expertise like a permanent top stat even after you have effectively removed most boss dodge value for
-          your situation. Once it stops preventing dodges, its value drops sharply.
+          <strong>Common trap:</strong>
+          Treating Expertise like a permanent top stat even after you have effectively removed most dodge value for your
+          situation. Once it stops preventing dodges, its value drops sharply.
         </li>
       </ul>
     </div>
 
     <div class="statCard" role="listitem">
       <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon">
-          <span class="statIconGlyph">
-            STR
-          </span>
+        <div aria-hidden="true" class="statIcon" style="--statIconSize: 104px; --statIconPad: 0px;">
           <img alt="" loading="lazy" src="/assets/icons/stats/strength.png" />
         </div>
         <div>
-          <p class="statCardTitle">
-            Strength and Attack Power
-          </p>
-          <div class="statCardMeta">
-            Core physical scaling. Usually your safest damage stat.
-          </div>
+          <p class="statCardTitle">Strength and Attack Power</p>
+          <div class="statCardMeta">Core physical scaling. Usually your safest damage stat.</div>
         </div>
       </div>
 
       <ul class="miniList">
         <li>
-          <strong>
-            What it does:
-          </strong>
+          <strong>What it does:</strong>
           Strength converts into Attack Power and scales your physical damage. It is simple, consistent value that keeps
           working in every gear set.
         </li>
         <li>
-          <strong>
-            Why it stays stable:
-          </strong>
-          Unlike Hit or Expertise, it does not “turn off” when you pass a threshold. It keeps adding damage even when
-          other stats start to lose efficiency.
+          <strong>Conversion:</strong>
+          <strong>1 Strength = 2 Attack Power</strong>. Rule of thumb: <strong>14 Attack Power = 1 weapon DPS</strong>,
+          which is why Strength and AP remain valuable even when caps are handled.
         </li>
         <li>
-          <strong>
-            Common trap:
-          </strong>
-          Ignoring raid context. Buffs like Kings increase Strength and Agility, which can shift the best choice between
-          items that look close.
+          <strong>Why it stays stable:</strong>
+          Unlike Hit or Expertise, it does not turn off when you pass a threshold. It keeps adding damage even when other
+          stats start to lose efficiency.
+        </li>
+        <li>
+          <strong>Common trap:</strong>
+          Forgetting buffs. Kings increases Strength and Agility, which can shift the best choice between items that look
+          close.
         </li>
       </ul>
     </div>
 
     <div class="statCard" role="listitem">
       <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon">
-          <span class="statIconGlyph">
-            HST
-          </span>
-          <img alt="" loading="lazy" src="/assets/icons/stats/haste.png" />
-        </div>
-        <div>
-          <p class="statCardTitle">
-            Haste Rating
-          </p>
-          <div class="statCardMeta">
-            More swings, more procs, more scaling when your swings land.
-          </div>
-        </div>
-      </div>
-
-      <ul class="miniList">
-        <li>
-          <strong>
-            What it does:
-          </strong>
-          Increases swing frequency. More swings means more white damage and more chances for on hit effects to occur.
-        </li>
-        <li>
-          Quick number: At level 70, <strong>15.8 Haste Rating</strong> is about <strong>1 percent haste</strong>.
-        </li>
-        <li>
-          <strong>
-            When it is stronger:
-          </strong>
-          When your swings are consistently landing. Haste multiplies whatever you are already doing well.
-        </li>
-        <li>
-          <strong>
-            Common trap:
-          </strong>
-          Stacking haste while missing or getting dodged, then blaming haste. If swings do not land, haste just creates
-          more failed swings.
-        </li>
-      </ul>
-    </div>
-
-    <div class="statCard" role="listitem">
-      <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon">
-          <span class="statIconGlyph">
-            CRIT
-          </span>
+        <div aria-hidden="true" class="statIcon" style="--statIconSize: 104px; --statIconPad: 0px;">
           <img alt="" loading="lazy" src="/assets/icons/stats/crit.png" />
         </div>
         <div>
-          <p class="statCardTitle">
-            Crit Rating and Agility
-          </p>
-          <div class="statCardMeta">
-            Supports Flurry uptime and burst windows.
-          </div>
+          <p class="statCardTitle">Crit Rating and Agility</p>
+          <div class="statCardMeta">Supports Flurry uptime and burst windows.</div>
         </div>
       </div>
 
       <ul class="miniList">
         <li>
-          <strong>
-            What it does:
-          </strong>
+          <strong>What it does:</strong>
           Increases crit chance, improving burst and reinforcing effects that care about crits, including keeping Flurry
           rolling.
         </li>
         <li>
-          Quick number: At level 70, <strong>22.1 Crit Rating</strong> is about <strong>1 percent crit</strong>.
+          <strong>Conversions:</strong>
+          At level 70, <strong>22.1 Crit Rating</strong> is about <strong>1 percent crit</strong>.
+          For Shaman, <strong>1 Agility</strong> gives about <strong>0.04 percent crit</strong> and also adds dodge and armor.
         </li>
         <li>
-          <strong>
-            Agility note:
-          </strong>
-          Agility also provides crit and scales with Kings, so it can gain extra value in buffed raid settings.
+          <strong>When it is better than it looks:</strong>
+          When your swings are connecting reliably. Crit feeds Flurry, and Flurry increases the number of future swings
+          that can also crit.
         </li>
         <li>
-          <strong>
-            Common trap:
-          </strong>
+          <strong>Common trap:</strong>
           Comparing crit numbers without considering how many swings are actually connecting. Misses and dodges reduce
           the number of chances you even get to roll a crit.
         </li>
@@ -704,40 +773,64 @@
 
     <div class="statCard" role="listitem">
       <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon">
-          <span class="statIconGlyph">
-            ARP
-          </span>
-          <img alt="" loading="lazy" src="/assets/icons/stats/armor_pen.png" />
+        <div aria-hidden="true" class="statIcon" style="--statIconSize: 104px; --statIconPad: 0px;">
+          <img alt="" loading="lazy" src="/assets/icons/stats/haste.png" />
         </div>
         <div>
-          <p class="statCardTitle">
-            Armor Penetration
-          </p>
-          <div class="statCardMeta">
-            Physical gain that shows up later. Usually not a gem priority early.
-          </div>
+          <p class="statCardTitle">Haste Rating</p>
+          <div class="statCardMeta">More swings, more procs, more scaling when your swings land.</div>
         </div>
       </div>
 
       <ul class="miniList">
         <li>
-          <strong>
-            What it does:
-          </strong>
+          <strong>What it does:</strong>
+          Increases swing frequency. More swings means more white damage and more chances for on hit effects to occur.
+        </li>
+        <li>
+          <strong>Conversion:</strong>
+          At level 70, <strong>15.8 Haste Rating</strong> is about <strong>1 percent haste</strong>.
+        </li>
+        <li>
+          <strong>When it is stronger:</strong>
+          When your swings are consistently landing. Haste multiplies whatever you are already doing well.
+        </li>
+        <li>
+          <strong>Common trap:</strong>
+          Stacking haste while missing or getting dodged, then blaming haste. If swings do not land, haste just creates
+          more failed swings.
+        </li>
+      </ul>
+    </div>
+
+    <div class="statCard" role="listitem">
+      <div class="statCardHeader">
+        <div aria-hidden="true" class="statIcon" style="--statIconSize: 104px; --statIconPad: 0px;">
+          <img alt="" loading="lazy" src="/assets/icons/stats/armor_pen.png" />
+        </div>
+        <div>
+          <p class="statCardTitle">Armor Penetration</p>
+          <div class="statCardMeta">Physical gain that shows up later. Usually not a gem priority early.</div>
+        </div>
+      </div>
+
+      <ul class="miniList">
+        <li>
+          <strong>What it does:</strong>
           Lets your physical attacks ignore some armor, increasing the portion of your damage that gets through.
         </li>
         <li>
-          <strong>
-            When it shines:
-          </strong>
+          <strong>Conversion note:</strong>
+          There is no single universal percent conversion that stays true across bosses, because the gain depends on the
+          target armor and your damage mix. Treat this as a sim stat once you are past basic reliability needs.
+        </li>
+        <li>
+          <strong>When it shines:</strong>
           Later gear sets, when your baseline weapon damage and Attack Power are already high enough that reducing armor
           meaningfully amplifies that damage.
         </li>
         <li>
-          <strong>
-            Common trap:
-          </strong>
+          <strong>Common trap:</strong>
           Chasing Armor Pen early at the cost of stats that prevent failures like Hit or Expertise, or giving up major
           Strength and weapon upgrades.
         </li>
@@ -746,43 +839,40 @@
 
     <div class="statCard" role="listitem">
       <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon">
-          <span class="statIconGlyph">
-            SP
-          </span>
+        <div aria-hidden="true" class="statIcon" style="--statIconSize: 104px; --statIconPad: 0px;">
           <img alt="" loading="lazy" src="/assets/icons/stats/spell_power.png" />
         </div>
         <div>
-          <p class="statCardTitle">
-            Spell stats and mana stats
-          </p>
-          <div class="statCardMeta">
-            Not primary, but not irrelevant. Often decides comfort and consistency.
-          </div>
+          <p class="statCardTitle">Spell hit, spell power, and mana stats</p>
+          <div class="statCardMeta">Not primary, but not irrelevant. Often decides comfort and consistency.</div>
         </div>
       </div>
 
       <ul class="miniList">
         <li>
-          <strong>
-            Spell Power:
-          </strong>
-          Improves shocks and some proc driven magic damage. In most PvE setups it is usually secondary to weapon and
-          physical scaling, but it still contributes.
+          <strong>Spell Hit Rating:</strong>
+          Impacts shocks and other spell events. In TBC, Hit Rating and Spell Hit Rating are separate, so your physical
+          hit does not automatically fix missed shocks.
         </li>
         <li>
-          <strong>
-            Intellect and Mana per 5:
-          </strong>
-          Increase your ability to sustain an aggressive rotation without having to stop and recover. If you run out of
-          mana, your real DPS falls off a cliff no matter how strong your gear looks on paper.
+          <strong>Conversion:</strong>
+          At level 70, <strong>12.6 Spell Hit Rating</strong> is about <strong>1 percent spell hit</strong>.
         </li>
         <li>
-          <strong>
-            Stamina:
-          </strong>
-          Keeps you alive through raid mechanics and mistakes. Dead players do zero DPS, and surviving lets you keep
-          attacking instead of playing scared.
+          <strong>Spell Power:</strong>
+          Improves shocks and other magic damage sources. It is usually secondary to weapon and physical scaling, but it
+          still contributes, especially when you are casting on cooldown.
+        </li>
+        <li>
+          <strong>Intellect and Mana per 5:</strong>
+          Intellect is <strong>15 mana per point</strong> and also increases spell crit. If you run out of mana, your real
+          DPS falls off a cliff no matter how strong your gear looks on paper. Mana per 5 is pure sustain and is often
+          the difference between keeping the rotation aggressive or having to back off.
+        </li>
+        <li>
+          <strong>Stamina:</strong>
+          Typically <strong>10 health per point</strong>. Surviving mechanics preserves uptime and lets you keep attacking
+          instead of playing scared.
         </li>
       </ul>
     </div>
@@ -1190,164 +1280,510 @@
 </section>
 
     
-     <section class="contentCard" id="buffs_and_stacking">
+<section class="contentCard buffsSection" id="buffs_and_stacking">
   <div class="eyebrow">Buffs</div>
-  <h2>Buff stacking and raid buffs</h2>
+  <h2>Raid buffs, raid debuffs, and what they change</h2>
 
   <p>
-    Your stats do not exist in a vacuum. In raids, your character is constantly boosted by buffs, debuffs, and consumables.
-    Some effects stack, some do not, and a few replace each other.
-    This section gives you a simple mental model so you do not double count power or miss easy upgrades.
+    Enhancement gearing does not happen in a vacuum. In a real raid, your stats are being increased by raid buffs on you,
+    your party is being boosted by group limited effects, and the boss is being weakened by target debuffs.
+    Those layers change what each stat actually delivers.
   </p>
 
-  <h3>The stacking rules you actually need</h3>
-  <ul>
-    <li>
-      <strong>Same category usually does not stack.</strong>
-      If two effects give the same type of bonus, you normally only get the strongest one.
-      Example: two different Attack Power blessings do not add together.
-    </li>
-    <li>
-      <strong>Different categories usually do stack.</strong>
-      A stat buff plus a totem plus a consumable usually all apply together.
-      Example: Strength from Kings plus Strength from a scroll plus Strength from food do not all behave the same.
-    </li>
-    <li>
-      <strong>Percent buffs multiply your base stats.</strong>
-      Effects like Kings scale stats you already have.
-      This is why Strength and Agility get better in real raids than they do in a vacuum.
-    </li>
-    <li>
-      <strong>Raid debuffs on the boss are part of your damage.</strong>
-      Armor reduction on the target increases your physical damage even though it is not on your character sheet.
-    </li>
-  </ul>
+  <p class="muted buffsNote">
+    How to read this section: each line has an <strong>Effect</strong> and a <strong>Why it matters</strong>.
+    If you are comparing two items and your raid coverage changes, your “best stat” list can change with it.
+  </p>
 
-  <h3>Buff buckets for Enhancement Shaman in TBC</h3>
+  <h3>Raid buffs on you</h3>
   <p class="muted">
-    Think in buckets. One buff from each bucket can apply at the same time.
-    If you have two from the same bucket, the stronger one wins.
+    These are the buffs that most commonly shift Enhancement item comparisons, especially when you are close to hit or expertise breakpoints.
   </p>
 
-  <div class="statGrid">
-    <div class="statCard">
+  <div class="statGrid buffGrid" role="list">
+    <!-- Base stats and percent scaling -->
+    <article class="statCard buffCard" role="listitem">
       <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon"><span class="statIconGlyph">STR</span></div>
+        <div class="statIcon buffHeaderIcon" aria-hidden="true">
+          <span class="spellRef" data-spell="blessing_of_kings"></span>
+        </div>
         <div>
-          <h3 class="statCardTitle">Stats and percent buffs</h3>
-          <div class="statCardMeta">Strength, Agility, Stamina, Intellect, and percent increases</div>
+          <p class="statCardTitle">Base stats and percent scaling</p>
+          <div class="statCardMeta">These change the real value of Strength, Agility, Intellect, and Stamina</div>
         </div>
       </div>
-      <ul class="miniList">
-        <li><strong>Blessing of Kings</strong> increases your base stats by a percent. It stacks with most other things.</li>
-        <li><strong>Mark of the Wild</strong> gives base stats. It stacks with Kings.</li>
-        <li><strong>Strength and Agility sources</strong> matter more in raids because Kings scales them.</li>
+
+      <ul class="buffList" role="list">
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="blessing_of_kings"></span>
+          <span class="buffTag">Paladin</span>
+          <span class="buffTag">Raidwide</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Increases your base attributes by a percent.</div>
+            <div><strong>Why it matters:</strong> This multiplies what you already have, including stats gained from gear. A +10 Strength upgrade is not just +10 Strength in a Kings raid. It is +10 Strength, then multiplied. That is why “Strength and Agility get better in raids” is often literally true.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="mark_of_the_wild"></span>
+          <span class="buffTag">Druid</span>
+          <span class="buffTag">Raidwide</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Adds a flat amount of base stats (plus defensive baseline).</div>
+            <div><strong>Why it matters:</strong> This raises your baseline before percent multipliers apply. Mark plus Kings is not redundant. Mark increases the base, Kings multiplies it. Together they meaningfully change the “real” amount of Strength and Agility behind your Attack Power and crit.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="power_word_fortitude"></span>
+          <span class="buffTag">Priest</span>
+          <span class="buffTag">Raidwide</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Adds Stamina.</div>
+            <div><strong>Why it matters:</strong> Stamina does not raise your damage directly, but it raises your chance to keep hitting the boss. If an avoidable death or a healer panic forces you out of melee range, your DPS drops to zero. Fortitude improves your ability to stay in, keep Flurry rolling, and not lose uptime during damage spikes.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="arcane_intellect"></span>
+          <span class="buffTag">Mage</span>
+          <span class="buffTag">Raidwide</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Adds Intellect, increasing mana pool and slightly increasing spell crit.</div>
+            <div><strong>Why it matters:</strong> A bigger mana pool gives you more “rotation budget” before you have to throttle shocks, purge, grounding, or utility casts. Intellect rarely wins gear decisions by itself, but it changes how long you can maintain your preferred play pattern on long fights.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="divine_spirit"></span>
+          <span class="buffTag">Priest</span>
+          <span class="buffTag">Raidwide</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Adds Spirit, improving mana regeneration when you are not actively spending mana.</div>
+            <div><strong>Why it matters:</strong> Spirit is not a burst stat for Enhancement, but it is a stability stat. It helps between pulls, during movement, and anytime you temporarily ease off shocks. If your raid has downtime patterns, Spirit buffs reduce the chance you return to melee already behind on mana.</div>
+          </div>
+        </li>
       </ul>
+
+      <div class="buffFooter">
+        <strong>Gearing takeaway:</strong> In raids with Kings plus Mark, Strength and Agility upgrades are worth more than they look in isolation because your baseline attributes are higher and percent scaling is active.
+      </div>
+    </article>
+
+    <!-- Attack Power and melee throughput -->
+    <article class="statCard buffCard" role="listitem">
+      <div class="statCardHeader">
+        <div class="statIcon buffHeaderIcon" aria-hidden="true">
+          <span class="spellRef" data-spell="blessing_of_might"></span>
+        </div>
+        <div>
+          <p class="statCardTitle">Attack Power and melee throughput</p>
+          <div class="statCardMeta">Flat Attack Power plus percent multipliers that boost your whole physical kit</div>
+        </div>
+      </div>
+
+      <ul class="buffList" role="list">
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="blessing_of_might"></span>
+          <span class="buffTag">Paladin</span>
+          <span class="buffTag">Raidwide</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Adds flat Attack Power.</div>
+            <div><strong>Why it matters:</strong> Flat AP increases your white hits and many physical abilities. It also increases the payoff of percent multipliers and target debuffs, because those multipliers are being applied to a larger physical baseline.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="battle_shout"></span>
+          <span class="buffTag">Warrior</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Adds flat Attack Power to the group.</div>
+            <div><strong>Why it matters:</strong> When Battle Shout is present alongside Might, your AP floor is much higher than “gear AP.” That pushes many comparisons toward Strength and AP because those stats are scaling an already high baseline, rather than trying to compensate for a low one.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="trueshot_aura"></span>
+          <span class="buffTag">Hunter</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Adds Attack Power via an aura.</div>
+            <div><strong>Why it matters:</strong> It is a quiet baseline increase that makes your entire physical kit feel better. If your party has this aura, you are closer to the “supported melee group” scenario where physical scaling stats dominate and reliability stats gain more value.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="unleashed_rage"></span>
+          <span class="buffTag">Enhancement</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Percent Attack Power increase for your party tied to your crit engine and uptime.</div>
+            <div><strong>Why it matters:</strong> This is a multiplier on the party’s Attack Power. The more Attack Power the party has from gear plus buffs, the bigger the real output swing. It also means your reliability matters twice: it improves your damage and helps keep this multiplier active.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="buffFooter">
+        <strong>Gearing takeaway:</strong> In an AP supported party, Strength and Attack Power are the most stable scalers, and hit and expertise become more valuable because they protect high value swing events.
+      </div>
+    </article>
+
+    <!-- Crit and haste throughput -->
+    <article class="statCard buffCard" role="listitem">
+      <div class="statCardHeader">
+        <div class="statIcon buffHeaderIcon" aria-hidden="true">
+          <span class="spellRef" data-spell="bloodlust"></span>
+        </div>
+        <div>
+          <p class="statCardTitle">Crit and haste throughput</p>
+          <div class="statCardMeta">These increase the number of valuable swing events and amplify burst windows</div>
+        </div>
+      </div>
+
+      <ul class="buffList" role="list">
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="leader_of_the_pack"></span>
+          <span class="buffTag">Druid</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Increases crit chance for your group.</div>
+            <div><strong>Why it matters:</strong> Crit is your uptime engine. More crit means more Flurry uptime, smoother damage, and fewer “dead stretches” where your swing speed falls off. It also increases how often Unleashed Rage stays active in practice.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="rampage"></span>
+          <span class="buffTag">Warrior</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Increases group crit chance through an upkeep style buff.</div>
+            <div><strong>Why it matters:</strong> The practical outcome is the same: more Flurry stability and more reliable burst. When crit support is present, crit rating and agility upgrades tend to compare better because they reinforce a buffed uptime engine.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="moonkin_aura"></span>
+          <span class="buffTag">Balance</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Increases spell crit chance for your group.</div>
+            <div><strong>Why it matters:</strong> Enhancement is mostly physical, but shocks and spell based procs are still real throughput. More spell crit increases the payoff of your spell portion and makes “shock heavy” rotations slightly stronger. It also increases the consistency of Elemental Devastation uptime if you are playing into spell crit triggers.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="idol_of_the_raven_goddess"></span>
+          <span class="buffTag">Item</span>
+          <span class="buffTag">Roster</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Increases the effect of <span class="spellRef" data-spell="moonkin_aura"></span> for the Balance Druid wearing it.</div>
+            <div><strong>Why it matters:</strong> This is a raid composition modifier. If your raid has a Moonkin and they are wearing this idol, your party’s spell crit support is higher than the “default aura” assumption. That can shift close choices toward spell friendly stats or reinforce shock value on certain fights.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="bloodlust"></span>
+          <span class="buffTag">Shaman</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Large haste window that increases attack speed and casting speed.</div>
+            <div><strong>Why it matters:</strong> Haste increases attempts. If you are missing or getting dodged, haste creates more failed swing events. This is why hit and expertise become more valuable during Lust style windows: they convert extra attempts into actual damage.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="drums_of_battle"></span>
+          <span class="buffTag">Leatherworking</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Short duration haste buff for the group.</div>
+            <div><strong>Why it matters:</strong> Treat it as a smaller haste window. If you are under hit or expertise targets, these windows feel worse because more of the extra swing attempts fail. If you are capped, they feel like clean multipliers.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="buffFooter">
+        <strong>Gearing takeaway:</strong> Burst windows amplify whatever your current setup does well. Reliability (hit and expertise) is what converts haste windows into real damage, and crit support stabilizes your uptime engine.
+      </div>
+    </article>
+
+    <!-- Sustain -->
+    <article class="statCard buffCard" role="listitem">
+      <div class="statCardHeader">
+        <div class="statIcon buffHeaderIcon" aria-hidden="true">
+          <span class="spellRef" data-spell="blessing_of_wisdom"></span>
+        </div>
+        <div>
+          <p class="statCardTitle">Sustain and mana support</p>
+          <div class="statCardMeta">These protect your rotation by preventing OOM, which protects real DPS</div>
+        </div>
+      </div>
+
+      <ul class="buffList" role="list">
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="blessing_of_wisdom"></span>
+          <span class="buffTag">Paladin</span>
+          <span class="buffTag">Raidwide</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Mana regeneration while active.</div>
+            <div><strong>Why it matters:</strong> If you have to stop shocking or stop using utility due to mana, your real DPS drops regardless of how good your gear is. Wisdom protects sustained output by protecting your ability to keep pressing buttons.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="mana_spring_totem"></span>
+          <span class="buffTag">Shaman</span>
+          <span class="buffTag">Party</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Party mana regeneration.</div>
+            <div><strong>Why it matters:</strong> This increases the time you can maintain your chosen rotation without throttling shocks. On long fights, mana support can turn “theoretical DPS” into “repeatable DPS.”</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="buffFooter">
+        <strong>Gearing takeaway:</strong> If you ever go OOM, solve sustain first. Damage stats only matter when you can afford to keep using your rotation.
+      </div>
+    </article>
+  </div>
+
+  <h3>Raid debuffs on the target</h3>
+  <p class="muted">
+    These are on the boss, not you, but they change your damage. Think of them as multipliers applied after your stats.
+  </p>
+
+  <div class="statGrid buffGrid" role="list">
+    <!-- Armor reduction -->
+    <article class="statCard buffCard" role="listitem">
+      <div class="statCardHeader">
+        <div class="statIcon buffHeaderIcon" aria-hidden="true">
+          <span class="spellRef" data-spell="sunder_armor"></span>
+        </div>
+        <div>
+          <p class="statCardTitle">Armor reduction</p>
+          <div class="statCardMeta">Lower armor means more of your physical damage becomes real damage</div>
+        </div>
+      </div>
+
+      <ul class="buffList" role="list">
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="sunder_armor"></span>
+          <span class="buffTag">Warrior</span>
+          <span class="buffTag">Target</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Reduces target armor through stacking applications.</div>
+            <div><strong>Why it matters:</strong> When armor is reduced, each point of weapon DPS, Strength, Attack Power, and physical crit produces more damage because less is absorbed. That increases the real value of physical scaling stats, and it increases the penalty of missed swings because each swing is worth more.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="expose_armor"></span>
+          <span class="buffTag">Rogue</span>
+          <span class="buffTag">Target</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Alternative major armor reduction effect.</div>
+            <div><strong>Why it matters:</strong> The specific provider matters less than the coverage: is major armor reduction present and maintained. If yes, physical scaling stats pull ahead. If it falls off, your physical stats effectively lose value until it is restored.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="faerie_fire"></span>
+          <span class="buffTag">Druid</span>
+          <span class="buffTag">Target</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Reduces armor and prevents stealth style behavior.</div>
+            <div><strong>Why it matters:</strong> It is common coverage and stacks with major armor reduction, so it is often part of the “expected raid baseline.” When it is present, your physical package is slightly stronger across the board.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="curse_of_recklessness"></span>
+          <span class="buffTag">Warlock</span>
+          <span class="buffTag">Target</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Reduces target armor via a curse.</div>
+            <div><strong>Why it matters:</strong> More armor reduction means more payoff from weapon upgrades and Strength heavy items. On physical heavy raids, this pushes value toward the “hit the boss more and harder” stats.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="buffFooter">
+        <strong>Gearing takeaway:</strong> Strong armor reduction coverage increases the value of your physical scalers. This is a major reason raid DPS feels better than solo testing.
+      </div>
+    </article>
+
+    <!-- Physical damage taken amplifiers -->
+    <article class="statCard buffCard" role="listitem">
+      <div class="statCardHeader">
+        <div class="statIcon buffHeaderIcon" aria-hidden="true">
+          <span class="spellRef" data-spell="blood_frenzy"></span>
+        </div>
+        <div>
+          <p class="statCardTitle">Physical damage amplification</p>
+          <div class="statCardMeta">These make each landed physical event worth more</div>
+        </div>
+      </div>
+
+      <ul class="buffList" role="list">
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="blood_frenzy"></span>
+          <span class="buffTag">Warrior</span>
+          <span class="buffTag">Target</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Increases physical damage the target takes.</div>
+            <div><strong>Why it matters:</strong> If the boss takes more physical damage, your white swings, Stormstrike, and physical procs all improve. It also increases the value of hit and expertise because preventing a miss or dodge saves a now higher value swing.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="savage_combat"></span>
+          <span class="buffTag">Rogue</span>
+          <span class="buffTag">Target</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Alternative physical damage taken amplifier.</div>
+            <div><strong>Why it matters:</strong> Coverage is the key. If your raid maintains one of these effects, your physical scaling stats gain value and close comparisons often shift toward weapon damage and AP style upgrades.</div>
+          </div>
+        </li>
+
+        <li class="buffItem">
+          <span class="buffDot" aria-hidden="true"></span>
+          <span class="spellRef" data-spell="expose_weakness"></span>
+          <span class="buffTag">Hunter</span>
+          <span class="buffTag">Target</span>
+          <div class="buffExplain">
+            <div><strong>Effect:</strong> Converts the hunter’s stats into bonus Attack Power for attackers.</div>
+            <div><strong>Why it matters:</strong> This raises your Attack Power baseline dynamically. When it is active, percent multipliers and physical amplifiers scale a larger AP pool, which can change tight gear decisions.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="buffFooter">
+        <strong>Gearing takeaway:</strong> Physical amplifiers raise the value of your entire physical kit. They do not change one stat in isolation. They increase the payoff of “land more swings and hit harder.”
+      </div>
+    </article>
+  </div>
+
+  <div class="calloutRule">
+    <strong>Rule:</strong>
+    When comparing two items, first confirm your raid coverage for caps and multipliers. If you gain or lose a major buff or debuff,
+    treat your EP snapshot as changed and re evaluate close swaps.
+  </div>
+</section>
+<section class="contentCard" id="sim_and_tools">
+  <div class="eyebrow">Confirm</div>
+  <h2>Sim and sanity check workflow</h2>
+
+  <p class="lead">
+    Treat sims as the final decision maker, but only after your inputs match reality.
+    If a sim result looks wrong, it almost always means an assumption, toggle, or comparison method is wrong.
+  </p>
+
+  <div class="simGrid">
+    <div class="simPanel simPanelPrimary">
+      <h3 class="simPanelTitle">Inputs that must be true</h3>
+      <ul class="simChecklist">
+        <li class="simChecklistItem">
+          <div class="simBullet" aria-hidden="true"></div>
+          <div>
+            <strong>Raid context</strong>
+            <div class="simItemText">Buffs, debuffs, consumes, and totems match the group you care about.</div>
+          </div>
+        </li>
+        <li class="simChecklistItem">
+          <div class="simBullet" aria-hidden="true"></div>
+          <div>
+            <strong>Rotation intent</strong>
+            <div class="simItemText">Shock usage, twisting, and uptime assumptions match how you actually play.</div>
+          </div>
+        </li>
+        <li class="simChecklistItem">
+          <div class="simBullet" aria-hidden="true"></div>
+          <div>
+            <strong>Weapon rules</strong>
+            <div class="simItemText">Main hand and off hand speeds and imbues match the swap you are testing.</div>
+          </div>
+        </li>
+        <li class="simChecklistItem">
+          <div class="simBullet" aria-hidden="true"></div>
+          <div>
+            <strong>Caps and thresholds</strong>
+            <div class="simItemText">Hit and Expertise are evaluated against the same target and same assumptions.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="simTip note">
+        <strong>Sanity check rule:</strong>
+        If you do not trust a result, change one variable at a time until the result makes sense.
+        When it still does not make sense, the input set is wrong, not the sim.
+      </div>
     </div>
 
-    <div class="statCard">
-      <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon"><span class="statIconGlyph">AP</span></div>
-        <div>
-          <h3 class="statCardTitle">Attack Power and melee buffs</h3>
-          <div class="statCardMeta">Flat Attack Power, melee only boosts, and shout style effects</div>
-        </div>
-      </div>
-      <ul class="miniList">
-        <li><strong>Battle Shout</strong> is a major AP source and is usually present in raids.</li>
-        <li><strong>Blessing of Might</strong> is another AP source. If you have multiple, you get the strongest version.</li>
-        <li><strong>Totems and buffs</strong> often stack with AP buffs because they are different buckets.</li>
-      </ul>
-    </div>
+    <div class="simPanel simPanelSecondary">
+      <h3 class="simPanelTitle">What to sim when comparing stats</h3>
 
-    <div class="statCard">
-      <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon"><span class="statIconGlyph">HIT</span></div>
-        <div>
-          <h3 class="statCardTitle">Hit, Expertise, and caps</h3>
-          <div class="statCardMeta">Why some stats stop being valuable after a point</div>
-        </div>
-      </div>
-      <ul class="miniList">
-        <li><strong>Hit and Expertise do not stack like buffs.</strong> They push you toward caps.</li>
-        <li><strong>Once you are capped</strong>, extra rating is much less valuable and can become wasted.</li>
-        <li><strong>Your caps change</strong> based on talents, raid composition, and whether you care about white swings.</li>
-      </ul>
-    </div>
+      <ol class="simSteps">
+        <li>
+          <strong>Compare the whole set.</strong>
+          Do not swap one item in a vacuum if it changes caps, weapon pairs, or set bonuses.
+        </li>
+        <li>
+          <strong>Sim the decision you will actually make.</strong>
+          If you would also change gems, enchants, or consumes, include that version too.
+        </li>
+        <li>
+          <strong>Use the right fight style.</strong>
+          Patchwerk can mislead you if your real fights have movement, target switches, or downtime.
+        </li>
+      </ol>
 
-    <div class="statCard">
-      <div class="statCardHeader">
-        <div aria-hidden="true" class="statIcon"><span class="statIconGlyph">ARP</span></div>
-        <div>
-          <h3 class="statCardTitle">Target debuffs and armor reduction</h3>
-          <div class="statCardMeta">Effects on the boss that increase your physical damage</div>
+      <div class="simLinkCard">
+        <div class="simLinkTitle">Recommended sim</div>
+        <a class="simLink" href="https://wowsims.github.io/tbc/enhancement_shaman/">
+          TBC Enhancement Shaman on WowSims
+        </a>
+        <div class="simLinkText">
+          Use it for close calls and for any weapon swap. Keep your settings consistent and save profiles for common raid contexts.
         </div>
       </div>
-      <ul class="miniList">
-        <li><strong>Sunder Armor and Expose Armor</strong> are the same bucket. You usually get one, not both.</li>
-        <li><strong>Faerie Fire</strong> stacks with armor reduction effects and is very common.</li>
-        <li><strong>These debuffs raise the value</strong> of your physical stats because more of your damage is going through.</li>
-      </ul>
     </div>
   </div>
 
-  <h3>Common beginner mistakes</h3>
-  <ul>
-    <li><strong>Double counting buffs.</strong> If two buffs do the same job, you do not get both.</li>
-    <li><strong>Ignoring percent scaling.</strong> Stats like Strength and Agility get better when Kings is present.</li>
-    <li><strong>Comparing gear without context.</strong> In a full raid, some stats become stronger, and some drop after caps.</li>
-  </ul>
-
-  <div class="calloutRule">
-    <strong>Rule:</strong> If you are unsure whether two buffs stack, assume they do not if they look like the same effect,
-    and assume they do if they come from different sources and affect different parts of your character.
+  <div class="calloutRule simBottomRule">
+    <strong>Decision rule:</strong>
+    Use EP to triage, then sim close calls. When you are near a cap or changing weapons, treat sim results as mandatory.
   </div>
 </section>
 
 
-     <section class="contentCard" id="sim_and_tools">
-      <div class="eyebrow">
-       Confirm
-      </div>
-      <h2>
-       Sim and sanity check workflow
-      </h2>
-      <p>
-       You should treat sims as the final decision maker, but only after you give them correct inputs.
-    If your sim output looks wrong, it almost always means one of your assumptions or toggles is wrong.
-      </p>
-      <h3 id="what_to_sim">
-       What to sim when you are comparing stats
-      </h3>
-      <ul>
-       <li>
-        <strong>
-         Compare the whole set:
-        </strong>
-        do not swap one item in a vacuum if it changes caps or set bonuses.
-       </li>
-       <li>
-        <strong>
-         Verify buffs:
-        </strong>
-        make sure raid buffs and consumables match the context you actually care about.
-       </li>
-       <li>
-        <strong>
-         Use the right fight style:
-        </strong>
-        patchwerk style can mislead you if your real fights have movement or target switching.
-       </li>
-      </ul>
-      <div class="note">
-       Recommended sim:
-       <a href="https://wowsims.github.io/tbc/enhancement_shaman/">
-        TBC Enhancement Shaman on WowSims
-       </a>
-       .
-    If you do not trust a result, change one variable at a time until the result makes sense.
-      </div>
-     </section>
+    
+
+
+
      <section class="contentCard" id="labs">
       <div class="eyebrow">
        Practice
@@ -1436,54 +1872,7 @@
       <div class="note">
        We will build these labs later. This guide is structured so the labs drop in naturally without rewriting the page.
       </div>
-     </section>
-     <section class="contentCard" id="next_steps">
-      <div class="eyebrow">
-       Next
-      </div>
-      <h2>
-       Where this page fits in your learning path
-      </h2>
-      <p>
-       Stats are the foundation. Gear decisions are the application.
-    Gems and enchants are the fine tuning layer where you express those decisions slot by slot.
-      </p>
-      <div class="stepList" role="list">
-       <div class="step" role="listitem">
-        <div class="stepTitle">
-         Next: gear decisions
-        </div>
-        <div class="stepText">
-         Apply the mental model to real items, set bonuses, and weapon rules.
-        </div>
-       </div>
-       <div class="step" role="listitem">
-        <div class="stepTitle">
-         Then: gems and enchants
-        </div>
-        <div class="stepText">
-         Turn your stat priorities into socket and enchant choices without griefing caps.
-        </div>
-       </div>
-       <div class="step" role="listitem">
-        <div class="stepTitle">
-         Then: practice
-        </div>
-        <div class="stepText">
-         Use the labs to build speed and confidence in upgrade calls.
-        </div>
-       </div>
-      </div>
-      <div class="labActions">
-       <a class="btn" href="/pages/guide/gear_and_stats.html">
-        Go to Gear Decisions
-       </a>
-       <a class="btn btnGhost" href="/pages/tools/">
-        Browse Tools
-       </a>
-      </div>
-     </section>
-    </main>
+         </main>
     <aside aria-label="On page table of contents" class="appTocShell">
      <div class="tocHeader">
       <div class="tocTitle">

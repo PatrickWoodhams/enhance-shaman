@@ -8,6 +8,8 @@ export function iconUrl(iconName, size = "large", ext = "jpg") {
   return `${ZAMIMG_BASE}/${size}/${iconName}.${ext}`
 }
 
+const UNKNOWN_ICON = iconUrl("inv_misc_questionmark")
+
 export const SPELLS = {
   // Enhancement core
   stormstrike: { name: "Stormstrike", icon: iconUrl("ability_shaman_stormstrike") },
@@ -23,7 +25,7 @@ export const SPELLS = {
   improved_weapon_totems: { name: "Improved Weapon Totems", icon: iconUrl("spell_fire_enchantweapon") },
   natures_guidance: { name: "Nature's Guidance", icon: iconUrl("spell_frost_stun") },
   clearcasting: { name: "Clearcasting", icon: iconUrl("spell_shadow_manaburn") },
-  
+
   // Talents and procs
   flurry: { name: "Flurry", icon: iconUrl("ability_ghoulfrenzy") },
   unleashed_rage: { name: "Unleashed Rage", icon: iconUrl("spell_nature_unleashedrage") },
@@ -68,6 +70,58 @@ export const SPELLS = {
   healing_stream_totem: { name: "Healing Stream Totem", icon: iconUrl("spell_nature_healingstreamtotem") },
   poison_cleansing_totem: { name: "Poison Cleansing Totem", icon: iconUrl("spell_nature_poisoncleansingtotem") },
   disease_cleansing_totem: { name: "Disease Cleansing Totem", icon: iconUrl("spell_nature_diseasecleansingtotem") },
+
+  // Raid buffs on you
+  blessing_of_kings: { name: "Blessing of Kings", icon: iconUrl("spell_magic_magearmor") },
+  mark_of_the_wild: { name: "Mark of the Wild", icon: iconUrl("spell_nature_regeneration") },
+  power_word_fortitude: { name: "Power Word: Fortitude", icon: iconUrl("spell_holy_wordfortitude") },
+  divine_spirit: { name: "Divine Spirit", icon: iconUrl("spell_holy_divinespirit") },
+  arcane_intellect: { name: "Arcane Intellect", icon: iconUrl("spell_holy_magicalsentry") },
+
+  blessing_of_might: { name: "Blessing of Might", icon: iconUrl("spell_holy_fistofjustice") },
+  battle_shout: { name: "Battle Shout", icon: iconUrl("ability_warrior_battleshout") },
+  trueshot_aura: { name: "Trueshot Aura", icon: iconUrl("ability_trueshot") },
+
+  // Crit support
+  leader_of_the_pack: { name: "Leader of the Pack", icon: iconUrl("spell_nature_unyeildingstamina") },
+  rampage: { name: "Rampage", icon: iconUrl("ability_warrior_rampage") },
+
+  // Haste windows
+  bloodlust: { name: "Bloodlust", icon: iconUrl("spell_nature_bloodlust") },
+  heroism: { name: "Heroism", icon: iconUrl("spell_nature_bloodlust") },
+
+  // Sustain
+  blessing_of_wisdom: { name: "Blessing of Wisdom", icon: iconUrl("spell_holy_sealofwisdom") },
+
+  // Raid debuffs on the boss
+  sunder_armor: { name: "Sunder Armor", icon: iconUrl("ability_warrior_sunder") },
+  expose_armor: { name: "Expose Armor", icon: iconUrl("ability_warrior_riposte") },
+  faerie_fire: { name: "Faerie Fire", icon: iconUrl("spell_nature_faeriefire") },
+  improved_faerie_fire: { name: "Improved Faerie Fire", icon: iconUrl("spell_nature_faeriefire") },
+  curse_of_recklessness: { name: "Curse of Recklessness", icon: iconUrl("spell_shadow_unholystrength") },
+  idol_of_the_raven_goddess: { name: "Idol of the Raven Goddess", icon: iconUrl("inv-mount_raven_54") },
+
+
+  // Physical damage taken amplifiers and related effects
+  blood_frenzy: { name: "Blood Frenzy", icon: iconUrl("ability_warrior_bloodfrenzy") },
+  savage_combat: { name: "Savage Combat", icon: iconUrl("ability_creature_disease_03") },
+  expose_weakness: { name: "Expose Weakness", icon: iconUrl("ability_rogue_findweakness") },
+  moonkin_aura: { name: "Moonkin Aura", icon: iconUrl("spell_nature_moonglow") },
+
+  // Spell reliability and magic amplification
+  misery: { name: "Misery", icon: iconUrl("spell_shadow_misery") },
+  curse_of_the_elements: { name: "Curse of the Elements", icon: iconUrl("spell_shadow_chilltouch") },
+  improved_scorch: { name: "Improved Scorch", icon: iconUrl("spell_fire_soulburn") },
+
+  // Profession and item based boosters
+  drums_of_battle: { name: "Drums of Battle", icon: iconUrl("inv_misc_drum_02") },
+  drums_of_war: { name: "Drums of War", icon: iconUrl("inv_misc_drum_03") },
+
+  // Consumables and scrolls (safe defaults, swap icons later if you want)
+  flask_of_relentless_assault: { name: "Flask of Relentless Assault", icon: UNKNOWN_ICON },
+  elixir_of_major_agility: { name: "Elixir of Major Agility", icon: UNKNOWN_ICON },
+  scroll_of_strength: { name: "Scroll of Strength", icon: UNKNOWN_ICON },
+  elemental_sharpening_stone: { name: "Elemental Sharpening Stone", icon: UNKNOWN_ICON },
 }
 
 // Totem slot registry for generic references plus a default spell per slot
@@ -76,7 +130,13 @@ export const TOTEMS = {
     name: "Air Totem",
     icon: iconUrl("spell_totem_wardofdraining"),
     defaultSpell: "windfury_totem",
-    options: ["windfury_totem", "grace_of_air_totem", "tranquil_air_totem", "grounding_totem"],
+    options: [
+      "windfury_totem",
+      "grace_of_air_totem",
+      "tranquil_air_totem",
+      "grounding_totem",
+      "wrath_of_air_totem",
+    ],
   },
   fire: {
     name: "Fire Totem",

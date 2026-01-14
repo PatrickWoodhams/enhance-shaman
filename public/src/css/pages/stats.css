@@ -28,14 +28,14 @@
 
   /* Legend icon sizing */
   --statIconSize: 92px;         /* bigger */
-  --statIconRadius: 18px;
-  --statIconPad: 8px;           /* gives the icon room to breathe */
+  --statIconRadius: 12px;
+  --statIconPad: 2px;           /* gives the icon room to breathe */
   --iconWellBg: rgba(0, 0, 0, 0.38); /* blend with icons that have dark edges */
   --iconWellStroke: rgba(255, 255, 255, 0.12);
 
   /* In card icons (smaller than legend) */
-  --inlineIconSize: 46px;
-  --inlineIconPad: 6px;
+  --inlineIconSize: 92px;
+  --inlineIconPad: 2px;
 }
 
 /* Hide page css marker element used by ensurePageCss */
@@ -126,6 +126,11 @@
 
 .pageStats .contentCard p:last-child {
   margin-bottom: 0;
+}
+
+.pageStats #stat_cards > p {
+  max-width: none;
+  width: 100%;
 }
 
 .pageStats .contentCard .lead {
@@ -299,6 +304,109 @@
   }
 }
 
+/* Buffs section intro text should span full card width */
+.pageStats #buffs_and_stacking > p,
+.pageStats #buffs_and_stacking > p.lead,
+.pageStats #buffs_and_stacking > p.muted {
+  max-width: none;
+  width: 100%;
+}
+
+
+/* =========================================================
+   Stat Breakdown conversion table polish
+   Scoped to #stat_cards so other EP tables keep their behavior
+   ========================================================= */
+
+/* Make the wrapper feel like one component, not a scroll box with loose text */
+.pageStats #stat_cards .epTableWrap {
+  overflow: hidden; /* removes the always on scroll feel */
+}
+
+/* Style the small note line inside the wrap */
+.pageStats #stat_cards .epTableWrap > p.muted {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.16);
+}
+
+/* Let this table fit the card and wrap naturally */
+.pageStats #stat_cards table.epTable {
+  min-width: 0;        /* overrides 720px */
+  table-layout: fixed; /* stable columns */
+}
+
+/* Override the global nowrap for this table only */
+.pageStats #stat_cards .epTable th,
+.pageStats #stat_cards .epTable td {
+  white-space: normal;
+}
+
+/* Column sizing and alignment */
+.pageStats #stat_cards .epTable th:nth-child(1),
+.pageStats #stat_cards .epTable td:nth-child(1) {
+  width: 150px;
+  white-space: nowrap; /* keep stat names tidy */
+}
+
+.pageStats #stat_cards .epTable th:nth-child(2),
+.pageStats #stat_cards .epTable td:nth-child(2) {
+  width: 320px;
+  text-align: center;  /* keep conversions visually consistent */
+}
+
+.pageStats #stat_cards .epTable th:nth-child(3),
+.pageStats #stat_cards .epTable td:nth-child(3) {
+  text-align: left;
+  line-height: 1.5;
+}
+
+/* Make Base and Kings lines read clean and uniform */
+.pageStats #stat_cards .epTable td:nth-child(2) > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  justify-items: start;
+  align-items: baseline;
+}
+
+.pageStats #stat_cards .epTable td:nth-child(2) > div + div {
+  margin-top: 4px;
+}
+
+.pageStats #stat_cards .epTable td:nth-child(2) strong {
+  color: var(--fg3, rgba(255, 255, 255, 0.62));
+  font-weight: 850;
+}
+
+/* Optional: consistent row rhythm without forcing clipping */
+.pageStats #stat_cards .epTable tbody tr {
+  height: 64px;
+}
+
+.pageStats #stat_cards .epTable td,
+.pageStats #stat_cards .epTable th {
+  vertical-align: middle;
+}
+
+/* Mobile safety: allow horizontal scroll only when truly needed */
+@media (max-width: 820px) {
+  .pageStats #stat_cards .epTableWrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .pageStats #stat_cards table.epTable {
+    min-width: 720px; /* keeps the structure readable if the viewport is very narrow */
+  }
+  .pageStats #stat_cards .epTable th,
+  .pageStats #stat_cards .epTable td {
+    white-space: nowrap; /* small screens, use scroll instead of tall rows */
+  }
+}
+
 /* =========================================================
    Stat legend (bigger icons, no weird rounding, better scan)
    ========================================================= */
@@ -378,26 +486,14 @@
   display: block;
   object-fit: cover;
 
-  border-radius: 0;      /* keep square */
+  border-radius: var(--statIconRadius);
   background: transparent;
   filter: none;
 }
 
 .pageStats .statIconGlyph {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.86);
-
-  z-index: 0;
-  pointer-events: none;
+  display: none;
 }
-
 .pageStats .statLabel {
   font-weight: 850;
   letter-spacing: -0.01em;
@@ -1155,5 +1251,318 @@
 @media (prefers-reduced-motion: reduce) {
   .pageStats .statChip {
     transition: none;
+  }
+}
+
+/* =========================================================
+   Buffs section: spell driven lists (hydrateSpellRefs friendly)
+   ========================================================= */
+
+.pageStats .buffsSection .buffsNote {
+  margin-top: 10px;
+  max-width: none;
+  width: 100%;
+}
+
+/* Spell reference (assumes hydrateSpellRefs injects an img and a name span) */
+.pageStats .spellRef {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.92);
+  min-width: 0;
+}
+
+.pageStats .spellRef img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.26);
+  flex: 0 0 auto;
+}
+
+/* Header icon uses the same hydration but hides any name text */
+.pageStats .buffHeaderIcon {
+  padding: 2px;
+}
+
+.pageStats .buffHeaderIcon .spellRef {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  gap: 0;
+  font-size: 0; /* hide text nodes safely */
+  line-height: 0;
+}
+
+.pageStats .buffHeaderIcon .spellRef img {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--statIconRadius);
+}
+
+.pageStats .buffHeaderIcon .spellRef :not(img) {
+  display: none !important;
+}
+
+/* Buff list layout */
+.pageStats .buffList {
+  list-style: none;
+  margin: 12px 0 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.pageStats .buffItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Dot bullet */
+.pageStats .buffDot {
+  width: 6px;
+  height: 6px;
+  margin-top: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.50);
+  flex: 0 0 auto;
+}
+
+/* Pills */
+.pageStats .buffTag {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.16);
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  flex: 0 0 auto;
+}
+
+/* Description text */
+.pageStats .buffDesc {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+/* Keep the spell name and tags together nicely */
+.pageStats .buffItem .spellRef {
+  margin-right: 2px;
+}
+
+/* Small screen tightening */
+@media (max-width: 520px) {
+  .pageStats .spellRef img {
+    width: 17px;
+    height: 17px;
+  }
+  .pageStats .buffTag {
+    height: 21px;
+    padding: 0 8px;
+  }
+}
+
+/* Buff explanation block: forces a clean, readable mini stack */
+.pageStats .buffExplain {
+  flex: 1 1 320px;
+  min-width: 260px;
+  color: rgba(255, 255, 255, 0.74);
+  display: grid;
+  gap: 4px;
+}
+
+.pageStats .buffExplain strong {
+  color: rgba(255, 255, 255, 0.90);
+  font-weight: 900;
+}
+
+/* Slight separation for the takeaway line inside each card */
+.pageStats .buffFooter {
+  margin-top: 14px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.14);
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.6;
+}
+
+.pageStats .buffFooter strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================================================
+   Sim workflow section
+   ========================================================= */
+
+.pageStats #sim_and_tools :is(p, ul, ol) {
+  max-width: none;
+}
+
+.pageStats #sim_and_tools .simGrid {
+  margin-top: var(--s4);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 980px) {
+  .pageStats #sim_and_tools .simGrid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+}
+
+.pageStats #sim_and_tools .simPanel {
+  border-radius: 18px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(900px 420px at 12% 0%, rgba(255, 255, 255, 0.05), transparent 60%),
+    rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.pageStats #sim_and_tools .simPanelPrimary {
+  background:
+    radial-gradient(900px 420px at 12% 0%, rgba(255, 191, 0, 0.07), transparent 60%),
+    rgba(0, 0, 0, 0.12);
+}
+
+.pageStats #sim_and_tools .simPanelTitle {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.pageStats #sim_and_tools .simChecklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.pageStats #sim_and_tools .simChecklistItem {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.pageStats #sim_and_tools .simChecklistItem strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.pageStats #sim_and_tools .simItemText {
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.55;
+}
+
+.pageStats #sim_and_tools .simBullet {
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  border-radius: 999px;
+  background: rgba(255, 191, 0, 0.70);
+  box-shadow:
+    0 0 0 3px rgba(255, 191, 0, 0.14),
+    0 10px 18px rgba(0, 0, 0, 0.30);
+}
+
+.pageStats #sim_and_tools .simTip.note {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.10);
+}
+
+.pageStats #sim_and_tools .simSteps {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.pageStats #sim_and_tools .simSteps li {
+  margin: 12px 0;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.pageStats #sim_and_tools .simSteps strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.pageStats #sim_and_tools .simLinkCard {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(700px 320px at 12% 0%, rgba(255, 191, 0, 0.08), transparent 60%),
+    rgba(0, 0, 0, 0.14);
+}
+
+.pageStats #sim_and_tools .simLinkTitle {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.66);
+  margin-bottom: 6px;
+}
+
+.pageStats #sim_and_tools .simLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 191, 0, 0.35);
+  padding-bottom: 2px;
+}
+
+.pageStats #sim_and_tools .simLink:hover {
+  border-bottom-color: rgba(255, 191, 0, 0.70);
+}
+
+.pageStats #sim_and_tools .simLinkText {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.6;
+}
+
+.pageStats #sim_and_tools .simBottomRule {
+  margin-top: 16px;
+}
+
+@media (max-width: 520px) {
+  .pageStats #sim_and_tools .simPanel {
+    padding: 16px;
+  }
+  .pageStats #sim_and_tools .simChecklistItem {
+    padding: 12px;
   }
 }
